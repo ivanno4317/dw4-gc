@@ -391,6 +391,7 @@ config.libs = [
             Object(NonMatching,"os/OSRtc.c",),
             Object(NonMatching,"os/OSSync.c",),
             Object(NonMatching,"os/OSThread.c",),
+            Object(NonMatching,"os/OSTime.c",),
         ],
     ),
 ]
