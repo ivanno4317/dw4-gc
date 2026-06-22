@@ -12,3 +12,137 @@ Sections:
 	.sbss       type:bss align:16
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
+
+card/CARDBios.c:
+	.text       start:0x80245DE0 end:0x802470C4
+	.data       start:0x804C5D60 end:0x804C5DC0
+	.bss        start:0x80512440 end:0x80512680
+	.sdata      start:0x80560D78 end:0x80560D80
+	.sbss       start:0x80565CF0 end:0x80565CF8
+
+card/CARDUnlock.c:
+	.text       start:0x802470C4 end:0x80248324
+	.data       start:0x804C5DC0 end:0x804C5F20
+	.sdata      start:0x80560D80 end:0x80560D88
+
+card/CARDRdwr.c:
+	.text       start:0x80248324 end:0x802485A4
+
+card/CARDBlock.c:
+	.text       start:0x802485A4 end:0x802489A8
+
+card/CARDDir.c:
+	.text       start:0x802489A8 end:0x80248C0C
+
+card/CARDCheck.c:
+	.text       start:0x80248C0C end:0x80249B74
+
+card/CARDMount.c:
+	.text       start:0x80249B74 end:0x8024A5EC
+	.data       start:0x804C5F20 end:0x804C5F60
+
+card/CARDFormat.c:
+	.text       start:0x8024A5EC end:0x8024ADD0
+
+card/CARDOpen.c:
+	.text       start:0x8024ADD0 end:0x8024B3BC
+
+card/CARDCreate.c:
+	.text       start:0x8024B3BC end:0x8024B70C
+
+card/CARDRead.c:
+	.text       start:0x8024B70C end:0x8024BB38
+
+card/CARDWrite.c:
+	.text       start:0x8024BB38 end:0x8024BE6C
+
+card/CARDDelete.c:
+	.text       start:0x8024BE6C end:0x8024C020
+
+card/CARDStat.c:
+	.text       start:0x8024C020 end:0x8024C4E8
+
+mix/mix.c:
+	.text       start:0x80259334 end:0x8025B49C
+	.data       start:0x804C7220 end:0x804C7DE0
+	.bss        start:0x80513490 end:0x80514CA0
+	.sbss       start:0x80565E50 end:0x80565E60
+
+mtx/mtx.c:
+	.text       start:0x8025B49C end:0x8025B738
+	.sdata      start:0x80560E28 end:0x80560E30
+	.sdata2     start:0x80567170 end:0x80567178
+
+os/OS.c:
+	.text       start:0x8025B868 end:0x8025C20C
+	.data       start:0x804C7DE0 end:0x804C7FD8
+	.bss        start:0x80514CA0 end:0x80514CF0
+	.sdata      start:0x80560E30 end:0x80560E3C
+	.sbss       start:0x80565E60 end:0x80565E98
+
+os/OSAlarm.c:
+	.text       start:0x8025C20C end:0x8025C968
+	.data       start:0x804C7FD8 end:0x804C7FE8
+	.sbss       start:0x80565E98 end:0x80565EA0
+
+os/OSAlloc.c:
+	.text       start:0x8025C968 end:0x8025CFD8
+
+os/OSArena.c:
+	.text       start:0x8025CFD8 end:0x8025D024
+
+os/OSAudioSystem.c:
+	.text       start:0x8025D024 end:0x8025D2B8
+
+os/OSCache.c:
+	.text       start:0x8025D2B8 end:0x8025D71C
+
+os/OSContext.c:
+	.text       start:0x8025D71C end:0x8025DF8C
+
+os/OSError.c:
+	.text       start:0x8025DF8C end:0x8025E638
+
+os/OSExec.c:
+	.text       start:0x8025E638 end:0x8025EF98
+
+os/OSFont.c:
+	.text       start:0x8025EF98 end:0x8025EFF0
+
+os/OSInterrupt.c:
+	.text       start:0x8025EFF0 end:0x8025F85C
+
+os/OSLink.c:
+	.text       start:0x8025F85C end:0x8025F874
+
+os/OSMemory.c:
+	.text       start:0x8025F874 end:0x8025FB4C
+
+os/OSMutex.c:
+	.text       start:0x8025FB4C end:0x8025FBBC
+
+os/OSReboot.c:
+	.text       start:0x8025FBBC end:0x8025FC40
+
+os/OSReset.c:
+	.text       start:0x8025FC40 end:0x802600C4
+
+os/OSResetSW.c:
+	.text       start:0x802600C4 end:0x80260450
+
+si/SIBios.c:
+	.text       start:0x80265BD8 end:0x802672C8
+	.data       start:0x804C8FF0 end:0x804C9108
+	.bss        start:0x80515948 end:0x80515B48
+	.sdata      start:0x80560EA0 end:0x80560EA4
+	.sbss       start:0x80565FC0 end:0x80565FC8
+
+si/SISamplingRate.c:
+	.text       start:0x802672C8 end:0x802673D0
+
+exi/EXIBios.c:
+	.text       start:0x802673D0 end:0x80268DAC
+
+exi/EXIUart.c:
+	.text       start:0x80268DAC end:0x80269380
+	.sbss       start:0x80565FD8 end:0x80565FE8
