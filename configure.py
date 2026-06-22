@@ -333,8 +333,8 @@ config.libs = [
             "-i libs/dolsdk2004/src/os",
         ],
         [
-            Object(Matching,"si/SIBios.c",),
-            Object(Matching,"si/SISamplingRate.c",),
+            Object(NonMatching,"si/SIBios.c",),
+            Object(NonMatching,"si/SISamplingRate.c",),
         ],
     ),
     DolphinLib(
