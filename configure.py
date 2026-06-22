@@ -392,6 +392,7 @@ config.libs = [
             Object(NonMatching,"os/OSSync.c",),
             Object(NonMatching,"os/OSThread.c",),
             Object(NonMatching,"os/OSTime.c",),
+            Object(NonMatching,"os/__ppc_eabi_init.c",),
         ],
     ),
 ]
