@@ -8,7 +8,7 @@ jobs:
   build:
     # This is a *private* build container.
     # See docs/github_actions.md for more information.
-    container: ghcr.io/ivanno4317/dwg-gc-build:main
+    container: ghcr.io/ivanno4317/dw4-gc-build:main
 
     runs-on: ubuntu-latest
     strategy:
