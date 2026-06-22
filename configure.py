@@ -390,6 +390,7 @@ config.libs = [
             Object(NonMatching,"os/OSResetSW.c",),
             Object(NonMatching,"os/OSRtc.c",),
             Object(NonMatching,"os/OSSync.c",),
+            Object(NonMatching,"os/OSThread.c",),
         ],
     ),
 ]

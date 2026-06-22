@@ -130,6 +130,9 @@ os/OSReset.c:
 os/OSResetSW.c:
 	.text       start:0x802600C4 end:0x80260450
 
+os/OSThread.c:
+	.text       start:0x80260FB0 end:0x80262284
+
 si/SIBios.c:
 	.text       start:0x80265BD8 end:0x802672C8
 	.data       start:0x804C8FF0 end:0x804C9108
