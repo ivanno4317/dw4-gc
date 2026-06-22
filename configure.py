@@ -193,6 +193,7 @@ config.scratch_preset_id = None
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
+    # define the platform
     "-nodefaults",
     "-proc gekko",
     "-align powerpc",
@@ -208,8 +209,12 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    # for multibyte
+    "-multibyte",
+    # includes and defines
     "-i include",
+    "-i libs/dolsdk2004/include",
+    "-i libs/dolsdk2004/include/libc",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
@@ -251,12 +256,13 @@ config.linker_version = "GC/1.3.2"
 
 
 # Helper function for Dolphin libraries
-def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def DolphinLib(lib_name: str, cflags: Any, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/1.2.5n",
-        "cflags": cflags_base,
+        "cflags": [*cflags, "-DDOLPHIN_SDK"],
         "progress_category": "sdk",
+        "src_dir": "libs/dolsdk2004/src",
         "objects": objects,
     }
 
@@ -293,8 +299,99 @@ config.libs = [
         "objects": [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-        ],
+        ],        
     },
+    DolphinLib(
+        "card",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src",
+            "-i libs/dolsdk2004/src/card",
+            "-i libs/dolsdk2004/src/os",
+        ],
+        [
+            Object(Matching,"card/CARDCheck.c",),
+            Object(Matching,"card/CARDRdwr.c",),
+            Object(Matching,"card/CARDBlock.c",),
+            Object(Matching,"card/CARDDir.c",),
+            Object(Matching,"card/CARDMount.c",),
+            Object(Matching,"card/CARDFormat.c",),
+            Object(Matching,"card/CARDOpen.c",),
+            Object(Matching,"card/CARDCreate.c",),
+            Object(Matching,"card/CARDRead.c",),
+            Object(Matching,"card/CARDWrite.c",),
+            Object(Matching,"card/CARDDelete.c",),
+            Object(Matching,"card/CARDStat.c",),
+            Object(Matching,"card/CARDUnlock.c",),
+            Object(Matching,"card/CARDBios.c",),
+        ],
+    ),
+    DolphinLib(
+        "si",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/os",
+        ],
+        [
+            Object(Matching,"si/SIBios.c",),
+            Object(Matching,"si/SISamplingRate.c",),
+        ],
+    ),
+    DolphinLib(
+        "exi",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/os",
+        ],
+        [
+            Object(NonMatching,"exi/EXIBios.c",cflags=[x for x in cflags_base if x != "-O4,p"] + ["-O3,p", "-DDOLPHIN_SDK"],),
+            Object(Matching,"exi/EXIUart.c",),
+        ],
+    ),
+    DolphinLib(
+        "mix",
+        cflags_base,
+        [
+            Object(NonMatching,"mix/mix.c",),
+        ],
+    ),
+    DolphinLib(
+        "mtx",
+        cflags_base,
+        [
+            Object(Matching,"mtx/mtx.c",),
+        ],
+    ),
+    DolphinLib(
+        "os",
+        [
+            *cflags_base,
+            "-D__GEKKO__",
+            "-i libs/dolsdk2004/src/os",
+            "-i libs/dolsdk2004/src/dvd",
+        ],
+        [
+            Object(NonMatching,"os/OS.c",),
+            Object(Matching,"os/OSAlarm.c",),
+            Object(NonMatching,"os/OSAlloc.c",),
+            Object(NonMatching,"os/OSArena.c",),
+            Object(NonMatching,"os/OSAudioSystem.c",),
+            Object(NonMatching,"os/OSCache.c",),
+            Object(NonMatching,"os/OSContext.c",),
+            Object(NonMatching,"os/OSError.c",),
+            Object(NonMatching,"os/OSExec.c",),
+            Object(NonMatching,"os/OSFont.c",),
+            Object(NonMatching,"os/OSInterrupt.c",),
+            Object(NonMatching,"os/OSLink.c",),
+            Object(NonMatching,"os/OSMemory.c",),
+            Object(NonMatching,"os/OSMutex.c",),
+            Object(NonMatching,"os/OSReboot.c",),
+            Object(NonMatching,"os/OSReset.c",),
+            Object(NonMatching,"os/OSResetSW.c",),
+            Object(NonMatching,"os/OSRtc.c",),
+            Object(NonMatching,"os/OSSync.c",),
+        ],
+    ),
 ]
 
 
