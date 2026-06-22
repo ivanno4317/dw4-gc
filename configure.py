@@ -403,6 +403,18 @@ config.libs = [
             Object(NonMatching, "pad/Pad.c"),
         ],
     ),
+    DolphinLib(
+        "vi",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/gx",
+            "-i libs/dolsdk2004/src/os",
+            "-i libs/dolsdk2004/src/vi",
+        ],
+        [
+            Object(NonMatching, "vi/vi.c"),
+        ],
+    ),
 ]
 
 

@@ -145,6 +145,9 @@ pad/Padclamp.c:
 pad/Pad.c:
 	.text       start:0x802625E0 end:0x80263F28
 
+vi/vi.c:
+	.text       start:0x80263F28 end:0x80265B78
+
 si/SIBios.c:
 	.text       start:0x80265BD8 end:0x802672C8
 	.data       start:0x804C8FF0 end:0x804C9108
