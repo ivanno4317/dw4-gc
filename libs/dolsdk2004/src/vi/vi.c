@@ -309,15 +309,11 @@ static VITiming* getTiming(VITVMode mode) {
     case VI_TVMODE_MPAL_INT:        return &timing[4];
     case VI_TVMODE_MPAL_DS:         return &timing[5];
     case VI_TVMODE_NTSC_PROG:       return &timing[6];
-    case 3:                         return &timing[7];
+    case VI_TVMODE_NTSC_3D:         return &timing[7];
     case VI_TVMODE_DEBUG_PAL_INT:   return &timing[2];
     case VI_TVMODE_DEBUG_PAL_DS:    return &timing[3];
-    case 24:                        return &timing[8];
-    case 26:                        return &timing[9];
-    case 29:
-    case 30:
-    case 28:
-        return timingExtra;
+    case VI_TVMODE_GCA_INT:         return &timing[8];
+    case VI_TVMODE_GCA_PROG:        return &timing[9];
     default:
         return NULL;
     }
@@ -325,76 +321,67 @@ static VITiming* getTiming(VITVMode mode) {
 #pragma dont_inline reset
 
 void __VIInit(VITVMode mode) {
-    VITiming* tm;
-    u32 nonInter;
-    u32 tv;
-    u32 tvForReg;
-    volatile u32 a;
-    u16 hct;
-    u16 vct;
-    u32 encoderType;
+  VITiming* tm;
+  u32 nonInter;
+  volatile u32 a;
+  u32 tv, tvForReg;
 
-    encoderType = getEncoderType();
-    if (encoderType == 0) {
-        __VIInitPhilips();
-    }
+  u16 hct, vct;
 
-    nonInter = mode & 3;
-    tv = (u32)mode >> 2;
-    *(u32*)OSPhysicalToCached(0xCC) = tv;
-    if (encoderType == 0) {
-        tv = 3;
-    }
-    tm = getTiming(mode);
-    __VIRegs[1] = 2;
+  nonInter = mode & 2;
+  tv = (u32)mode >> 2;
 
-    // why?
-    for (a = 0; a < 1000; a++) {}
+  *(u32*)OSPhysicalToCached(0xCC) = tv;
 
-    __VIRegs[1] = 0;
-    __VIRegs[3] = (u32)tm->hlw;
-    __VIRegs[2] = tm->hce | (tm->hcs << 8);
-    __VIRegs[5] = tm->hsy | ((tm->hbe640 & 0x1FF) << 7);
-    __VIRegs[4] = (tm->hbe640 >> 9) | ((tm->hbs640 & 0xFFFF) << 1);
-    if (encoderType == 0) {
-        __VIRegs[0x39] = tm->hbeCCIR656 | 0x8000;
-        __VIRegs[0x3A] = (u32)tm->hbsCCIR656;
-    }
-    __VIRegs[0] = (u32)tm->equ;
-    __VIRegs[7] = (u32)(tm->prbOdd + (tm->acv * 2) - 2);
-    __VIRegs[6] = (u32)(tm->psbOdd + 2);
-    __VIRegs[9] = (u32)(tm->prbEven + (tm->acv * 2) - 2);
-    __VIRegs[8] = (u32)(tm->psbEven + 2);
-    __VIRegs[11] = tm->bs1 | (tm->be1 << 5);
-    __VIRegs[10] = tm->bs3 | (tm->be3 << 5);
-    __VIRegs[13] = tm->bs2 | (tm->be2 << 5);
-    __VIRegs[12] = tm->bs4 | (tm->be4 << 5);
-    __VIRegs[36] = 0x2828;
-    __VIRegs[27] = 1;
-    __VIRegs[26] = 0x1001;
-    hct = tm->hlw + 1;
-    vct = (tm->nhlines / 2) + 1;
-    __VIRegs[25] = (u16)(u32)hct;
-    __VIRegs[24] = vct | 0x1000;
+  tm = getTiming(mode);
 
-    switch (tv) {
-    case 1:
-    case 2:
-    case 3:
-        tvForReg = tv;
-        break;
-    default:
-        tvForReg = 0;
-    }
+  __VIRegs[VI_DISP_CONFIG] = 2;
+  for (a = 0; a < 1000; a++) {
+    ;
+  }
 
-    if (nonInter == 0 || nonInter == 1) {
-        __VIRegs[1] = ((nonInter << 2) & 4) | 1 | (tvForReg << 8);
-        __VIRegs[54] = 0;
-        return;
-    }
+  __VIRegs[VI_DISP_CONFIG] = 0;
 
-    __VIRegs[1] = (tvForReg << 8) | 5;
-    __VIRegs[54] = 1;
+  __VIRegs[VI_HORIZ_TIMING_0U] = tm->hlw << 0;
+  __VIRegs[VI_HORIZ_TIMING_0L] = (tm->hce << 0) | (tm->hcs << 8);
+
+  __VIRegs[VI_HORIZ_TIMING_1U] = (tm->hsy << 0) | ((tm->hbe640 & ((1 << 9) - 1)) << 7);
+  __VIRegs[VI_HORIZ_TIMING_1L] = ((tm->hbe640 >> 9) << 0) | (tm->hbs640 << 1);
+
+  __VIRegs[VI_VERT_TIMING] = (tm->equ << 0) | (0 << 4);
+
+  __VIRegs[VI_VERT_TIMING_ODD_U] = (tm->prbOdd + tm->acv * 2 - 2) << 0;
+  __VIRegs[VI_VERT_TIMING_ODD] = tm->psbOdd + 2 << 0;
+
+  __VIRegs[VI_VERT_TIMING_EVEN_U] = (tm->prbEven + tm->acv * 2 - 2) << 0;
+  __VIRegs[VI_VERT_TIMING_EVEN] = tm->psbEven + 2 << 0;
+
+  __VIRegs[VI_BBI_ODD_U] = (tm->bs1 << 0) | (tm->be1 << 5);
+  __VIRegs[VI_BBI_ODD] = (tm->bs3 << 0) | (tm->be3 << 5);
+
+  __VIRegs[VI_BBI_EVEN_U] = (tm->bs2 << 0) | (tm->be2 << 5);
+  __VIRegs[VI_BBI_EVEN] = (tm->bs4 << 0) | (tm->be4 << 5);
+
+  __VIRegs[VI_HSW] = (40 << 0) | (40 << 8);
+
+  __VIRegs[VI_DISP_INT_1U] = 1;
+  __VIRegs[VI_DISP_INT_1] = (1 << 0) | (1 << 12) | (0 << 15);
+
+  hct = (tm->hlw + 1);
+  vct = (tm->nhlines / 2 + 1) | (1 << 12) | (0 << 15);
+  __VIRegs[VI_DISP_INT_0U] = hct << 0;
+  __VIRegs[VI_DISP_INT_0] = vct;
+
+  if (mode != VI_TVMODE_NTSC_PROG && mode != VI_TVMODE_NTSC_3D && mode != VI_TVMODE_GCA_PROG) {
+    __VIRegs[VI_DISP_CONFIG] =
+        (1 << 0) | (0 << 1) | (nonInter << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+    __VIRegs[VI_CLOCK_SEL] = 0;
+
+  } else {
+    __VIRegs[VI_DISP_CONFIG] =
+        (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+    __VIRegs[VI_CLOCK_SEL] = 1;
+  }
 }
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
