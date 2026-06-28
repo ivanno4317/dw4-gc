@@ -334,7 +334,7 @@ config.libs = [
         ],
         [
             Object(Matching,"si/SIBios.c",),
-            Object(NonMatching,"si/SISamplingRate.c",),
+            Object(Matching,"si/SISamplingRate.c",),
         ],
     ),
     DolphinLib(

@@ -192,6 +192,8 @@ si/SIBios.c:
 
 si/SISamplingRate.c:
 	.text       start:0x802672C8 end:0x802673D0
+	.data       start:0x804C9108 end:0x804C91A0
+	.sbss       start:0x80565FC8 end:0x80565FD0
 
 exi/EXIBios.c:
 	.text       start:0x802673D0 end:0x80268DAC
