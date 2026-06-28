@@ -392,7 +392,7 @@ config.libs = [
             Object(NonMatching,"os/OSSync.c",),
             Object(Matching,"os/OSThread.c",),
             Object(Matching,"os/OSTime.c",),
-            Object(NonMatching,"os/__ppc_eabi_init.c",),
+            Object(Matching,"os/__ppc_eabi_init.c",),
         ],
     ),
     DolphinLib(

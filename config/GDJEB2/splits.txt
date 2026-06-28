@@ -162,6 +162,7 @@ os/OSTime.c:
 	.text       start:0x80262284 end:0x80262308
 
 os/__ppc_eabi_init.c:
+	.init       start:0x800054EC end:0x80005544
 	.text       start:0x80262308 end:0x8026239C
 
 pad/Padclamp.c:
