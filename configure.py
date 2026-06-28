@@ -333,7 +333,7 @@ config.libs = [
             "-i libs/dolsdk2004/src/os",
         ],
         [
-            Object(NonMatching,"si/SIBios.c",),
+            Object(Matching,"si/SIBios.c",),
             Object(NonMatching,"si/SISamplingRate.c",),
         ],
     ),
