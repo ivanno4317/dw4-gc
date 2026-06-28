@@ -141,6 +141,7 @@ os/OSMutex.c:
 
 os/OSReboot.c:
 	.text       start:0x8025FBBC end:0x8025FC40
+	.sbss       start:0x80565ED8 end:0x80565EE0
 
 os/OSReset.c:
 	.text       start:0x8025FC40 end:0x802600C4
