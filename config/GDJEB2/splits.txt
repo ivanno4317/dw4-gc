@@ -154,6 +154,9 @@ os/OSResetSW.c:
 
 os/OSThread.c:
 	.text       start:0x80260FB0 end:0x80262284
+	.bss        start:0x80514DB8 end:0x805157B0
+	.sdata      start:0x80560E68 end:0x80560E70
+	.sbss       start:0x80565F10 end:0x80565F20
 
 os/OSTime.c:
 	.text       start:0x80262284 end:0x80262308

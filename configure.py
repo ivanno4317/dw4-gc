@@ -390,7 +390,7 @@ config.libs = [
             Object(Matching,"os/OSResetSW.c",),
             Object(NonMatching,"os/OSRtc.c",),
             Object(NonMatching,"os/OSSync.c",),
-            Object(NonMatching,"os/OSThread.c",),
+            Object(Matching,"os/OSThread.c",),
             Object(NonMatching,"os/OSTime.c",),
             Object(NonMatching,"os/__ppc_eabi_init.c",),
         ],
