@@ -415,6 +415,13 @@ config.libs = [
             Object(Matching, "vi/vi.c"),
         ],
     ),
+    DolphinLib(
+        "base",
+        cflags_base,
+        [
+            Object(Matching, "base/PPCArch.c"),
+        ],
+    ),
 ]
 
 

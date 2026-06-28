@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+base/PPCArch.c:
+	.text       start:0x80245CC0 end:0x80245DE0
+
 card/CARDBios.c:
 	.text       start:0x80245DE0 end:0x802470C4
 	.data       start:0x804C5D60 end:0x804C5DC0
