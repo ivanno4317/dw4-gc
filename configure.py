@@ -399,7 +399,7 @@ config.libs = [
         "pad",
         [*cflags_base, "-i libs/dolsdk2004/src/si"],
         [
-            Object(NonMatching, "pad/Padclamp.c"),
+            Object(Matching, "pad/Padclamp.c"),
             Object(NonMatching, "pad/Pad.c"),
         ],
     ),

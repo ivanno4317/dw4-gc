@@ -167,6 +167,7 @@ os/__ppc_eabi_init.c:
 
 pad/Padclamp.c:
 	.text       start:0x8026239C end:0x802625E0
+	.rodata     start:0x804164E0 end:0x804164F0
 
 pad/Pad.c:
 	.text       start:0x802625E0 end:0x80263F28
