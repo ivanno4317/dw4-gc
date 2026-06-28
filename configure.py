@@ -400,7 +400,7 @@ config.libs = [
         [*cflags_base, "-i libs/dolsdk2004/src/si"],
         [
             Object(Matching, "pad/Padclamp.c"),
-            Object(NonMatching, "pad/Pad.c"),
+            Object(Matching, "pad/Pad.c"),
         ],
     ),
     DolphinLib(

@@ -171,6 +171,10 @@ pad/Padclamp.c:
 
 pad/Pad.c:
 	.text       start:0x802625E0 end:0x80263F28
+	.data       start:0x804C8BC8 end:0x804C8C20
+	.bss        start:0x805157B0 end:0x80515800
+	.sdata      start:0x80560E70 end:0x80560E90
+	.sbss       start:0x80565F28 end:0x80565F54
 
 vi/vi.c:
 	.text       start:0x80263F28 end:0x80265B78
