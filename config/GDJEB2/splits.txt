@@ -17,6 +17,12 @@ axart/axartlfo.c:
 	.text       start:0x802459F0 end:0x80245AA4
 	.sdata2     start:0x80567060 end:0x80567068
 
+axart/axart3d.c:
+	.text       start:0x80245AA4 end:0x80245C38
+	.data       start:0x804C5488 end:0x804C5D00
+	.sbss       start:0x80565CE8 end:0x80565CF0
+	.sdata2     start:0x80567068 end:0x80567078
+
 axart/axartlpf.c:
 	.text       start:0x80245C38 end:0x80245CC0
 	.data       start:0x804C5D00 end:0x804C5D60
