@@ -380,7 +380,7 @@ config.libs = [
             Object(Matching,"os/OSContext.c",),
             Object(Matching,"os/OSError.c",),
             Object(Matching,"os/OSExec.c",),
-            Object(NonMatching,"os/OSFont.c",),
+            Object(Matching,"os/OSFont.c",),
             Object(NonMatching,"os/OSInterrupt.c",),
             Object(NonMatching,"os/OSLink.c",),
             Object(NonMatching,"os/OSMemory.c",),

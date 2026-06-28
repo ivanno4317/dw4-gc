@@ -322,7 +322,7 @@ static u32 GetFontSize(u8* buf) {
 }
 
 u16 OSGetFontEncode(void) {
-    if (FontEncode != 0xFFFF) {
+    if (FontEncode <= 1) {
         return FontEncode;
     }
 
@@ -339,7 +339,6 @@ u16 OSGetFontEncode(void) {
         FontEncode = OS_FONT_ENCODE_ANSI;
     }
 
-    ParseString = (ParseStringCallback)ParseStringS;
     return FontEncode;
 }
 

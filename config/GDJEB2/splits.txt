@@ -122,6 +122,7 @@ os/OSExec.c:
 
 os/OSFont.c:
 	.text       start:0x8025EF98 end:0x8025EFF0
+	.sdata      start:0x80560E60 end:0x80560E68
 
 os/OSInterrupt.c:
 	.text       start:0x8025EFF0 end:0x8025F85C
