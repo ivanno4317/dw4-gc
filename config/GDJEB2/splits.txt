@@ -74,9 +74,9 @@ mtx/mtx.c:
 	.sdata2     start:0x80567170 end:0x80567178
 
 os/OS.c:
-	.text       start:0x8025B868 end:0x8025C20C
+	.text       start:0x8025B740 end:0x8025C20C
 	.data       start:0x804C7DE0 end:0x804C7FD8
-	.bss        start:0x80514CA0 end:0x80514CF0
+	.bss        start:0x80514CA0 end:0x80514D10
 	.sdata      start:0x80560E30 end:0x80560E40
 	.sbss       start:0x80565E60 end:0x80565E98
 

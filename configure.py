@@ -371,7 +371,7 @@ config.libs = [
             "-i libs/dolsdk2004/src/dvd",
         ],
         [
-            Object(NonMatching,"os/OS.c",),
+            Object(Matching,"os/OS.c",),
             Object(Matching,"os/OSAlarm.c",),
             Object(NonMatching,"os/OSAlloc.c",),
             Object(Matching,"os/OSArena.c",),
