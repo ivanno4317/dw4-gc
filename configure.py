@@ -377,7 +377,7 @@ config.libs = [
             Object(Matching,"os/OSArena.c",),
             Object(Matching,"os/OSAudioSystem.c",),
             Object(Matching,"os/OSCache.c",),
-            Object(NonMatching,"os/OSContext.c",),
+            Object(Matching,"os/OSContext.c",),
             Object(NonMatching,"os/OSError.c",),
             Object(NonMatching,"os/OSExec.c",),
             Object(NonMatching,"os/OSFont.c",),

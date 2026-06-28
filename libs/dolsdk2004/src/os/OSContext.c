@@ -273,13 +273,13 @@ asm u32 OSSaveContext(register OSContext* context) {
 asm void OSLoadContext(register OSContext* context) {
     nofralloc
 
-    lis      r4,__RAS_OSDisableInterrupts_begin@ha
+    lis      r4,OSDisableInterrupts@ha
     lwz      r6,context->srr0
-    addi     r5,r4,__RAS_OSDisableInterrupts_begin@l
+    addi     r5,r4,OSDisableInterrupts@l
     cmplw    r6,r5
     ble      _notInRAS
-    lis      r4,__RAS_OSDisableInterrupts_end@ha
-    addi     r0,r4,__RAS_OSDisableInterrupts_end@l
+    lis      r4,OSDisableInterrupts+0xc@ha
+    addi     r0,r4,OSDisableInterrupts+0xc@l
     cmplw    r6,r0
     bge      _notInRAS
     stw      r5,context->srr0
