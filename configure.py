@@ -412,7 +412,7 @@ config.libs = [
             "-i libs/dolsdk2004/src/vi",
         ],
         [
-            Object(NonMatching, "vi/vi.c"),
+            Object(Matching, "vi/vi.c"),
         ],
     ),
 ]

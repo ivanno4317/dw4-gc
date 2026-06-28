@@ -8,11 +8,8 @@
 #include "__os.h"
 #include "__vi.h"
 
-#ifdef DEBUG
-const char* __VIVersion = "<< Dolphin SDK - VI\tdebug build: Apr  7 2004 03:55:59 (0x2301) >>";
-#else
-const char* __VIVersion = "<< Dolphin SDK - VI\trelease build: Apr  7 2004 04:13:59 (0x2301) >>";
-#endif
+
+const char* __VIVersion = "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>";
 
 typedef struct {
     u8 equ;
@@ -742,7 +739,6 @@ static void PrintDebugPalCaution(void) {
 void VIConfigure(const GXRenderModeObj* rm) {
     VITiming* tm;
     u32 regDspCfg;
-    u32 regClksel;
     BOOL enabled;
     u32 newNonInter;
     u32 tvInBootrom;
@@ -756,24 +752,6 @@ void VIConfigure(const GXRenderModeObj* rm) {
         HorVer.nonInter = newNonInter;
     }
 
-    ASSERTMSGLINEV(1926, (rm->viHeight & 1) == 0,
-        "VIConfigure(): Odd number(%d) is specified to viHeight\n",
-        rm->viHeight);
-
-#ifdef DEBUG
-    if (rm->xFBmode == VI_XFBMODE_DF || newNonInter == VI_TVMODE_NTSC_PROG || newNonInter == 3) {
-        ASSERTMSGLINEV(1933, rm->xfbHeight == rm->viHeight,
-            "VIConfigure(): xfbHeight(%d) is not equal to viHeight(%d) when DF XFB mode or progressive mode is specified\n",
-            rm->xfbHeight, rm->viHeight);
-    }
-
-    if (rm->xFBmode == VI_XFBMODE_SF && newNonInter != VI_TVMODE_NTSC_PROG && newNonInter != 3) {
-        ASSERTMSGLINEV(1941, rm->viHeight == rm->xfbHeight * 2,
-            "VIConfigure(): xfbHeight(%d) is not as twice as viHeight(%d) when SF XFB mode is specified\n",
-            rm->xfbHeight, rm->viHeight);
-    }
-#endif
-
     tvInGame = (u32)rm->viTVmode >> 2;
     tvInBootrom = *(u32*)OSPhysicalToCached(0xCC);
     
@@ -785,8 +763,7 @@ void VIConfigure(const GXRenderModeObj* rm) {
     case VI_MPAL:
     case VI_NTSC:
     case 6:
-    case 7:
-        if (tvInGame == VI_NTSC || tvInGame == VI_MPAL || tvInGame == 6 || tvInGame == 7) {
+        if (tvInGame == VI_NTSC || tvInGame == VI_MPAL || tvInGame == 6) {
             break;
         }
         goto panic;
@@ -797,7 +774,7 @@ void VIConfigure(const GXRenderModeObj* rm) {
         }
     default:
     panic:
-        OSPanic(__FILE__, 1979,
+        OSPanic(__FILE__, 1908,
                 "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n",
                 tvInBootrom, tvInGame);
     }
@@ -828,12 +805,6 @@ void VIConfigure(const GXRenderModeObj* rm) {
     HorVer.timing = tm;
 
     AdjustPosition(tm->acv);
-    ASSERTMSGLINEV(2022, rm->viXOrigin <= tm->hlw + 40 - tm->hbe640,
-        "VIConfigure(): viXOrigin(%d) cannot be greater than %d in this TV mode\n",
-        rm->viXOrigin, tm->hlw + 40 - tm->hbe640);
-    ASSERTMSGLINEV(2027,  rm->viXOrigin + rm->viWidth >= 680 - tm->hbs640,
-        "VIConfigure(): viXOrigin + viWidth (%d) cannot be less than %d in this TV mode\n",
-        rm->viXOrigin + rm->viWidth, 680 - tm->hbs640);
 
     if (encoderType == 0) {
         HorVer.tv = 3;
@@ -841,27 +812,41 @@ void VIConfigure(const GXRenderModeObj* rm) {
     setInterruptRegs(tm);
 
     regDspCfg = regs[1];
-    regClksel = regs[54];
+
     if (HorVer.nonInter == VI_PROGRESSIVE || HorVer.nonInter == 3) {
         regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(1)) << 2);
-        regClksel = (((u32)(regClksel)) & ~0x00000001) | (((u32)(1)) << 0);
+ 
     } else {
         OLD_SET_REG_FIELD(2052, regDspCfg, 1, 2, HorVer.nonInter & 1);
-        regClksel = (((u32)(regClksel)) & ~0x00000001);
     }
 
     OLD_SET_REG_FIELD(2056, regDspCfg, 1, 3, HorVer.threeD);
 
-    if ((HorVer.tv == VI_PAL) || (HorVer.tv == VI_MPAL) || (HorVer.tv == 3)) {
-        OLD_SET_REG_FIELD(2060, regDspCfg, 2, 8, HorVer.tv);
-    } else {
+    if ((HorVer.tv == VI_DEBUG_PAL) || (HorVer.tv == VI_EURGB60) || (HorVer.tv == VI_GCA))
+    {
         regDspCfg = (((u32)(regDspCfg)) & ~0x00000300);
+    }
+    else
+    {
+        regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(HorVer.tv)) << 8);
     }
 
     regs[1] = regDspCfg;
-    regs[54] = (u16)regClksel;
-
     MARK_CHANGED(1);    
+    
+    regDspCfg = regs[VI_CLOCK_SEL];
+    if (rm->viTVmode == VI_TVMODE_NTSC_PROG || rm->viTVmode == VI_TVMODE_NTSC_3D ||
+        rm->viTVmode == VI_TVMODE_GCA_PROG)
+    {
+        regDspCfg = (u32)(regDspCfg & ~0x1) | 1;
+    }
+    else
+    {
+        regDspCfg = (u32)(regDspCfg & ~0x1);
+    }
+
+    regs[VI_CLOCK_SEL] = (u16)regDspCfg;
+    
     MARK_CHANGED(54);
 
     setScalingRegs(HorVer.PanSizeX, HorVer.DispSizeX, HorVer.threeD);
@@ -872,40 +857,6 @@ void VIConfigure(const GXRenderModeObj* rm) {
         setFbbRegs(&HorVer, &HorVer.tfbb, &HorVer.bfbb, &HorVer.rtfbb, &HorVer.rbfbb);
     }
     setVerticalRegs(HorVer.AdjustedDispPosY, HorVer.AdjustedDispSizeY, tm->equ, tm->acv, tm->prbOdd, tm->prbEven, tm->psbOdd, tm->psbEven, HorVer.black);
-    OSRestoreInterrupts(enabled);
-}
-
-void VIConfigurePan(u16 xOrg, u16 yOrg, u16 width, u16 height) {
-    BOOL enabled;
-    VITiming* tm;
-
-#if DEBUG
-    ASSERTMSGLINEV(2118, (xOrg & 1) == 0,
-        "VIConfigurePan(): Odd number(%d) is specified to xOrg\n",
-        xOrg);
-    if (HorVer.FBMode == VI_XFBMODE_DF) {
-        ASSERTMSGLINEV(2123, (height & 1) == 0,
-            "VIConfigurePan(): Odd number(%d) is specified to height when DF XFB mode\n",
-            height);
-    }
-#endif
-    enabled = OSDisableInterrupts();
-    HorVer.PanPosX   = xOrg;
-    HorVer.PanPosY   = yOrg;
-    HorVer.PanSizeX  = width;
-    HorVer.PanSizeY  = height;
-    HorVer.DispSizeY = (HorVer.nonInter == 2)           ? HorVer.PanSizeY :
-                       (HorVer.nonInter == 3)           ? HorVer.PanSizeY :
-                       (HorVer.FBMode == VI_XFBMODE_SF) ? (u16)(HorVer.PanSizeY * 2) :
-                                                          HorVer.PanSizeY;
-    tm = HorVer.timing;
-    AdjustPosition(tm->acv);
-    setScalingRegs(HorVer.PanSizeX, HorVer.DispSizeX, HorVer.threeD);
-    setPicConfig(HorVer.FBSizeX, HorVer.FBMode, HorVer.PanPosX, HorVer.PanSizeX, &HorVer.wordPerLine, &HorVer.std, &HorVer.wpl, &HorVer.xof);
-    if (FBSet != 0) {
-        setFbbRegs(&HorVer, &HorVer.tfbb, &HorVer.bfbb, &HorVer.rtfbb, &HorVer.rbfbb);
-    }
-    setVerticalRegs(HorVer.AdjustedDispPosY, HorVer.DispSizeY, tm->equ, tm->acv, tm->prbOdd, tm->prbEven, tm->psbOdd, tm->psbEven, HorVer.black);
     OSRestoreInterrupts(enabled);
 }
 
@@ -1055,7 +1006,6 @@ u32 VIGetTvFormat(void) {
     case VI_NTSC:
     case VI_DEBUG:
     case 6:
-    case 7:
         format = VI_NTSC;
         break;
     case VI_PAL:
