@@ -110,6 +110,9 @@ os/OSContext.c:
 
 os/OSError.c:
 	.text       start:0x8025DF8C end:0x8025E638
+	.data       start:0x804C8808 end:0x804C8B28
+	.bss        start:0x80514D10 end:0x80514D54
+	.sdata      start:0x80560E50 end:0x80560E58
 
 os/OSExec.c:
 	.text       start:0x8025E638 end:0x8025EF98
