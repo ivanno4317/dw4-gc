@@ -381,7 +381,7 @@ config.libs = [
             Object(Matching,"os/OSError.c",),
             Object(Matching,"os/OSExec.c",),
             Object(Matching,"os/OSFont.c",),
-            Object(NonMatching,"os/OSInterrupt.c",),
+            Object(Matching,"os/OSInterrupt.c",),
             Object(NonMatching,"os/OSLink.c",),
             Object(NonMatching,"os/OSMemory.c",),
             Object(NonMatching,"os/OSMutex.c",),
