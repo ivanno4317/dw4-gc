@@ -134,6 +134,7 @@ os/OSLink.c:
 
 os/OSMemory.c:
 	.text       start:0x8025F874 end:0x8025FB4C
+	.data       start:0x804C8B68 end:0x804C8B78
 
 os/OSMutex.c:
 	.text       start:0x8025FB4C end:0x8025FBBC
