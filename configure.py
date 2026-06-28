@@ -422,6 +422,14 @@ config.libs = [
             Object(Matching, "base/PPCArch.c"),
         ],
     ),
+    DolphinLib(
+        "axart",
+        [*cflags_base,],
+        [
+            Object(Matching, "axart/axartlfo.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "axart/axartlpf.c"),
+        ],
+    ),
 ]
 
 
