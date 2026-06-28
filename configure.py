@@ -384,7 +384,7 @@ config.libs = [
             Object(Matching,"os/OSInterrupt.c",),
             Object(Matching,"os/OSLink.c",),
             Object(Matching,"os/OSMemory.c",),
-            Object(NonMatching,"os/OSMutex.c",),
+            Object(Matching,"os/OSMutex.c",),
             Object(NonMatching,"os/OSReboot.c",),
             Object(NonMatching,"os/OSReset.c",),
             Object(NonMatching,"os/OSResetSW.c",),
