@@ -344,7 +344,7 @@ config.libs = [
             "-i libs/dolsdk2004/src/os",
         ],
         [
-            Object(NonMatching,"exi/EXIBios.c",cflags=[x for x in cflags_base if x != "-O4,p"] + ["-O3,p", "-DDOLPHIN_SDK"],),
+            Object(Matching,"exi/EXIBios.c",cflags=[x for x in cflags_base if x != "-O4,p"] + ["-O3,p", "-DDOLPHIN_SDK"],),
             Object(Matching,"exi/EXIUart.c",),
         ],
     ),

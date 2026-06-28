@@ -187,7 +187,7 @@ si/SIBios.c:
 	.text       start:0x80265BD8 end:0x802672C8
 	.data       start:0x804C8FF0 end:0x804C9108
 	.bss        start:0x80515948 end:0x80515B48
-	.sdata      start:0x80560EA0 end:0x80560EA4
+	.sdata      start:0x80560EA0 end:0x80560EA8
 	.sbss       start:0x80565FB8 end:0x80565FC8
 
 si/SISamplingRate.c:
@@ -197,6 +197,10 @@ si/SISamplingRate.c:
 
 exi/EXIBios.c:
 	.text       start:0x802673D0 end:0x80268DAC
+	.data       start:0x804C91A0 end:0x804C92B0
+	.bss        start:0x80515B48 end:0x80515C08
+	.sdata      start:0x80560EA8 end:0x80560EB0
+	.sbss       start:0x80565FD0 end:0x80565FD8
 
 exi/EXIUart.c:
 	.text       start:0x80268DAC end:0x80269380
