@@ -92,10 +92,18 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+gx/GXTransform.c:
+	.text       start:0x80258450 end:0x80258944
+	.sdata2     start:0x80567160 end:0x80567170
+
+gx/GXPerf.c:
+	.text       start:0x80258944 end:0x8025919C
+	.data       start:0x804C7130 end:0x804C7220
+
 mix/mix.c:
-	.text       start:0x80259334 end:0x8025B49C
+	.text       start:0x8025919C end:0x8025B49C
 	.data       start:0x804C7220 end:0x804C7DE0
-	.bss        start:0x80513490 end:0x80514CA0
+	.bss        start:0x80513490 end:0x80514C90
 	.sbss       start:0x80565E50 end:0x80565E60
 
 mtx/mtx.c:

@@ -352,7 +352,7 @@ config.libs = [
         "mix",
         cflags_base,
         [
-            Object(NonMatching,"mix/mix.c",),
+            Object(Matching,"mix/mix.c",),
         ],
     ),
     DolphinLib(
@@ -432,6 +432,14 @@ config.libs = [
             Object(Matching, "axart/axartenv.c"),
             Object(Matching, "axart/axartsound.c"),
             Object(Matching, "axart/axartcents.c"),
+        ],
+    ),
+    DolphinLib(
+        "gx",
+        [*cflags_base, "-i libs/dolsdk2004/src/gx",],
+        [
+            Object(Matching, "gx/GXPerf.c"),
+            Object(Matching, "gx/GXTransform.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
         ],
     ),
 ]
