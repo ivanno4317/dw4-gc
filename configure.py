@@ -444,6 +444,7 @@ config.libs = [
             Object(Matching, "gx/GXPixel.c"),
             Object(Matching, "gx/GXTev.c"),
             Object(Matching, "gx/GXBump.c"),
+            Object(Matching, "gx/GXTexture.c"),
         ],
     ),
 ]
