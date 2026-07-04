@@ -443,6 +443,7 @@ config.libs = [
             Object(Matching, "gx/GXDisplayList.c"),
             Object(Matching, "gx/GXPixel.c"),
             Object(Matching, "gx/GXTev.c"),
+            Object(Matching, "gx/GXBump.c"),
         ],
     ),
 ]
