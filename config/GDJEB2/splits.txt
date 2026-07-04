@@ -92,6 +92,11 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+gx/GXDisplayList.c:
+	.text       start:0x80258250 end:0x80258450
+	.bss        start:0x80512EB8 end:0x80513490
+	.sbss       start:0x80565E48 end:0x80565E50
+
 gx/GXTransform.c:
 	.text       start:0x80258450 end:0x80258944
 	.sdata2     start:0x80567160 end:0x80567170
