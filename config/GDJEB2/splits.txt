@@ -92,6 +92,11 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+gx/GXAttr.c:
+	.text       start:0x8025333C end:0x80254318
+	.data       start:0x804C6760 end:0x804C6928
+	.sdata      start:0x80560DD8 end:0x80560DE8
+
 gx/GXMisc.c:
 	.text       start:0x80254318 end:0x80254A34
 	.sbss       start:0x80565E30 end:0x80565E48
