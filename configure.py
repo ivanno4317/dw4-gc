@@ -448,6 +448,7 @@ config.libs = [
             Object(Matching, "gx/GXLight.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
             Object(Matching, "gx/GXFrameBuf.c"),
             Object(Matching, "gx/GXGeometry.c"),
+            Object(Matching, "gx/GXMisc.c"),
         ],
     ),
 ]
