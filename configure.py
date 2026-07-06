@@ -450,6 +450,7 @@ config.libs = [
             Object(Matching, "gx/GXGeometry.c"),
             Object(Matching, "gx/GXMisc.c"),
             Object(Matching, "gx/GXAttr.c"),
+            Object(Matching, "gx/GXFifo.c"),
         ],
     ),
 ]
