@@ -92,6 +92,14 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+gx/GXInit.c:
+	.text       start:0x80251888 end:0x80252C08
+	.data       start:0x804C6520 end:0x804C6760
+	.bss        start:0x80512888 end:0x80512EB8
+	.sdata      start:0x80560DD0 end:0x80560DD8
+	.sbss       start:0x80565DE8 end:0x80565E10
+	.sdata2     start:0x80567078 end:0x805670A0
+
 gx/GXFifo.c:
 	.text       start:0x80252C08 end:0x8025333C
 	.sbss       start:0x80565E10 end:0x80565E30
@@ -110,6 +118,7 @@ gx/GXGeometry.c:
 
 gx/GXFrameBuf.c:
 	.text       start:0x80254D90 end:0x8025592C
+	.data       start:0x804C6928 end:0x804C6E50
 	.sdata2     start:0x805670A0 end:0x805670B0
 
 gx/GXLight.c:
