@@ -23750,6 +23750,7 @@ fn_8024EA30 = .text:0x8024EA30; // type:function size:0xA4
 fn_8024EAD4 = .text:0x8024EAD4; // type:function size:0x8
 fn_8024EADC = .text:0x8024EADC; // type:function size:0x6C
 fn_8024EB48 = .text:0x8024EB48; // type:function size:0x4
+defaultOptionalCommandChecker = .text:0x8024EB48; // type:function size:0x4
 DVDInit = .text:0x8024EB4C; // type:function size:0xCC scope:global
 stateReadingFST = .text:0x8024EC18; // type:function size:0x94
 cbForStateReadingFST = .text:0x8024ECAC; // type:function size:0x80
