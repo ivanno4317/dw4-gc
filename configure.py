@@ -459,6 +459,7 @@ config.libs = [
         [*cflags_base, "-i libs/dolsdk2004/src/dvd"],
         [
             Object(Matching, "dvd/fstload.c"),
+            Object(Matching, "dvd/dvdFatal.c"),
         ],
     ),
 ]
