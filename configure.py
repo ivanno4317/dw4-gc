@@ -426,7 +426,8 @@ config.libs = [
         "axart",
         [*cflags_base,],
         [
-            Object(Matching, "axart/axartlfo.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "axart/axart.c"),
+            Object(NonMatching, "axart/axartlfo.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "axart/axartlpf.c"),
             Object(Matching, "axart/axart3d.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "axart/axartenv.c"),
@@ -482,6 +483,13 @@ config.libs = [
             Object(Matching, "dsp/dsp_task.c"),
             Object(Matching, "dsp/dsp_debug.c"),
             Object(Matching, "dsp/dsp.c"),
+        ],
+    ),
+    DolphinLib(
+        "db",
+        cflags_base,
+        [
+            Object(Matching, "db/db.c"),
         ],
     ),
 ]

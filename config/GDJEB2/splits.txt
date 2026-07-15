@@ -13,6 +13,12 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+axart/axart.c:
+	.text       start:0x80244FB4 end:0x80245544
+	.data       start:0x804C4A08 end:0x804C4A50
+	.sbss       start:0x80565CE0 end:0x80565CE8
+	.sdata2     start:0x80567020 end:0x80567048
+
 axart/axartsound.c:
 	.text       start:0x80245544 end:0x8024583C
 	.data       start:0x804C4A50 end:0x804C4A98
@@ -28,6 +34,7 @@ axart/axartenv.c:
 
 axart/axartlfo.c:
 	.text       start:0x802459F0 end:0x80245AA4
+	.data       start:0x804C4E88 end:0x804C5488
 	.sdata2     start:0x80567060 end:0x80567068
 
 axart/axart3d.c:
@@ -91,6 +98,11 @@ card/CARDDelete.c:
 
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
+
+db/db.c:
+	.text       start:0x8024C4E8 end:0x8024C5D4
+	.data       start:0x804C5F60 end:0x804C5F78
+	.sbss       start:0x80565CF8 end:0x80565D00
 
 dsp/dsp.c:
 	.text       start:0x8024C5D4 end:0x8024C864
