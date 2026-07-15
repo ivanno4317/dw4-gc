@@ -469,6 +469,18 @@ config.libs = [
             Object(Matching, "dvd/dvdqueue.c"),
             Object(Matching, "dvd/dvd.c"),
             Object(Matching, "dvd/dvdfs.c"),
+            Object(NonMatching, "dvd/dvdlow.c"),
+        ],
+    ),
+    DolphinLib(
+        "dsp",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/dsp",
+        ],
+        [
+            Object(Matching, "dsp/dsp_task.c"),
+            Object(Matching, "dsp/dsp_debug.c"),
         ],
     ),
 ]

@@ -92,6 +92,20 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+dsp/dsp_debug.c:
+	.text       start:0x8024C864 end:0x8024C8B4
+
+dsp/dsp_task.c:
+	.text       start:0x8024C8B4 end:0x8024D138
+	.data       start:0x804C5FF8 end:0x804C6138
+	.sbss       start:0x80565D08 end:0x80565D20
+
+dvd/dvdlow.c:
+	.text       start:0x8024D138 end:0x8024DFB4
+	.bss        start:0x80512680 end:0x80512760
+	.sdata      start:0x80560D98 end:0x80560DA0
+	.sbss       start:0x80565D20 end:0x80565D68
+
 dvd/dvdfs.c:
 	.text       start:0x8024DFB4 end:0x8024EB48
 	.data       start:0x804C6138 end:0x804C62D8
