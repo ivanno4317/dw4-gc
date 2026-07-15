@@ -467,6 +467,7 @@ config.libs = [
             Object(Matching, "dvd/dvdidutils.c"),
             Object(Matching, "dvd/dvderror.c"),
             Object(Matching, "dvd/dvdqueue.c"),
+            Object(NonMatching, "dvd/dvd.c"),
         ],
     ),
 ]
