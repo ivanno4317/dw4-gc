@@ -460,6 +460,7 @@ config.libs = [
         [
             Object(Matching, "dvd/fstload.c"),
             Object(Matching, "dvd/dvdFatal.c"),
+            Object(Matching, "dvd/dvdidutils.c"),
         ],
     ),
 ]

@@ -92,6 +92,9 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+dvd/dvdidutils.c:
+	.text       start:0x80251520 end:0x80251618
+
 dvd/dvdFatal.c:
 	.text       start:0x80251618 end:0x80251648
 	.sbss       start:0x80565DD0 end:0x80565DD8
