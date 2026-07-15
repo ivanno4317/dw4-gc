@@ -92,6 +92,12 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+dsp/dsp.c:
+	.text       start:0x8024C5D4 end:0x8024C864
+	.data       start:0x804C5F78 end:0x804C5FF8
+	.sdata      start:0x80560D90 end:0x80560D98
+	.sbss       start:0x80565D00 end:0x80565D08
+
 dsp/dsp_debug.c:
 	.text       start:0x8024C864 end:0x8024C8B4
 

@@ -481,6 +481,7 @@ config.libs = [
         [
             Object(Matching, "dsp/dsp_task.c"),
             Object(Matching, "dsp/dsp_debug.c"),
+            Object(Matching, "dsp/dsp.c"),
         ],
     ),
 ]
