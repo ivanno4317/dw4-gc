@@ -454,6 +454,13 @@ config.libs = [
             Object(Matching, "gx/GXInit.c"),
         ],
     ),
+    DolphinLib(
+        "dvd",
+        [*cflags_base, "-i libs/dolsdk2004/src/dvd"],
+        [
+            Object(Matching, "dvd/fstload.c"),
+        ],
+    ),
 ]
 
 
