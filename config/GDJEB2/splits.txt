@@ -92,6 +92,10 @@ card/CARDDelete.c:
 card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
+dvd/dvdqueue.c:
+	.text       start:0x80251190 end:0x80251388
+	.bss        start:0x805127F8 end:0x80512818
+
 dvd/dvderror.c:
 	.text       start:0x80251388 end:0x80251520
 	.data       start:0x804C6458 end:0x804C64A0
