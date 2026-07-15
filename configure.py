@@ -456,11 +456,16 @@ config.libs = [
     ),
     DolphinLib(
         "dvd",
-        [*cflags_base, "-i libs/dolsdk2004/src/dvd"],
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/dvd",
+            "-i libs/dolsdk2004/src/os",
+        ],
         [
             Object(Matching, "dvd/fstload.c"),
             Object(Matching, "dvd/dvdFatal.c"),
             Object(Matching, "dvd/dvdidutils.c"),
+            Object(Matching, "dvd/dvderror.c"),
         ],
     ),
 ]
