@@ -492,6 +492,18 @@ config.libs = [
             Object(Matching, "db/db.c"),
         ],
     ),
+    DolphinLib(
+        "axfx",
+        [
+            *cflags_base,
+            "-i libs/dolsdk2004/src/axfx",
+        ],
+        [
+            Object(Matching, "axfx/chorus.c"),
+        ],
+    ),
+
+
 ]
 
 

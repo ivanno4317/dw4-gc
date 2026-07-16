@@ -13,6 +13,11 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+axfx/chorus.c:
+	.text       start:0x80243284 end:0x80243D00
+	.data       start:0x804C41E0 end:0x804C49E0
+	.sdata2     start:0x80566FE0 end:0x80566FE8
+
 axart/axart.c:
 	.text       start:0x80244FB4 end:0x80245544
 	.data       start:0x804C4A08 end:0x804C4A50
