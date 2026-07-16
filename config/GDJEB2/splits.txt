@@ -23,6 +23,14 @@ axfx/chorus.c:
 	.data       start:0x804C41E0 end:0x804C49E0
 	.sdata2     start:0x80566FE0 end:0x80566FE8
 
+axfx/delay.c:
+	.text       start:0x80243D00 end:0x80244280
+
+axfx/reverb_hi_4ch.c:
+	.text       start:0x802442DC end:0x80244FB4
+	.data       start:0x804C49E0 end:0x804C4A08
+	.sdata2     start:0x80566FE8 end:0x80567020
+
 axart/axart.c:
 	.text       start:0x80244FB4 end:0x80245544
 	.data       start:0x804C4A08 end:0x804C4A50

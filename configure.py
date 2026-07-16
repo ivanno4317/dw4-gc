@@ -499,7 +499,9 @@ config.libs = [
             "-i libs/dolsdk2004/src/axfx",
         ],
         [
-            Object(Matching, "axfx/chorus.c"),
+            Object(Matching, "axfx/chorus.c"),  
+            Object(Matching, "axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(Matching, "axfx/delay.c"),
         ],
     ),
     DolphinLib(
