@@ -503,6 +503,7 @@ config.libs = [
             Object(Matching, "axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
             Object(Matching, "axfx/delay.c"),
             Object(Matching, "axfx/axfx.c"),
+            Object(NonMatching, "axfx/reverb_std.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
         ],
     ),
     DolphinLib(
