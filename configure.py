@@ -502,6 +502,7 @@ config.libs = [
             Object(Matching, "axfx/chorus.c"),  
             Object(Matching, "axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
             Object(Matching, "axfx/delay.c"),
+            Object(Matching, "axfx/axfx.c"),
         ],
     ),
     DolphinLib(
@@ -537,7 +538,6 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
-    ProgressCategory("musyx", "MusyX Code"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`
