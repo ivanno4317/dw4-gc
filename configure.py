@@ -502,7 +502,13 @@ config.libs = [
             Object(Matching, "axfx/chorus.c"),
         ],
     ),
-
+    DolphinLib(
+        "ai",
+        [*cflags_base, "-i libs/dolsdk2004/src/gx",],
+        [
+            Object(NonMatching, "ai/ai.c"),
+        ],
+    ),
 
 ]
 
