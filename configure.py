@@ -509,36 +509,6 @@ config.libs = [
             Object(NonMatching, "ai/ai.c"),
         ],
     ),
-    {
-        "lib": "MusyX",
-        "mw_version": "GC/1.3.2",
-        "cflags": [
-            "-proc gekko",
-            "-nodefaults",
-            "-nosyspath",
-            "-i include",
-            "-i libs/dolsdk2004/include",
-            "-i libs/dolsdk2004/include/libc",
-            "-i libs/musyx/include",
-            "-inline auto,depth=4",
-            "-O4,p",
-            "-fp hard",
-            "-enum int",
-            "-sym on",
-            "-Cpp_exceptions off",
-            "-str reuse,pool,readonly",
-            "-fp_contract off",
-            "-DMUSY_TARGET=MUSY_TARGET_DOLPHIN",
-            "-DMUSY_VERSION_MAJOR=2",
-            "-DMUSY_VERSION_MINOR=0",
-            "-DMUSY_VERSION_PATCH=3",
-        ],
-        "progress_category": "musyx",
-        "src_dir": "libs/musyx/src/",
-        "objects": [
-            Object(NonMatching, "musyx/runtime/StdReverb/reverb.c"),
-        ],
-    },
 ]
 
 
