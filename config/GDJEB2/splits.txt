@@ -18,6 +18,16 @@ ai/ai.c:
 	.sdata      start:0x80560D48 end:0x80560D50
 	.sbss       start:0x80565B78 end:0x80565BB8
 
+ax/AX.c:
+	.text       start:0x8023C5E0 end:0x8023C684
+	.data       start:0x804C0700 end:0x804C0748
+	.sdata      start:0x80560D50 end:0x80560D58
+
+ax/AXAlloc.c:
+	.text       start:0x8023C684 end:0x8023CBF4
+	.bss        start:0x804F8D50 end:0x804F8E60
+	.sbss       start:0x80565BB8 end:0x80565BC0
+
 ax/AXAux.c:
 	.text       start:0x8023CBF4 end:0x8023D094
 	.bss        start:0x804F8E60 end:0x804FBB60
