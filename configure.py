@@ -541,7 +541,7 @@ config.libs = [
         "ai",
         [*cflags_base, "-i libs/dolsdk2004/src/gx",],
         [
-            Object(NonMatching, "ai/ai.c"),
+            Object(Matching, "ai/ai.c"),
         ],
     ),
 ]

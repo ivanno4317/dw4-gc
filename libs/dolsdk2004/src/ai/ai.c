@@ -5,11 +5,9 @@
 
 #include "__gx.h"
 
-#ifdef DEBUG
-const char* __AIVersion = "<< Dolphin SDK - AI\tdebug build: Apr  5 2004 03:56:18 (0x2301) >>";
-#else
-const char* __AIVersion = "<< Dolphin SDK - AI\trelease build: Apr  5 2004 04:15:02 (0x2301) >>";
-#endif
+
+const char* __AIVersion = "<< Dolphin SDK - AI\trelease build: Apr 17 2003 12:33:54 (0x2301) >>";
+
 
 static AISCallback __AIS_Callback;
 static AIDCallback __AID_Callback;
