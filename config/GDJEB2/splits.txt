@@ -18,6 +18,11 @@ ai/ai.c:
 	.sdata      start:0x80560D48 end:0x80560D50
 	.sbss       start:0x80565B78 end:0x80565BB8
 
+ax/AXOut.c:
+	.text       start:0x8023D7CC end:0x8023DFD8
+	.bss        start:0x804FC160 end:0x80500C00
+	.sbss       start:0x80565C10 end:0x80565C48
+
 ax/AXSPB.c:
 	.text       start:0x8023DFD8 end:0x8023E4A0
 	.bss        start:0x80500C00 end:0x80500C40
