@@ -1,0 +1,8 @@
+axfx/reverb_hi.c:
+	.text       start:0x80241940 end:0x80242848
+	.data       start:0x804C41B0 end:0x804C41D0
+	.sdata2     start:0x80566F68 end:0x80566FA8
+
+
+It should be something related to axfx. It's an hybrid between reverb_hi and reverb_hi_4ch.
+I'm 90% sure that it's not reverb_hi.c
