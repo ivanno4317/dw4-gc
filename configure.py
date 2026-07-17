@@ -511,7 +511,7 @@ config.libs = [
         "ar",
         cflags_base,
         [
-            Object(Matching, "ar/arq.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(Matching, "ar/arq.c",cflags=cflags_base + ["-cwd source"],),
         ],
     ),
     DolphinLib(
