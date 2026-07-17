@@ -508,6 +508,13 @@ config.libs = [
         ],
     ),
     DolphinLib(
+        "ar",
+        cflags_base,
+        [
+            Object(Matching, "ar/arq.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+        ],
+    ),
+    DolphinLib(
         "ai",
         [*cflags_base, "-i libs/dolsdk2004/src/gx",],
         [

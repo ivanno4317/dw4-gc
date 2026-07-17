@@ -18,6 +18,12 @@ ai/ai.c:
 	.sdata      start:0x80560D48 end:0x80560D50
 	.sbss       start:0x80565B78 end:0x80565BB8
 
+ar/arq.c:
+	.text       start:0x802414A8 end:0x80241940
+	.data       start:0x804C4168 end:0x804C41B0
+	.sdata      start:0x80560D68 end:0x80560D70
+	.sbss       start:0x80565CB0 end:0x80565CE0
+
 axfx/reverb_hi.c:
 	.text       start:0x80241940 end:0x80242848
 	.data       start:0x804C41B0 end:0x804C41D0
