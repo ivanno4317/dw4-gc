@@ -521,6 +521,7 @@ config.libs = [
         cflags_base,
         [
             Object(Matching, "ax/AXProf.c"),
+            Object(Matching, "ax/AXVPB.c"),
         ],
     ),
     DolphinLib(
