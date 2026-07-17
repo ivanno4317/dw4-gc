@@ -512,6 +512,7 @@ config.libs = [
         cflags_base,
         [
             Object(Matching, "ar/arq.c",cflags=cflags_base + ["-cwd source"],),
+            Object(Matching, "ar/ar.c",cflags= cflags_base + ["-cwd source"],),
         ],
     ),
     DolphinLib(
