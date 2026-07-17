@@ -218,6 +218,7 @@ cflags_base = [
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
+    "-cwd source"
 ]
 
 # Debug flags
@@ -440,13 +441,13 @@ config.libs = [
         [*cflags_base, "-i libs/dolsdk2004/src/gx",],
         [
             Object(Matching, "gx/GXPerf.c"),
-            Object(Matching, "gx/GXTransform.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(Matching, "gx/GXTransform.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "gx/GXDisplayList.c"),
             Object(Matching, "gx/GXPixel.c"),
             Object(Matching, "gx/GXTev.c"),
             Object(Matching, "gx/GXBump.c"),
             Object(Matching, "gx/GXTexture.c"),
-            Object(Matching, "gx/GXLight.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(Matching, "gx/GXLight.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "gx/GXFrameBuf.c"),
             Object(Matching, "gx/GXGeometry.c"),
             Object(Matching, "gx/GXMisc.c"),
@@ -500,26 +501,26 @@ config.libs = [
         ],
         [
             Object(Matching, "axfx/chorus.c"),  
-            Object(Matching, "axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(Matching, "axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "axfx/delay.c"),
             Object(Matching, "axfx/axfx.c"),
-            Object(NonMatching, "axfx/reverb_std.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
-            Object(NonMatching, "axfx/reverb_hi.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off","-cwd source"],),
+            Object(NonMatching, "axfx/reverb_std.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(NonMatching, "axfx/reverb_hi.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
         ],
     ),
     DolphinLib(
         "ar",
         cflags_base,
         [
-            Object(Matching, "ar/arq.c",cflags=cflags_base + ["-cwd source"],),
-            Object(Matching, "ar/ar.c",cflags= cflags_base + ["-cwd source"],),
+            Object(Matching, "ar/arq.c"),
+            Object(Matching, "ar/ar.c"),
         ],
     ),
     DolphinLib(
         "ax",
         cflags_base,
         [
-            Object(Matching, "ax/AXProf.c",cflags= cflags_base + ["-cwd source"],),
+            Object(Matching, "ax/AXProf.c"),
         ],
     ),
     DolphinLib(
