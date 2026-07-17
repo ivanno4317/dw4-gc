@@ -531,6 +531,13 @@ config.libs = [
         ],
     ),
     DolphinLib(
+        "amcstubs",
+        cflags_base,
+        [
+            Object(Matching, "amcstubs/AmcExi2Stubs.c"),
+        ],
+    ),
+    DolphinLib(
         "ai",
         [*cflags_base, "-i libs/dolsdk2004/src/gx",],
         [
