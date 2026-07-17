@@ -516,6 +516,13 @@ config.libs = [
         ],
     ),
     DolphinLib(
+        "ax",
+        cflags_base,
+        [
+            Object(Matching, "ax/AXProf.c",cflags= cflags_base + ["-cwd source"],),
+        ],
+    ),
+    DolphinLib(
         "ai",
         [*cflags_base, "-i libs/dolsdk2004/src/gx",],
         [
