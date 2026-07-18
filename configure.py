@@ -574,7 +574,9 @@ config.libs = [
     zlib(
         "zlib",
         [
+            Object(NonMatching, "zlib/zutil.c"),
             Object(NonMatching, "zlib/trees.c"),
+            Object(NonMatching, "zlib/infutil.c"),
         ],
     ),
 ]
@@ -603,7 +605,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
-    ProgressCategory("libraries", "libraries"),
+    ProgressCategory("libraries", "Libraries"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`

@@ -13,8 +13,14 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+zlib/infutil.c:
+	.text       start:0x80238CC0 end:0x80238E48
+
 zlib/trees.c:
-	.text       start:0x8023A908 end:0x8023B240
+	.text       start:0x80238E48 end:0x8023B1E4
+
+zlib/zutil.c:
+	.text       start:0x8023B1E4 end:0x8023B240
 
 dolsdk2004/src/odenotstub/odenotstub.c:
 	.text       start:0x8023B240 end:0x8023BCC0
