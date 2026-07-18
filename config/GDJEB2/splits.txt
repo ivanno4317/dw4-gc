@@ -13,7 +13,7 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
-OdemuExi2/DebuggerDriver.c:
+odenotstub/odenotstub.c:
 	.text       start:0x8023B240 end:0x8023BCC0
 	.sdata      start:0x80560D40 end:0x80560D48
 	.sbss       start:0x80565B60 end:0x80565B78

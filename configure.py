@@ -545,10 +545,10 @@ config.libs = [
         ],
     ),
     DolphinLib(
-        "OdemuExi2",
+        "odenotstub",
         cflags_base,
         [
-            Object(NonMatching, "OdemuExi2/DebuggerDriver.c"),
+            Object(NonMatching, "odenotstub/odenotstub.c"),
         ],
     ),
 ]
