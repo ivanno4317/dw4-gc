@@ -544,6 +544,13 @@ config.libs = [
             Object(Matching, "ai/ai.c"),
         ],
     ),
+    DolphinLib(
+        "OdemuExi2",
+        cflags_base,
+        [
+            Object(NonMatching, "OdemuExi2/DebuggerDriver.c"),
+        ],
+    ),
 ]
 
 
