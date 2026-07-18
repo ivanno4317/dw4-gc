@@ -13,247 +13,250 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
-odenotstub/odenotstub.c:
+zlib/trees.c:
+	.text       start:0x8023A908 end:0x8023B240
+
+dolsdk2004/src/odenotstub/odenotstub.c:
 	.text       start:0x8023B240 end:0x8023BCC0
 	.sdata      start:0x80560D40 end:0x80560D48
 	.sbss       start:0x80565B60 end:0x80565B78
 
-ai/ai.c:
+dolsdk2004/src/ai/ai.c:
 	.text       start:0x8023BCC0 end:0x8023C5B0
 	.data       start:0x804C06B8 end:0x804C0700
 	.sdata      start:0x80560D48 end:0x80560D50
 	.sbss       start:0x80565B78 end:0x80565BB8
 
-amcstubs/AmcExi2Stubs.c:
+dolsdk2004/src/amcstubs/AmcExi2Stubs.c:
 	.text       start:0x8023C5B0 end:0x8023C5E0
 
-ax/AX.c:
+dolsdk2004/src/ax/AX.c:
 	.text       start:0x8023C5E0 end:0x8023C684
 	.data       start:0x804C0700 end:0x804C0748
 	.sdata      start:0x80560D50 end:0x80560D58
 
-ax/AXAlloc.c:
+dolsdk2004/src/ax/AXAlloc.c:
 	.text       start:0x8023C684 end:0x8023CBF4
 	.bss        start:0x804F8D50 end:0x804F8E60
 	.sbss       start:0x80565BB8 end:0x80565BC0
 
-ax/AXAux.c:
+dolsdk2004/src/ax/AXAux.c:
 	.text       start:0x8023CBF4 end:0x8023D094
 	.bss        start:0x804F8E60 end:0x804FBB60
 	.sbss       start:0x80565BC0 end:0x80565BF8
 
-ax/AXCL.c:
+dolsdk2004/src/ax/AXCL.c:
 	.text       start:0x8023D094 end:0x8023D7CC
 	.bss        start:0x804FBB60 end:0x804FC160
 	.sbss       start:0x80565BF8 end:0x80565C10
 
-ax/AXOut.c:
+dolsdk2004/src/ax/AXOut.c:
 	.text       start:0x8023D7CC end:0x8023DFD8
 	.bss        start:0x804FC160 end:0x80500C00
 	.sbss       start:0x80565C10 end:0x80565C48
 
-ax/AXSPB.c:
+dolsdk2004/src/ax/AXSPB.c:
 	.text       start:0x8023DFD8 end:0x8023E4A0
 	.bss        start:0x80500C00 end:0x80500C40
 	.sbss       start:0x80565C48 end:0x80565C70
 
-ax/AXVPB.c:
+dolsdk2004/src/ax/AXVPB.c:
 	.text       start:0x8023E4A0 end:0x8023F6B4
 	.data       start:0x804C0748 end:0x804C0820
 	.bss        start:0x80500C40 end:0x80512440
 	.sbss       start:0x80565C70 end:0x80565C80
 	.sdata2     start:0x80566F60 end:0x80566F68
 
-ax/AXProf.c:
+dolsdk2004/src/ax/AXProf.c:
 	.text       start:0x8023F6B4 end:0x8023F6FC
 	.sbss       start:0x80565C80 end:0x80565C90
 
-ar/ar.c:
+dolsdk2004/src/ar/ar.c:
 	.text       start:0x8023F6FC end:0x802414A8
 	.data       start:0x804C4120 end:0x804C4168
 	.sdata      start:0x80560D60 end:0x80560D68
 	.sbss       start:0x80565C90 end:0x80565CB0
 
-ar/arq.c:
+dolsdk2004/src/ar/arq.c:
 	.text       start:0x802414A8 end:0x80241940
 	.data       start:0x804C4168 end:0x804C41B0
 	.sdata      start:0x80560D68 end:0x80560D70
 	.sbss       start:0x80565CB0 end:0x80565CE0
 
-axfx/reverb_hi.c:
+dolsdk2004/src/axfx/reverb_hi.c:
 	.text       start:0x80241940 end:0x80242848
 	.data       start:0x804C41B0 end:0x804C41D0
 	.sdata2     start:0x80566F68 end:0x80566FA8
 
-axfx/reverb_std.c:
+dolsdk2004/src/axfx/reverb_std.c:
 	.text       start:0x80242848 end:0x80243284
 	.data       start:0x804C41D0 end:0x804C41E0
 	.sdata2     start:0x80566FA8 end:0x80566FE0
 
-axfx/chorus.c:
+dolsdk2004/src/axfx/chorus.c:
 	.text       start:0x80243284 end:0x80243D00
 	.data       start:0x804C41E0 end:0x804C49E0
 	.sdata2     start:0x80566FE0 end:0x80566FE8
 
-axfx/delay.c:
+dolsdk2004/src/axfx/delay.c:
 	.text       start:0x80243D00 end:0x80244280
 
-axfx/axfx.c:
+dolsdk2004/src/axfx/axfx.c:
 	.text       start:0x80244280 end:0x802442DC
 	.sdata      start:0x80560D70 end:0x80560D78
 
-axfx/reverb_hi_4ch.c:
+dolsdk2004/src/axfx/reverb_hi_4ch.c:
 	.text       start:0x802442DC end:0x80244FB4
 	.data       start:0x804C49E0 end:0x804C4A08
 	.sdata2     start:0x80566FE8 end:0x80567020
 
-axart/axart.c:
+dolsdk2004/src/axart/axart.c:
 	.text       start:0x80244FB4 end:0x80245544
 	.data       start:0x804C4A08 end:0x804C4A50
 	.sbss       start:0x80565CE0 end:0x80565CE8
 	.sdata2     start:0x80567020 end:0x80567048
 
-axart/axartsound.c:
+dolsdk2004/src/axart/axartsound.c:
 	.text       start:0x80245544 end:0x8024583C
 	.data       start:0x804C4A50 end:0x804C4A98
 	.sdata2     start:0x80567048 end:0x80567058
 
-axart/axartcents.c:
+dolsdk2004/src/axart/axartcents.c:
 	.text       start:0x8024583C end:0x80245938
 	.data       start:0x804C4A98 end:0x804C4E88
 	.sdata2     start:0x80567058 end:0x80567060
 
-axart/axartenv.c:
+dolsdk2004/src/axart/axartenv.c:
 	.text       start:0x80245938 end:0x802459F0
 
-axart/axartlfo.c:
+dolsdk2004/src/axart/axartlfo.c:
 	.text       start:0x802459F0 end:0x80245AA4
 	.data       start:0x804C4E88 end:0x804C5488
 	.sdata2     start:0x80567060 end:0x80567068
 
-axart/axart3d.c:
+dolsdk2004/src/axart/axart3d.c:
 	.text       start:0x80245AA4 end:0x80245C38
 	.data       start:0x804C5488 end:0x804C5D00
 	.sbss       start:0x80565CE8 end:0x80565CF0
 	.sdata2     start:0x80567068 end:0x80567078
 
-axart/axartlpf.c:
+dolsdk2004/src/axart/axartlpf.c:
 	.text       start:0x80245C38 end:0x80245CC0
 	.data       start:0x804C5D00 end:0x804C5D60
 
-base/PPCArch.c:
+dolsdk2004/src/base/PPCArch.c:
 	.text       start:0x80245CC0 end:0x80245DE0
 
-card/CARDBios.c:
+dolsdk2004/src/card/CARDBios.c:
 	.text       start:0x80245DE0 end:0x802470C4
 	.data       start:0x804C5D60 end:0x804C5DC0
 	.bss        start:0x80512440 end:0x80512680
 	.sdata      start:0x80560D78 end:0x80560D80
 	.sbss       start:0x80565CF0 end:0x80565CF8
 
-card/CARDUnlock.c:
+dolsdk2004/src/card/CARDUnlock.c:
 	.text       start:0x802470C4 end:0x80248324
 	.data       start:0x804C5DC0 end:0x804C5F20
 	.sdata      start:0x80560D80 end:0x80560D88
 
-card/CARDRdwr.c:
+dolsdk2004/src/card/CARDRdwr.c:
 	.text       start:0x80248324 end:0x802485A4
 
-card/CARDBlock.c:
+dolsdk2004/src/card/CARDBlock.c:
 	.text       start:0x802485A4 end:0x802489A8
 
-card/CARDDir.c:
+dolsdk2004/src/card/CARDDir.c:
 	.text       start:0x802489A8 end:0x80248C0C
 
-card/CARDCheck.c:
+dolsdk2004/src/card/CARDCheck.c:
 	.text       start:0x80248C0C end:0x80249B74
 
-card/CARDMount.c:
+dolsdk2004/src/card/CARDMount.c:
 	.text       start:0x80249B74 end:0x8024A5EC
 	.data       start:0x804C5F20 end:0x804C5F60
 
-card/CARDFormat.c:
+dolsdk2004/src/card/CARDFormat.c:
 	.text       start:0x8024A5EC end:0x8024ADD0
 
-card/CARDOpen.c:
+dolsdk2004/src/card/CARDOpen.c:
 	.text       start:0x8024ADD0 end:0x8024B3BC
 
-card/CARDCreate.c:
+dolsdk2004/src/card/CARDCreate.c:
 	.text       start:0x8024B3BC end:0x8024B70C
 
-card/CARDRead.c:
+dolsdk2004/src/card/CARDRead.c:
 	.text       start:0x8024B70C end:0x8024BB38
 
-card/CARDWrite.c:
+dolsdk2004/src/card/CARDWrite.c:
 	.text       start:0x8024BB38 end:0x8024BE6C
 
-card/CARDDelete.c:
+dolsdk2004/src/card/CARDDelete.c:
 	.text       start:0x8024BE6C end:0x8024C020
 
-card/CARDStat.c:
+dolsdk2004/src/card/CARDStat.c:
 	.text       start:0x8024C020 end:0x8024C4E8
 
-db/db.c:
+dolsdk2004/src/db/db.c:
 	.text       start:0x8024C4E8 end:0x8024C5D4
 	.data       start:0x804C5F60 end:0x804C5F78
 	.sbss       start:0x80565CF8 end:0x80565D00
 
-dsp/dsp.c:
+dolsdk2004/src/dsp/dsp.c:
 	.text       start:0x8024C5D4 end:0x8024C864
 	.data       start:0x804C5F78 end:0x804C5FF8
 	.sdata      start:0x80560D90 end:0x80560D98
 	.sbss       start:0x80565D00 end:0x80565D08
 
-dsp/dsp_debug.c:
+dolsdk2004/src/dsp/dsp_debug.c:
 	.text       start:0x8024C864 end:0x8024C8B4
 
-dsp/dsp_task.c:
+dolsdk2004/src/dsp/dsp_task.c:
 	.text       start:0x8024C8B4 end:0x8024D138
 	.data       start:0x804C5FF8 end:0x804C6138
 	.sbss       start:0x80565D08 end:0x80565D20
 
-dvd/dvdlow.c:
+dolsdk2004/src/dvd/dvdlow.c:
 	.text       start:0x8024D138 end:0x8024DFB4
 	.bss        start:0x80512680 end:0x80512760
 	.sdata      start:0x80560D98 end:0x80560DA0
 	.sbss       start:0x80565D20 end:0x80565D68
 
-dvd/dvdfs.c:
+dolsdk2004/src/dvd/dvdfs.c:
 	.text       start:0x8024DFB4 end:0x8024EB48
 	.data       start:0x804C6138 end:0x804C62D8
 	.sdata      start:0x80560DA0 end:0x80560DA8
 	.sbss       start:0x80565D68 end:0x80565D88
 
-dvd/dvd.c:
+dolsdk2004/src/dvd/dvd.c:
 	.text       start:0x8024EB48 end:0x80251190
 	.data       start:0x804C62D8 end:0x804C6458
 	.bss        start:0x80512760 end:0x805127F8
 	.sdata      start:0x80560DA8 end:0x80560DC0
 	.sbss       start:0x80565D88 end:0x80565DD0
 
-dvd/dvdqueue.c:
+dolsdk2004/src/dvd/dvdqueue.c:
 	.text       start:0x80251190 end:0x80251388
 	.bss        start:0x805127F8 end:0x80512818
 
-dvd/dvderror.c:
+dolsdk2004/src/dvd/dvderror.c:
 	.text       start:0x80251388 end:0x80251520
 	.data       start:0x804C6458 end:0x804C64A0
 
-dvd/dvdidutils.c:
+dolsdk2004/src/dvd/dvdidutils.c:
 	.text       start:0x80251520 end:0x80251618
 
-dvd/dvdFatal.c:
+dolsdk2004/src/dvd/dvdFatal.c:
 	.text       start:0x80251618 end:0x80251648
 	.sbss       start:0x80565DD0 end:0x80565DD8
 
-dvd/fstload.c:
+dolsdk2004/src/dvd/fstload.c:
 	.text       start:0x80251648 end:0x80251888
 	.data       start:0x804C64A0 end:0x804C6520
 	.bss        start:0x80512818 end:0x80512888
 	.sdata      start:0x80560DC0 end:0x80560DD0
 	.sbss       start:0x80565DD8 end:0x80565DE8
 
-gx/GXInit.c:
+dolsdk2004/src/gx/GXInit.c:
 	.text       start:0x80251888 end:0x80252C08
 	.data       start:0x804C6520 end:0x804C6760
 	.bss        start:0x80512888 end:0x80512EB8
@@ -261,204 +264,204 @@ gx/GXInit.c:
 	.sbss       start:0x80565DE8 end:0x80565E10
 	.sdata2     start:0x80567078 end:0x805670A0
 
-gx/GXFifo.c:
+dolsdk2004/src/gx/GXFifo.c:
 	.text       start:0x80252C08 end:0x8025333C
 	.sbss       start:0x80565E10 end:0x80565E30
 
-gx/GXAttr.c:
+dolsdk2004/src/gx/GXAttr.c:
 	.text       start:0x8025333C end:0x80254318
 	.data       start:0x804C6760 end:0x804C6928
 	.sdata      start:0x80560DD8 end:0x80560DE8
 
-gx/GXMisc.c:
+dolsdk2004/src/gx/GXMisc.c:
 	.text       start:0x80254318 end:0x80254A34
 	.sbss       start:0x80565E30 end:0x80565E48
 
-gx/GXGeometry.c:
+dolsdk2004/src/gx/GXGeometry.c:
 	.text       start:0x80254A34 end:0x80254D90
 
-gx/GXFrameBuf.c:
+dolsdk2004/src/gx/GXFrameBuf.c:
 	.text       start:0x80254D90 end:0x8025592C
 	.data       start:0x804C6928 end:0x804C6E50
 	.sdata2     start:0x805670A0 end:0x805670B0
 
-gx/GXLight.c:
+dolsdk2004/src/gx/GXLight.c:
 	.text       start:0x8025592C end:0x80255F54
 	.data       start:0x804C6E50 end:0x804C6E70
 	.sdata2     start:0x805670B0 end:0x805670F8
 
-gx/GXTexture.c:
+dolsdk2004/src/gx/GXTexture.c:
 	.text       start:0x80255F54 end:0x80256F3C
 	.data       start:0x804C6E70 end:0x804C7098
 	.sdata      start:0x80560DE8 end:0x80560E28
 	.sdata2     start:0x805670F8 end:0x80567120
 
-gx/GXBump.c:
+dolsdk2004/src/gx/GXBump.c:
 	.text       start:0x80256F3C end:0x80257520
 	.sdata2     start:0x80567120 end:0x80567128
 
-gx/GXTev.c:
+dolsdk2004/src/gx/GXTev.c:
 	.text       start:0x80257520 end:0x80257C08
 	.data       start:0x804C7098 end:0x804C7110
 
-gx/GXPixel.c:
+dolsdk2004/src/gx/GXPixel.c:
 	.text       start:0x80257C08 end:0x80258250
 	.data       start:0x804C7110 end:0x804C7130
 	.sdata2     start:0x80567128 end:0x80567160
 
-gx/GXDisplayList.c:
+dolsdk2004/src/gx/GXDisplayList.c:
 	.text       start:0x80258250 end:0x80258450
 	.bss        start:0x80512EB8 end:0x80513490
 	.sbss       start:0x80565E48 end:0x80565E50
 
-gx/GXTransform.c:
+dolsdk2004/src/gx/GXTransform.c:
 	.text       start:0x80258450 end:0x80258944
 	.sdata2     start:0x80567160 end:0x80567170
 
-gx/GXPerf.c:
+dolsdk2004/src/gx/GXPerf.c:
 	.text       start:0x80258944 end:0x8025919C
 	.data       start:0x804C7130 end:0x804C7220
 
-mix/mix.c:
+dolsdk2004/src/mix/mix.c:
 	.text       start:0x8025919C end:0x8025B49C
 	.data       start:0x804C7220 end:0x804C7DE0
 	.bss        start:0x80513490 end:0x80514C90
 	.sbss       start:0x80565E50 end:0x80565E60
 
-mtx/mtx.c:
+dolsdk2004/src/mtx/mtx.c:
 	.text       start:0x8025B49C end:0x8025B738
 	.sdata      start:0x80560E28 end:0x80560E30
 	.sdata2     start:0x80567170 end:0x80567178
 
-os/OS.c:
+dolsdk2004/src/os/OS.c:
 	.text       start:0x8025B740 end:0x8025C20C
 	.data       start:0x804C7DE0 end:0x804C7FD8
 	.bss        start:0x80514CA0 end:0x80514D10
 	.sdata      start:0x80560E30 end:0x80560E40
 	.sbss       start:0x80565E60 end:0x80565E98
 
-os/OSAlarm.c:
+dolsdk2004/src/os/OSAlarm.c:
 	.text       start:0x8025C20C end:0x8025C968
 	.data       start:0x804C7FD8 end:0x804C7FE8
 	.sbss       start:0x80565E98 end:0x80565EA0
 
-os/OSAlloc.c:
+dolsdk2004/src/os/OSAlloc.c:
 	.text       start:0x8025C968 end:0x8025CFD8
 	.data       start:0x804C7FE8 end:0x804C8380
 	.sdata      start:0x80560E40 end:0x80560E48
 	.sbss       start:0x80565EA0 end:0x80565EB0
 
-os/OSArena.c:
+dolsdk2004/src/os/OSArena.c:
 	.text       start:0x8025CFD8 end:0x8025D024
 	.sdata      start:0x80560E48 end:0x80560E50
 	.sbss       start:0x80565EB0 end:0x80565EB8
 
-os/OSAudioSystem.c:
+dolsdk2004/src/os/OSAudioSystem.c:
 	.text       start:0x8025D024 end:0x8025D2B8
 	.data       start:0x804C8380 end:0x804C8400
 
-os/OSCache.c:
+dolsdk2004/src/os/OSCache.c:
 	.text       start:0x8025D2B8 end:0x8025D71C
 	.data       start:0x804C8400 end:0x804C8630
 
-os/OSContext.c:
+dolsdk2004/src/os/OSContext.c:
 	.text       start:0x8025D71C end:0x8025DF8C
 	.data       start:0x804C8630 end:0x804C8808
 
-os/OSError.c:
+dolsdk2004/src/os/OSError.c:
 	.text       start:0x8025DF8C end:0x8025E638
 	.data       start:0x804C8808 end:0x804C8B28
 	.bss        start:0x80514D10 end:0x80514D54
 	.sdata      start:0x80560E50 end:0x80560E58
 
-os/OSExec.c:
+dolsdk2004/src/os/OSExec.c:
 	.text       start:0x8025E638 end:0x8025EF98
 	.data       start:0x804C8B28 end:0x804C8B38
 	.sdata      start:0x80560E58 end:0x80560E60
 	.sbss       start:0x80565EB8 end:0x80565EC0
 
-os/OSFont.c:
+dolsdk2004/src/os/OSFont.c:
 	.text       start:0x8025EF98 end:0x8025EFF0
 	.sdata      start:0x80560E60 end:0x80560E68
 
-os/OSInterrupt.c:
+dolsdk2004/src/os/OSInterrupt.c:
 	.text       start:0x8025EFF0 end:0x8025F85C
 	.data       start:0x804C8B38 end:0x804C8B68
 	.sbss       start:0x80565EC0 end:0x80565ED8
 
-os/OSLink.c:
+dolsdk2004/src/os/OSLink.c:
 	.text       start:0x8025F85C end:0x8025F874
 
-os/OSMemory.c:
+dolsdk2004/src/os/OSMemory.c:
 	.text       start:0x8025F874 end:0x8025FB4C
 	.data       start:0x804C8B68 end:0x804C8B78
 
-os/OSMutex.c:
+dolsdk2004/src/os/OSMutex.c:
 	.text       start:0x8025FB4C end:0x8025FBBC
 
-os/OSReboot.c:
+dolsdk2004/src/os/OSReboot.c:
 	.text       start:0x8025FBBC end:0x8025FC40
 	.sbss       start:0x80565ED8 end:0x80565EE0
 
-os/OSReset.c:
+dolsdk2004/src/os/OSReset.c:
 	.text       start:0x8025FC40 end:0x802600C4
 	.data       start:0x804C8B78 end:0x804C8BC8
 	.sbss       start:0x80565EE0 end:0x80565EF0
 
-os/OSResetSW.c:
+dolsdk2004/src/os/OSResetSW.c:
 	.text       start:0x802600C4 end:0x80260450
 	.sbss       start:0x80565EF0 end:0x80565F10
 
-os/OSThread.c:
+dolsdk2004/src/os/OSThread.c:
 	.text       start:0x80260FB0 end:0x80262284
 	.bss        start:0x80514DB8 end:0x805157B0
 	.sdata      start:0x80560E68 end:0x80560E70
 	.sbss       start:0x80565F10 end:0x80565F20
 
-os/OSTime.c:
+dolsdk2004/src/os/OSTime.c:
 	.text       start:0x80262284 end:0x80262308
 
-os/__ppc_eabi_init.c:
+dolsdk2004/src/os/__ppc_eabi_init.c:
 	.init       start:0x800054EC end:0x80005544
 	.text       start:0x80262308 end:0x8026239C
 
-pad/Padclamp.c:
+dolsdk2004/src/pad/Padclamp.c:
 	.text       start:0x8026239C end:0x802625E0
 	.rodata     start:0x804164E0 end:0x804164F0
 
-pad/Pad.c:
+dolsdk2004/src/pad/Pad.c:
 	.text       start:0x802625E0 end:0x80263F28
 	.data       start:0x804C8BC8 end:0x804C8C20
 	.bss        start:0x805157B0 end:0x80515800
 	.sdata      start:0x80560E70 end:0x80560E90
 	.sbss       start:0x80565F28 end:0x80565F58
 
-vi/vi.c:
+dolsdk2004/src/vi/vi.c:
 	.text       start:0x80263F28 end:0x80265BD8
 	.data       start:0x804C8C20 end:0x804C8FF0
 	.bss        start:0x80515800 end:0x80515948
 	.sdata      start:0x80560E90 end:0x80560EA0
 	.sbss       start:0x80565F58 end:0x80565FB8
 
-si/SIBios.c:
+dolsdk2004/src/si/SIBios.c:
 	.text       start:0x80265BD8 end:0x802672C8
 	.data       start:0x804C8FF0 end:0x804C9108
 	.bss        start:0x80515948 end:0x80515B48
 	.sdata      start:0x80560EA0 end:0x80560EA8
 	.sbss       start:0x80565FB8 end:0x80565FC8
 
-si/SISamplingRate.c:
+dolsdk2004/src/si/SISamplingRate.c:
 	.text       start:0x802672C8 end:0x802673D0
 	.data       start:0x804C9108 end:0x804C91A0
 	.sbss       start:0x80565FC8 end:0x80565FD0
 
-exi/EXIBios.c:
+dolsdk2004/src/exi/EXIBios.c:
 	.text       start:0x802673D0 end:0x80268DAC
 	.data       start:0x804C91A0 end:0x804C92B0
 	.bss        start:0x80515B48 end:0x80515C08
 	.sdata      start:0x80560EA8 end:0x80560EB0
 	.sbss       start:0x80565FD0 end:0x80565FD8
 
-exi/EXIUart.c:
+dolsdk2004/src/exi/EXIUart.c:
 	.text       start:0x80268DAC end:0x80269380
 	.sbss       start:0x80565FD8 end:0x80565FE8

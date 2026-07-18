@@ -1,8 +1,4 @@
-axfx/reverb_hi.c:
-	.text       start:0x80241940 end:0x80242848
-	.data       start:0x804C41B0 end:0x804C41D0
-	.sdata2     start:0x80566F68 end:0x80566FA8
+At 8021f0b0 I think there is libpng followed by libzlib.
+zlib version is 1.1.3
 
-
-It should be something related to axfx. It's an hybrid between reverb_hi and reverb_hi_4ch.
-I'm 90% sure that it's not reverb_hi.c
+800AB9F4 is MWTRACE and before that there is TRK stuff
