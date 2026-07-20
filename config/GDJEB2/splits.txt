@@ -27,18 +27,25 @@ zlib/adler32.c:
 
 zlib/crc32.c:
 	.text       start:0x80234078 end:0x802341B4
+	.rodata     start:0x804153D0 end:0x804157D0
 
 zlib/deflate.c:
 	.text       start:0x802341B4 end:0x80235C24
+	.rodata     start:0x804157D0 end:0x80415848
+	.sdata      start:0x80560D18 end:0x80560D28
 
 zlib/infblock.c:
 	.text       start:0x80235C24 end:0x80236C54
+	.rodata     start:0x80415848 end:0x80415898
+	.data       start:0x804BF1B8 end:0x804BF258
 
 zlib/infcodes.c:
 	.text       start:0x80236C54 end:0x80237648
+	.data       start:0x804BF258 end:0x804BF2B8
 
 zlib/inffast.c:
 	.text       start:0x80237648 end:0x80237BF4
+	.data       start:0x804BF2B8 end:0x804BF2F0
 
 zlib/inflate.c:
 	.text       start:0x80237BF4 end:0x8023846C
@@ -62,6 +69,8 @@ zlib/trees.c:
 
 zlib/zutil.c:
 	.text       start:0x8023B1E4 end:0x8023B240
+	.data       start:0x804C0610 end:0x804C06B8
+	.sdata      start:0x80560D38 end:0x80560D40
 
 dolsdk2004/src/odenotstub/odenotstub.c:
 	.text       start:0x8023B240 end:0x8023BCC0
