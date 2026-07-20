@@ -45,9 +45,13 @@ zlib/inflate.c:
 
 zlib/inftrees.c:
 	.text       start:0x8023846C end:0x80238CC0
+	.rodata     start:0x80415898 end:0x80415AB0
+	.data       start:0x804BF398 end:0x804C0588
+	.sdata      start:0x80560D30 end:0x80560D38
 
 zlib/infutil.c:
 	.text       start:0x80238CC0 end:0x80238E48
+	.data       start:0x804C0588 end:0x804C05D0
 
 zlib/trees.c:
 	.text       start:0x80238E48 end:0x8023B1E4

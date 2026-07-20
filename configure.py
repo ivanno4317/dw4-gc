@@ -626,7 +626,7 @@ config.libs = [
             Object(Matching, "zlib/zutil.c"),
             Object(Matching, "zlib/trees.c"),
             Object(Matching, "zlib/infutil.c"),
-            Object(NonMatching, "zlib/inftrees.c"),
+            Object(Matching, "zlib/inftrees.c"),
             Object(NonMatching, "zlib/inflate.c"),
             Object(NonMatching, "zlib/inffast.c"),
             Object(NonMatching, "zlib/infcodes.c"),
