@@ -13,6 +13,12 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+zlib/adler32.c:
+	.text       start:0x80233EEC end:0x80234078
+
+zlib/crc32.c:
+	.text       start:0x80234078 end:0x802341B4
+
 zlib/deflate.c:
 	.text       start:0x802341B4 end:0x80235C24
 

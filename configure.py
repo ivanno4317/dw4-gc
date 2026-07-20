@@ -609,6 +609,8 @@ config.libs = [
             Object(NonMatching, "zlib/infcodes.c"),
             Object(NonMatching, "zlib/infblock.c"),
             Object(NonMatching, "zlib/deflate.c"),
+            Object(NonMatching, "zlib/crc32.c"),
+            Object(NonMatching, "zlib/adler32.c"),
         ],
     ),
 ]
