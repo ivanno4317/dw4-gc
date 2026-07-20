@@ -261,7 +261,7 @@ config.linker_version = "GC/1.3.2"
 # zlib flags
 cflags_zlib = [
     "-nodefaults",
-    "-proc gekko",
+    "-proc generic",
     "-align powerpc",
     "-enum int",
     "-fp hardware",
@@ -271,7 +271,7 @@ cflags_zlib = [
     "-str reuse,pool,readonly",
     "-gccinc",
     "-common off",
-    "-inline deferred",
+    "-inline on",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
@@ -600,7 +600,7 @@ config.libs = [
     zlib(
         "zlib",
         [
-            Object(NonMatching, "zlib/zutil.c"),
+            Object(Matching, "zlib/zutil.c"),
             Object(NonMatching, "zlib/trees.c"),
             Object(NonMatching, "zlib/infutil.c"),
             Object(NonMatching, "zlib/inftrees.c"),
