@@ -51,6 +51,8 @@ zlib/infutil.c:
 
 zlib/trees.c:
 	.text       start:0x80238E48 end:0x8023B1E4
+	.rodata     start:0x80415AB0 end:0x804164E0
+	.data       start:0x804C05D0 end:0x804C0610
 
 zlib/zutil.c:
 	.text       start:0x8023B1E4 end:0x8023B240

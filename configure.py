@@ -229,7 +229,7 @@ cflags_zlib = [
     "-fp hardware",
     "-Cpp_exceptions off",
     "-O4,p",
-    "-str readonly",
+    "-str reuse",
     "-inline on",
     "-maxerrors 1",
     "-nosyspath",
@@ -624,8 +624,8 @@ config.libs = [
         cflags_zlib,
         [
             Object(Matching, "zlib/zutil.c"),
-            Object(NonMatching, "zlib/trees.c"),
-            Object(NonMatching, "zlib/infutil.c"),
+            Object(Matching, "zlib/trees.c"),
+            Object(Matching, "zlib/infutil.c"),
             Object(NonMatching, "zlib/inftrees.c"),
             Object(NonMatching, "zlib/inflate.c"),
             Object(NonMatching, "zlib/inffast.c"),
@@ -633,7 +633,7 @@ config.libs = [
             Object(NonMatching, "zlib/infblock.c"),
             Object(NonMatching, "zlib/deflate.c"),
             Object(NonMatching, "zlib/crc32.c"),
-            Object(NonMatching, "zlib/adler32.c"),
+            Object(Matching, "zlib/adler32.c"),
         ],
     ),
     Library(
