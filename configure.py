@@ -606,6 +606,8 @@ config.libs = [
             Object(NonMatching, "zlib/inftrees.c"),
             Object(NonMatching, "zlib/inflate.c"),
             Object(NonMatching, "zlib/inffast.c"),
+            Object(NonMatching, "zlib/infcodes.c"),
+            Object(NonMatching, "zlib/infblock.c"),
         ],
     ),
 ]

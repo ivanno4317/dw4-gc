@@ -13,6 +13,12 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+zlib/infblock.c:
+	.text       start:0x80235C24 end:0x80236C54
+
+zlib/infcodes.c:
+	.text       start:0x80236C54 end:0x80237648
+
 zlib/inffast.c:
 	.text       start:0x80237648 end:0x80237BF4
 
