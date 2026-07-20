@@ -42,6 +42,8 @@ zlib/inffast.c:
 
 zlib/inflate.c:
 	.text       start:0x80237BF4 end:0x8023846C
+	.data       start:0x804BF2F0 end:0x804BF398
+	.sdata      start:0x80560D28 end:0x80560D30
 
 zlib/inftrees.c:
 	.text       start:0x8023846C end:0x80238CC0
