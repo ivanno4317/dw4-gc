@@ -221,6 +221,62 @@ cflags_base = [
     "-cwd source"
 ]
 
+cflags_zlib = [
+    "-nodefaults",
+    "-proc generic",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-str readonly",
+    "-inline on",
+    "-maxerrors 1",
+    "-nosyspath",
+    # for multibyte
+    "-multibyte",
+    # includes and defines
+    "-i include",
+    "-i src/dolsdk2004/include",
+    "-i src/dolsdk2004/include/libc",
+    "-i src/zlib",
+    f"-i build/{config.version}/include",
+    f"-DBUILD_VERSION={version_num}",
+    f"-DVERSION_{config.version}",
+]
+
+cflags_libpng = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-fp_contract on",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-str readonly",
+    "-inline on",
+    "-maxerrors 1",
+    "-nosyspath",
+    # for multibyte
+    "-multibyte",
+    # includes and defines
+    "-cwd source",
+    "-i include",
+    "-i src/dolsdk2004/include",
+    "-i src/dolsdk2004/include/libc",
+    "-i src/zlib",
+    "-i include/PowerPC_EABI_Support/msl/MSL_C/MSL_Common/Include",
+    "-i include/PowerPC_EABI_Support/msl/MSL_C++/MSL_Common/Include",
+    f"-i build/{config.version}/include",
+    f"-DBUILD_VERSION={version_num}",
+    f"-DVERSION_{config.version}",
+    "-DPNG_NO_STDIO",
+    "-DPNG_NO_WRITE_tIME",
+    "-DPNG_USER_MEM_SUPPORTED",
+    "-DPNG_NO_PROGRESSIVE_READ",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -246,9 +302,6 @@ cflags_runtime = [
     "-inline auto",
 ]
 
-
-
-
 # REL flags
 cflags_rel = [
     *cflags_base,
@@ -257,39 +310,6 @@ cflags_rel = [
 ]
 
 config.linker_version = "GC/1.3.2"
-
-# zlib flags
-cflags_zlib = [
-    "-nodefaults",
-    "-proc generic",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    "-O4,p",
-    "-use_lmw_stmw on",
-    "-str reuse,pool,readonly",
-    "-gccinc",
-    "-common off",
-    "-inline on",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    "-RTTI off",
-    "-fp_contract on",
-    "-str reuse",
-    # for multibyte
-    "-multibyte",
-    # includes and defines
-    "-i include",
-    "-i src/dolsdk2004/include",
-    "-i src/dolsdk2004/include/libc",
-    f"-i build/{config.version}/include",
-    f"-DBUILD_VERSION={version_num}",
-    f"-DVERSION_{config.version}",
-    "-cwd source"
-]
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, cflags: Any, objects: List[Object]) -> Dict[str, Any]:
@@ -314,15 +334,16 @@ def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 # Helper function for zlib
-def zlib(cflags: Any, objects: List[Object]) -> Dict[str, Any]:
+def Library(lib_name: str, mw_version, cflags: Any, objects: List[Object]) -> Dict[str, Any]:
     return {
-        "lib": "zlib",
-        "mw_version": "GC/1.3.2",
-        "cflags": cflags_zlib,
-        "progress_category": "libraries",
+        "lib": lib_name,
+        "mw_version": mw_version,
+        "cflags": cflags,
+        "progress_category": lib_name,
         "src_dir": "src",
         "objects": objects,
     }
+
 
 
 Matching = True                   # Object matches and should be linked
@@ -597,8 +618,10 @@ config.libs = [
             Object(NonMatching, "dolsdk2004/src/odenotstub/odenotstub.c"),
         ],
     ),
-    zlib(
+    Library(
         "zlib",
+        "GC/1.3",
+        cflags_zlib,
         [
             Object(Matching, "zlib/zutil.c"),
             Object(NonMatching, "zlib/trees.c"),
@@ -611,6 +634,16 @@ config.libs = [
             Object(NonMatching, "zlib/deflate.c"),
             Object(NonMatching, "zlib/crc32.c"),
             Object(NonMatching, "zlib/adler32.c"),
+        ],
+    ),
+    Library(
+        "libpng",
+        "GC/1.3.2",
+        cflags_libpng,
+        [
+            Object(NonMatching, "libpng/pngwutil.c"),
+            Object(NonMatching, "libpng/pngwtran.c"),
+            Object(NonMatching, "libpng/pngwrite.c"),
         ],
     ),
 ]
@@ -639,7 +672,8 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
-    ProgressCategory("libraries", "Libraries"),
+    ProgressCategory("zlib", "zlib"),
+    ProgressCategory("libpng", "libpng"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`

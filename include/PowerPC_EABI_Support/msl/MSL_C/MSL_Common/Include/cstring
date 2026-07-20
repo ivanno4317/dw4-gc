@@ -1,0 +1,29 @@
+#ifndef _MSL_CSTRING
+#define _MSL_CSTRING
+
+#include "null.h"
+#include "size_t.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int strlen(const char* s);
+char* strcat(char* dst, const char* src);
+char* strncat(char* dst, const char* src, unsigned long ssize);
+char* strcpy(char* dst, const char* src);
+char* strncpy(char* dst, const char* src, unsigned long n);
+int strcmp(const char* s1, const char* s2);
+int strncmp(const char* s1, const char* s2, unsigned long n);
+char* strstr(const char* haystack, const char* needle);
+char* strtok(char* str, const char* delim);
+
+void* memset(void* s, int c, size_t n);
+int memcmp(const void* s1, const void* s2, unsigned long n);
+void* memcpy(void* dest, const void* src, unsigned long n);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

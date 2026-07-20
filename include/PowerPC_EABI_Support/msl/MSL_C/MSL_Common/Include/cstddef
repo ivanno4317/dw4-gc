@@ -1,0 +1,17 @@
+#ifndef _MSL_CSTDDEF
+#define _MSL_CSTDDEF
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "null.h"
+#include "size_t.h"
+
+#define offsetof(type, member) ((size_t)&((type*)NULL)->member)
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

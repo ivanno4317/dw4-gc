@@ -13,6 +13,15 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+libpng/pngwrite.c:
+	.text       start:0x8022E9C0 end:0x8022FB08
+
+libpng/pngwtran.c:
+	.text       start:0x8022FB08 end:0x80230F38
+
+libpng/pngwutil.c:
+	.text       start:0x80230F38 end:0x80233EEC
+
 zlib/adler32.c:
 	.text       start:0x80233EEC end:0x80234078
 
