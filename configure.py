@@ -246,6 +246,9 @@ cflags_runtime = [
     "-inline auto",
 ]
 
+
+
+
 # REL flags
 cflags_rel = [
     *cflags_base,
@@ -257,12 +260,35 @@ config.linker_version = "GC/1.3.2"
 
 # zlib flags
 cflags_zlib = [
-    *cflags_base,
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     "-gccinc",
     "-common off",
-    "-inline auto",
+    "-inline deferred",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    # for multibyte
+    "-multibyte",
+    # includes and defines
+    "-i include",
+    "-i src/dolsdk2004/include",
+    "-i src/dolsdk2004/include/libc",
+    f"-i build/{config.version}/include",
+    f"-DBUILD_VERSION={version_num}",
+    f"-DVERSION_{config.version}",
+    "-cwd source"
 ]
 
 # Helper function for Dolphin libraries
@@ -577,6 +603,9 @@ config.libs = [
             Object(NonMatching, "zlib/zutil.c"),
             Object(NonMatching, "zlib/trees.c"),
             Object(NonMatching, "zlib/infutil.c"),
+            Object(NonMatching, "zlib/inftrees.c"),
+            Object(NonMatching, "zlib/inflate.c"),
+            Object(NonMatching, "zlib/inffast.c"),
         ],
     ),
 ]
