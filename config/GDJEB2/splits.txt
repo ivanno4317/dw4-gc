@@ -15,33 +15,49 @@ Sections:
 
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC
+	.data       start:0x804BD380 end:0x804BD420
+	.sdata2     start:0x80566DC0 end:0x80566E60
 
 libpng/pngerror.c:
 	.text       start:0x8021F8FC end:0x8021FBA8
+	.rodata     start:0x804153C0 end:0x804153D0
+	.data       start:0x804BD420 end:0x804BD448
 
 libpng/pngget.c:
 	.text       start:0x8021FBA8 end:0x8021FE10
+	.data       start:0x804BD448 end:0x804BD480
 
 libpng/pngmem.c:
 	.text       start:0x8021FE10 end:0x80220104
+	.data       start:0x804BD480 end:0x804BD4D0
 
 libpng/pngread.c:
 	.text       start:0x80220104 end:0x802214D8
+	.data       start:0x804BD4D0 end:0x804BD790
+	.sdata      start:0x80560D00 end:0x80560D10
 
 libpng/pngrio.c:
 	.text       start:0x802214D8 end:0x802215F8
+	.data       start:0x804BD790 end:0x804BD830
 
 libpng/pngrtran.c:
 	.text       start:0x802215F8 end:0x80228FE8
+	.data       start:0x804BD830 end:0x804BDA58
+	.sdata2     start:0x80566E60 end:0x80566EB0
 
 libpng/pngrutil.c:
 	.text       start:0x80228FE8 end:0x8022CAC8
+	.data       start:0x804BDA58 end:0x804BE6C0
+	.sdata2     start:0x80566EB0 end:0x80566EC8
 
 libpng/pngset.c:
 	.text       start:0x8022CAC8 end:0x8022D834
+	.data       start:0x804BE6C0 end:0x804BE720
+	.sdata2     start:0x80566EC8 end:0x80566F08
 
 libpng/pngtrans.c:
 	.text       start:0x8022D834 end:0x8022E924
+	.data       start:0x804BE720 end:0x804BEA20
 
 libpng/pngwio.c:
 	.text       start:0x8022E924 end:0x8022EAB4
@@ -49,6 +65,8 @@ libpng/pngwio.c:
 
 libpng/pngwrite.c:
 	.text       start:0x8022EAB4 end:0x8022FB08
+	.data       start:0x804BEAB8 end:0x804BEBC8
+	.sdata2     start:0x80566F08 end:0x80566F30
 
 libpng/pngwtran.c:
 	.text       start:0x8022FB08 end:0x80230F38

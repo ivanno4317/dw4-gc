@@ -167,7 +167,8 @@ png_write_info(png_structp png_ptr, png_infop info_ptr)
    if (info_ptr->valid & PNG_INFO_sCAL)
 #if defined(PNG_FLOATING_POINT_SUPPORTED) && !defined(PNG_NO_STDIO)
       png_write_sCAL(png_ptr, (int)info_ptr->scal_unit,
-          info_ptr->scal_pixel_width, info_ptr->scal_pixel_height);
+          info_ptr->scal_pixel_width, info_ptr->scal_pixel_height);//blocco incriminato
+          
 #else
 #ifdef PNG_FIXED_POINT_SUPPORTED
       png_write_sCAL_s(png_ptr, (int)info_ptr->scal_unit,
@@ -193,7 +194,7 @@ png_write_info(png_structp png_ptr, png_infop info_ptr)
 #if defined(PNG_WRITE_sPLT_SUPPORTED)
    if (info_ptr->valid & PNG_INFO_sPLT)
      for (i = 0; i < (int)info_ptr->splt_palettes_num; i++)
-       png_write_sPLT(png_ptr, info_ptr->splt_palettes + i);
+       png_write_sPLT(png_ptr, info_ptr->splt_palettes + i); // questo altro
 #endif
 #if defined(PNG_WRITE_TEXT_SUPPORTED)
    /* Check to see if we need to write text chunks */

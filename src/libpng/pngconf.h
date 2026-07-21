@@ -482,7 +482,7 @@
 #define PNG_PROGRESSIVE_READ_SUPPORTED       /* reading.  This is not talking */
 #endif                               /* about interlacing capability!  You'll */
               /* still have interlacing unless you change the following line: */
-#define PNG_READ_INTERLACING_SUPPORTED /* required for PNG-compliant decoders */
+//#define PNG_READ_INTERLACING_SUPPORTED /* required for PNG-compliant decoders */
 
 #ifndef PNG_NO_READ_COMPOSITE_NODIV
 #ifndef PNG_NO_READ_COMPOSITED_NODIV  /* libpng-1.0.x misspelling */

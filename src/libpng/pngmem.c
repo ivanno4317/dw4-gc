@@ -402,7 +402,7 @@ png_malloc_default(png_structp png_ptr, png_uint_32 size)
 # if defined(_MSC_VER) && defined(MAXSEG_64K)
    ret = halloc(size, 1);
 # else
-   //ret = malloc((size_t)size);
+   ret = malloc((size_t)size);
 # endif
 #endif
 

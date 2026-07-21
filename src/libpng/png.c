@@ -669,6 +669,7 @@ png_get_header_version(png_structp png_ptr)
 int PNGAPI
 png_handle_as_unknown(png_structp png_ptr, png_bytep chunk_name)
 {
+   
    /* check chunk_name and return "keep" value if it's on the list, else 0 */
    int i;
    png_bytep p;
