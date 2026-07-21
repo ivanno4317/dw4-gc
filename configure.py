@@ -271,10 +271,12 @@ cflags_libpng = [
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
-    "-DPNG_NO_STDIO",
     "-DPNG_NO_WRITE_tIME",
     "-DPNG_USER_MEM_SUPPORTED",
-    "-DPNG_NO_PROGRESSIVE_READ",
+    "-DPNG_WRITE_tIME_SUPPORTED",
+    "-DPNG_NO_WRITE_iCCP",
+    "-DPNG_SETJMP_NOT_SUPPORTED",
+    
 ]
 
 # Debug flags
@@ -638,17 +640,18 @@ config.libs = [
     ),
     Library(
         "libpng",
-        "GC/1.3.2",
+        "GC/1.3.2r",
         cflags_libpng,
         [
-            Object(NonMatching, "libpng/pngwutil.c"),
-            Object(NonMatching, "libpng/pngwtran.c"),
-            Object(NonMatching, "libpng/pngwrite.c"),
+            Object(NonMatching, "libpng/pngwutil.c",cflags= cflags_libpng + ["-DPNG_NO_CONSOLE_IO"],),
+            Object(Matching, "libpng/pngwtran.c"),
+            Object(NonMatching, "libpng/pngwrite.c",cflags= cflags_libpng + ["-DPNG_NO_PROGRESSIVE_READ"],),
+            Object(NonMatching, "libpng/pngwio.c"),
         ],
     ),
 ]
 
-
+    
 # Optional callback to adjust link order. This can be used to add, remove, or reorder objects.
 # This is called once per module, with the module ID and the current link order.
 #
