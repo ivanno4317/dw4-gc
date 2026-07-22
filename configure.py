@@ -193,7 +193,6 @@ config.scratch_preset_id = None
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
-    # define the platform
     "-nodefaults",
     "-proc gekko",
     "-align powerpc",
@@ -213,8 +212,6 @@ cflags_base = [
     "-multibyte",
     # includes and defines
     "-i include",
-    "-i src/dolsdk2004/include",
-    "-i src/dolsdk2004/include/libc",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
@@ -264,8 +261,7 @@ cflags_libpng = [
     "-cwd source",
     "-i include",
     "-i src/zlib",
-    "-i include/PowerPC_EABI_Support/msl/MSL_C/MSL_Common/Include",
-    "-i include/PowerPC_EABI_Support/msl/MSL_C++/MSL_Common/Include",
+    "-i include/PowerPC_EABI_Support/MSL_C/",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
@@ -279,7 +275,6 @@ cflags_libpng = [
     "-DPNG_PROGRESSIVE_READ_NOT_SUPPORTED",
     "-DPNG_READ_BIG_ENDIAN_SUPPORTED",
 ]
-
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -295,6 +290,13 @@ elif args.warn == "off":
 elif args.warn == "error":
     cflags_base.append("-W error")
 
+cflags_dolsdk= [
+    *cflags_base,
+    "-i src/dolsdk2004/include",
+    "-i src/dolsdk2004/include/dolphin",
+    "-i src/dolsdk2004/include/libc",
+]
+
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
@@ -303,6 +305,7 @@ cflags_runtime = [
     "-gccinc",
     "-common off",
     "-inline auto",
+    "-i include/PowerPC_EABI_Support/MSL_C/",
 ]
 
 # REL flags
@@ -311,7 +314,6 @@ cflags_rel = [
     "-sdata 0",
     "-sdata2 0",
 ]
-
 config.linker_version = "GC/1.3.2"
 
 # Helper function for Dolphin libraries
@@ -375,7 +377,7 @@ config.libs = [
     DolphinLib(
         "card",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src",
             "-i src/dolsdk2004/src/card",
             "-i src/dolsdk2004/src/os",
@@ -400,7 +402,7 @@ config.libs = [
     DolphinLib(
         "si",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/os",
         ],
         [
@@ -411,24 +413,24 @@ config.libs = [
     DolphinLib(
         "exi",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/os",
         ],
         [
-            Object(Matching,"dolsdk2004/src/exi/EXIBios.c",cflags=[x for x in cflags_base if x != "-O4,p"] + ["-O3,p", "-DDOLPHIN_SDK"],),
+            Object(Matching,"dolsdk2004/src/exi/EXIBios.c",cflags=[x for x in cflags_dolsdk if x != "-O4,p"] + ["-O3,p", "-DDOLPHIN_SDK"],),
             Object(Matching,"dolsdk2004/src/exi/EXIUart.c",),
         ],
     ),
     DolphinLib(
         "mix",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching,"dolsdk2004/src/mix/mix.c",),
         ],
     ),
     DolphinLib(
         "mtx",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching,"dolsdk2004/src/mtx/mtx.c",),
         ],
@@ -436,7 +438,7 @@ config.libs = [
     DolphinLib(
         "os",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-D__GEKKO__",
             "-i src/dolsdk2004/src/os",
             "-i src/dolsdk2004/src/dvd",
@@ -468,7 +470,7 @@ config.libs = [
     ),
     DolphinLib(
         "pad",
-        [*cflags_base, "-i src/dolsdk2004/src/si"],
+        [*cflags_dolsdk, "-i src/dolsdk2004/src/si"],
         [
             Object(Matching, "dolsdk2004/src/pad/Padclamp.c"),
             Object(Matching, "dolsdk2004/src/pad/Pad.c"),
@@ -477,7 +479,7 @@ config.libs = [
     DolphinLib(
         "vi",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/gx",
             "-i src/dolsdk2004/src/os",
             "-i src/dolsdk2004/src/vi",
@@ -488,19 +490,19 @@ config.libs = [
     ),
     DolphinLib(
         "base",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/base/PPCArch.c"),
         ],
     ),
     DolphinLib(
         "axart",
-        [*cflags_base,],
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/axart/axart.c"),
-            Object(NonMatching, "dolsdk2004/src/axart/axartlfo.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(NonMatching, "dolsdk2004/src/axart/axartlfo.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "dolsdk2004/src/axart/axartlpf.c"),
-            Object(Matching, "dolsdk2004/src/axart/axart3d.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "dolsdk2004/src/axart/axart3d.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "dolsdk2004/src/axart/axartenv.c"),
             Object(Matching, "dolsdk2004/src/axart/axartsound.c"),
             Object(Matching, "dolsdk2004/src/axart/axartcents.c"),
@@ -508,16 +510,16 @@ config.libs = [
     ),
     DolphinLib(
         "gx",
-        [*cflags_base, "-i src/dolsdk2004/src/gx",],
+        [*cflags_dolsdk, "-i src/dolsdk2004/src/gx",],
         [
             Object(Matching, "dolsdk2004/src/gx/GXPerf.c"),
-            Object(Matching, "dolsdk2004/src/gx/GXTransform.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "dolsdk2004/src/gx/GXTransform.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "dolsdk2004/src/gx/GXDisplayList.c"),
             Object(Matching, "dolsdk2004/src/gx/GXPixel.c"),
             Object(Matching, "dolsdk2004/src/gx/GXTev.c"),
             Object(Matching, "dolsdk2004/src/gx/GXBump.c"),
             Object(Matching, "dolsdk2004/src/gx/GXTexture.c"),
-            Object(Matching, "dolsdk2004/src/gx/GXLight.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "dolsdk2004/src/gx/GXLight.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "dolsdk2004/src/gx/GXFrameBuf.c"),
             Object(Matching, "dolsdk2004/src/gx/GXGeometry.c"),
             Object(Matching, "dolsdk2004/src/gx/GXMisc.c"),
@@ -529,7 +531,7 @@ config.libs = [
     DolphinLib(
         "dvd",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/dvd",
             "-i src/dolsdk2004/src/os",
         ],
@@ -547,7 +549,7 @@ config.libs = [
     DolphinLib(
         "dsp",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/dsp",
         ],
         [
@@ -558,7 +560,7 @@ config.libs = [
     ),
     DolphinLib(
         "db",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/db/db.c"),
         ],
@@ -566,21 +568,21 @@ config.libs = [
     DolphinLib(
         "axfx",
         [
-            *cflags_base,
+            *cflags_dolsdk,
             "-i src/dolsdk2004/src/axfx",
         ],
         [
             Object(Matching, "dolsdk2004/src/axfx/chorus.c"),  
-            Object(Matching, "dolsdk2004/src/axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(Matching, "dolsdk2004/src/axfx/reverb_hi_4ch.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
             Object(Matching, "dolsdk2004/src/axfx/delay.c"),
             Object(Matching, "dolsdk2004/src/axfx/axfx.c"),
-            Object(NonMatching, "dolsdk2004/src/axfx/reverb_std.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
-            Object(NonMatching, "dolsdk2004/src/axfx/reverb_hi.c",cflags=[x for x in cflags_base if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(NonMatching, "dolsdk2004/src/axfx/reverb_std.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
+            Object(NonMatching, "dolsdk2004/src/axfx/reverb_hi.c",cflags=[x for x in cflags_dolsdk if x != "-fp_contract on"] + ["-fp_contract off"],),
         ],
     ),
     DolphinLib(
         "ar",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/ar/arq.c"),
             Object(Matching, "dolsdk2004/src/ar/ar.c"),
@@ -588,7 +590,7 @@ config.libs = [
     ),
     DolphinLib(
         "ax",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/ax/AXProf.c"),
             Object(Matching, "dolsdk2004/src/ax/AXVPB.c"),
@@ -602,21 +604,21 @@ config.libs = [
     ),
     DolphinLib(
         "amcstubs",
-        cflags_base,
+        cflags_dolsdk,
         [
             Object(Matching, "dolsdk2004/src/amcstubs/AmcExi2Stubs.c"),
         ],
     ),
     DolphinLib(
         "ai",
-        [*cflags_base, "-i src/dolsdk2004/src/gx",],
+        [*cflags_dolsdk, "-i src/dolsdk2004/src/gx",],
         [
             Object(Matching, "dolsdk2004/src/ai/ai.c"),
         ],
     ),
     DolphinLib(
-        "odenotstub",
-        cflags_base,
+        "cflags_dolsdk",
+        cflags_dolsdk,
         [
             Object(NonMatching, "dolsdk2004/src/odenotstub/odenotstub.c"),
         ],
@@ -660,6 +662,14 @@ config.libs = [
             Object(Matching, "libpng/png.c"),
         ],
     ),
+    Library(
+        "MSL",
+        "GC/1.3.2r",
+        cflags_runtime,
+        [
+            Object(Matching,"Runtime\MSL\Math\k_rem_pio2.c"),
+        ],
+    ),
 ]
 
     
@@ -686,6 +696,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("MSL", "MSL"),
     ProgressCategory("zlib", "zlib"),
     ProgressCategory("libpng", "libpng"),
 ]

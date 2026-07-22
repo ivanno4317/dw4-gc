@@ -13,6 +13,11 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime\MSL\Math\k_rem_pio2.c:
+	.text       start:0x800A10F0 end:0x800A1F44
+	.rodata     start:0x80413D50 end:0x80413DA0
+	.sdata2     start:0x805666C8 end:0x80566708
+
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC
 	.data       start:0x804BD380 end:0x804BD420
