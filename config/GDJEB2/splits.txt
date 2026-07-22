@@ -13,10 +13,28 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
-Runtime\MSL\Math\k_rem_pio2.c:
+Runtime/MSL/Math/k_rem_pio2.c:
 	.text       start:0x800A10F0 end:0x800A1F44
 	.rodata     start:0x80413D50 end:0x80413DA0
 	.sdata2     start:0x805666C8 end:0x80566708
+
+Runtime/MSL/Math/k_sin.c:
+	.text       start:0x800A1F44 end:0x800A1FE4
+	.sdata2     start:0x80566708 end:0x80566740
+
+Runtime/MSL/Math/k_tan.c:
+	.text       start:0x800A1FE4 end:0x800A21F8
+	.rodata     start:0x80413DA0 end:0x80413E08
+	.sdata2     start:0x80566740 end:0x80566778
+
+Runtime/MSL/Math/s_atan.c:
+	.text       start:0x800A21F8 end:0x800A2410
+	.rodata     start:0x80413E08 end:0x80413EA0
+	.sdata2     start:0x80566778 end:0x805667A0
+
+Runtime/MSL/Math/s_ceil.c:
+	.text       start:0x800A2410 end:0x800A2554
+	.sdata2     start:0x805667A0 end:0x805667B0
 
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC

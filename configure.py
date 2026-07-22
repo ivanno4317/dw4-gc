@@ -643,7 +643,7 @@ config.libs = [
     ),
     Library(
         "libpng",
-        "GC/1.3.2r",
+        "GC/1.3.2",
         cflags_libpng,
         [
             Object(Matching, "libpng/pngwutil.c",),
@@ -664,10 +664,14 @@ config.libs = [
     ),
     Library(
         "MSL",
-        "GC/1.3.2r",
+        "GC/1.3.2",
         cflags_runtime,
         [
-            Object(Matching,"Runtime\MSL\Math\k_rem_pio2.c"),
+            Object(Matching,"Runtime/MSL/Math/k_rem_pio2.c"),
+            Object(Matching,"Runtime/MSL/Math/k_sin.c"),
+            Object(Matching,"Runtime/MSL/Math/k_tan.c"),
+            Object(Matching,"Runtime/MSL/Math/s_atan.c"),
+            Object(Matching,"Runtime/MSL/Math/s_ceil.c"),
         ],
     ),
 ]
