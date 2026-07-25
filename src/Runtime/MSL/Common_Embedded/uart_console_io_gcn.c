@@ -40,5 +40,3 @@ int __close_console()
 {
 	return 0;
 }
-
-
