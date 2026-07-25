@@ -13,6 +13,57 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/wchar_io.c:
+	.text       start:0x8009F2D4 end:0x8009F35C
+
+Runtime/MSL/Common_Embedded/uart_console_io_gcn.c:
+	.text       start:0x8009F35C end:0x8009F43C
+
+Runtime/MSL/Math/e_acos.c:
+	.text       start:0x8009F43C end:0x8009F678
+	.sdata2     start:0x80566288 end:0x80566310
+
+Runtime/MSL/Math/e_asin.c:
+	.text       start:0x8009F678 end:0x8009F8B0
+	.sdata2     start:0x80566310 end:0x80566398
+
+Runtime/MSL/Math/e_atan2.c:
+	.text       start:0x8009F8B0 end:0x8009FB40
+	.sdata2     start:0x80566398 end:0x805663F0
+
+Runtime/MSL/Math/e_exp.c:
+	.text       start:0x8009FB40 end:0x8009FD64
+	.rodata     start:0x80413B58 end:0x80413B88
+	.sdata2     start:0x805663F0 end:0x80566468
+
+Runtime/MSL/Math/e_fmod.c:
+	.text       start:0x8009FD64 end:0x800A00A0
+	.rodata     start:0x80413B88 end:0x80413B98
+
+Runtime/MSL/Math/e_log.c:
+	.text       start:0x800A00A0 end:0x800A031C
+	.sbss       start:0x805623C8 end:0x805623D0
+	.sdata2     start:0x80566468 end:0x805664E8
+
+Runtime/MSL/Math/e_log10.c:
+	.text       start:0x800A031C end:0x800A042C
+	.sbss       start:0x805623D0 end:0x805623D8
+	.sdata2     start:0x805664E8 end:0x80566518
+
+Runtime/MSL/Math/e_pow.c:
+	.text       start:0x800A042C end:0x800A0C5C
+	.rodata     start:0x80413B98 end:0x80413BC8
+	.sdata2     start:0x80566518 end:0x80566628
+
+Runtime/MSL/Math/e_rem_pio2.c:
+	.text       start:0x800A0C5C end:0x800A0FFC
+	.rodata     start:0x80413BC8 end:0x80413D50
+	.sdata2     start:0x80566628 end:0x80566680
+
+Runtime/MSL/Math/k_cos.c:
+	.text       start:0x800A0FFC end:0x800A10F0
+	.sdata2     start:0x80566680 end:0x805666C8
+
 Runtime/MSL/Math/k_rem_pio2.c:
 	.text       start:0x800A10F0 end:0x800A1F44
 	.rodata     start:0x80413D50 end:0x80413DA0
@@ -35,6 +86,67 @@ Runtime/MSL/Math/s_atan.c:
 Runtime/MSL/Math/s_ceil.c:
 	.text       start:0x800A2410 end:0x800A2554
 	.sdata2     start:0x805667A0 end:0x805667B0
+
+Runtime/MSL/Math/s_copysign.c:
+	.text       start:0x800A2554 end:0x800A257C
+
+Runtime/MSL/Math/s_cos.c:
+	.text       start:0x800A257C end:0x800A2650
+	.sdata2     start:0x805667B0 end:0x805667B8
+
+Runtime/MSL/Math/s_floor.c:
+	.text       start:0x800A2650 end:0x800A2798
+	.sdata2     start:0x805667B8 end:0x805667C8
+
+Runtime/MSL/Math/s_frexp.c:
+	.text       start:0x800A2798 end:0x800A2824
+	.sdata2     start:0x805667C8 end:0x805667D0
+
+Runtime/MSL/Math/s_ldexp.c:
+	.text       start:0x800A2824 end:0x800A29E8
+	.sdata2     start:0x805667D0 end:0x805667F8
+
+Runtime/MSL/Math/s_modf.c:
+	.text       start:0x800A29E8 end:0x800A2AE4
+
+Runtime/MSL/Math/s_sin.c:
+	.text       start:0x800A2AE4 end:0x800A2BBC
+	.sdata2     start:0x805667F8 end:0x80566800
+
+Runtime/MSL/Math/s_tan.c:
+	.text       start:0x800A2BBC end:0x800A2C34
+	.sdata2     start:0x80566800 end:0x80566808
+
+Runtime/MSL/Math/w_acos.c:
+	.text       start:0x800A2C34 end:0x800A2C54
+
+Runtime/MSL/Math/w_asin.c:
+	.text       start:0x800A2C54 end:0x800A2C74
+
+Runtime/MSL/Math/w_atan2.c:
+	.text       start:0x800A2C74 end:0x800A2C94
+
+Runtime/MSL/Math/w_exp.c:
+	.text       start:0x800A2C94 end:0x800A2CB4
+
+Runtime/MSL/Math/w_fmod.c:
+	.text       start:0x800A2CB4 end:0x800A2CD4
+
+Runtime/MSL/Math/w_log.c:
+	.text       start:0x800A2CD4 end:0x800A2CF4
+
+Runtime/MSL/Math/w_log10.c:
+	.text       start:0x800A2CF4 end:0x800A2D14
+
+Runtime/MSL/Math/w_pow.c:
+	.text       start:0x800A2D14 end:0x800A2D34
+
+Runtime/MSL/Math/e_sqrt.c:
+	.text       start:0x800A2D34 end:0x800A2F58
+	.sdata2     start:0x80566808 end:0x80566810
+
+Runtime/MSL/math_ppc.c:
+	.text       start:0x800A2F58 end:0x800A2FC0
 
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC
