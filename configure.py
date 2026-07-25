@@ -306,7 +306,7 @@ cflags_runtime = [
     "-common off",
     "-inline auto",
     "-i include/PowerPC_EABI_Support/MSL_C/",
-    "-i src/dolsdk2004/include",
+    "-i src/dolsdk2004/",
 ]
 
 # REL flags
@@ -702,7 +702,7 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Math/e_sqrt.c"),
             Object(Matching,"Runtime/MSL/math_ppc.c"),
             Object(NonMatching,"Runtime/MSL/Common_Embedded/uart_console_io_gcn.c"),
-            Object(NonMatching,"Runtime/MSL/Common/wchar_io.c")
+            Object(Matching,"Runtime/MSL/Common/wchar_io.c")
 
         ],
     ),
