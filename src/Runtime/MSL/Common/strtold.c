@@ -63,8 +63,6 @@ enum hex_scan_states
 #define fetch() (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))
 #define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar)
 
-
-
 long double __strtold(int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg,
                       int* chars_scanned, int* overflow)
 {

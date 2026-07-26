@@ -1,55 +1,136 @@
 #include "types.h"
+#include <errno.h>
 
-char* strrchr(const char* str, int chr)
+typedef unsigned char char_map[32];
+
+#define set_char_map(map, ch)  map[(unsigned char)ch>>3] |= (1 << (ch&7))	/*- mm 990913 -*/
+#define tst_char_map(map, ch) (map[(unsigned char)ch>>3] &  (1 << (ch&7)))	/*- mm 990913 -*/
+
+size_t(strlen)(const char* str)
 {
-	const u8* p = (u8*)str - 1;
-	const u8* q = 0;
-	u32 c       = (chr & 0xFF);
-	u32 ch;
+	size_t len = -1;
+	u8* p      = (u8*)str - 1;
 
-	while (ch = *++p)
-		if (ch == c)
-			q = p;
-
-	if (q)
-		return ((char*)q);
-
-	return (c ? 0 : (char*)p);
+	do
+		len++;
+	while (*++p);
+	return (len);
 }
 
-int strcoll(const char *str1, const char * str2)
+char*(strcpy)(char* dst, const char* src)
 {
-	return(strcmp(str1, str2));
+	register u8 *destb, *fromb;
+	register u32 w, t, align;
+
+	u32 K1, K2;
+
+	fromb = (u8*)src;
+	destb = (u8*)dst;
+
+	if ((align = ((int)fromb & 3)) != ((int)destb & 3)) {
+		goto bytecopy;
+	}
+
+	if (align) {
+		if ((*destb = *fromb) == 0)
+			return (dst);
+		for (align = 3 - align; align; align--) {
+			if ((*(++destb) = *(++fromb)) == 0)
+				return (dst);
+		}
+		++destb;
+		++fromb;
+	}
+
+	w = *((int*)(fromb));
+
+	K2 = 0xFEFEFEFF;
+	t = w + K2;
+
+	K1 = 0x80808080;
+
+	t &= K1;
+	if (t)
+		goto bytecopy;
+	--((int*)(destb));
+
+	do {
+		*(++((int*)(destb))) = w;
+		w                    = *(++((int*)(fromb)));
+
+		t = w + K2;
+		t &= K1;
+		if (t)
+			goto adjust;
+	} while (1);
+
+adjust:
+	++((int*)(destb));
+bytecopy:
+	if ((*destb = *fromb) == 0)
+		return dst;
+	do {
+		if ((*(++destb) = *(++fromb)) == 0)
+			return dst;
+	} while (1);
+
+	return dst;
 }
 
-char* strchr(const char* str, int chr)
+char* strncpy(char* dst, const char* src, size_t n)
 {
-	const u8* p = (u8*)str - 1;
-	u32 c       = (chr & 0xFF);
-	u32 ch;
-
-	while (ch = *++p)
-		if (ch == c)
-			return ((char*)p);
-
-	return (c ? 0 : (char*)p);
-}
-
-int strncmp(const char* str1, const char* str2, size_t n)
-{
-	const u8* p1 = (u8*)str1 - 1;
-	const u8* p2 = (u8*)str2 - 1;
-	u32 c1, c2;
+	const unsigned char* p = (const unsigned char*)src - 1;
+	unsigned char* q       = (unsigned char*)dst - 1;
+	unsigned char zero     = 0;
 
 	n++;
 
 	while (--n)
-		if ((c1 = *++p1) != (c2 = *++p2))
-			return (c1 - c2);
-		else if (!c1)
+		if (!(*++q = *++p)) {
+			while (--n)
+				*++q = 0;
 			break;
-	return 0;
+		}
+	return (dst);
 }
+
+char* strcat(char* dst, const char* src)
+{
+	const u8* p = (u8*)src - 1;
+	u8* q       = (u8*)dst - 1;
+
+	while (*++q)
+		;
+
+	q--;
+
+	while (*++q = *++p)
+		;
+
+	return (dst);
+}
+
+char * strncat(char * dst , const char * src, size_t n)
+{
+	const	unsigned char * p = (unsigned char *) src - 1;
+				unsigned char * q = (unsigned char *) dst - 1;
+	
+	while (*++q);
+	
+	q--; n++;
+	
+	while (--n)
+		if (!(*++q = *++p))
+		{
+			q--;
+			break;
+		}
+	
+	*++q = 0;
+	
+	return(dst);
+}
+
 
 int strcmp(const char* str1, const char* str2)
 {
@@ -132,128 +213,124 @@ bytecopy:
 	} while (1);
 }
 
-char * strncat(char * dst , const char * src, size_t n)
+int strncmp(const char* str1, const char* str2, size_t n)
 {
-	const	unsigned char * p = (unsigned char *) src - 1;
-				unsigned char * q = (unsigned char *) dst - 1;
-	
-	while (*++q);
-	
-	q--; n++;
-	
-	while (--n)
-		if (!(*++q = *++p))
-		{
-			q--;
-			break;
-		}
-	
-	*++q = 0;
-	
-	return(dst);
-}
-
-char* strcat(char* dst, const char* src)
-{
-	const u8* p = (u8*)src - 1;
-	u8* q       = (u8*)dst - 1;
-
-	while (*++q)
-		;
-
-	q--;
-
-	while (*++q = *++p)
-		;
-
-	return (dst);
-}
-
-char* strncpy(char* dst, const char* src, size_t n)
-{
-	const unsigned char* p = (const unsigned char*)src - 1;
-	unsigned char* q       = (unsigned char*)dst - 1;
-	unsigned char zero     = 0;
+	const u8* p1 = (u8*)str1 - 1;
+	const u8* p2 = (u8*)str2 - 1;
+	u32 c1, c2;
 
 	n++;
 
 	while (--n)
-		if (!(*++q = *++p)) {
-			while (--n)
-				*++q = 0;
+		if ((c1 = *++p1) != (c2 = *++p2))
+			return (c1 - c2);
+		else if (!c1)
 			break;
-		}
-	return (dst);
+	return 0;
 }
 
-char*(strcpy)(char* dst, const char* src)
+char* strchr(const char* str, int chr)
 {
-	register u8 *destb, *fromb;
-	register u32 w, t, align;
+	const u8* p = (u8*)str - 1;
+	u32 c       = (chr & 0xFF);
+	u32 ch;
 
-	u32 K1, K2;
+	while (ch = *++p)
+		if (ch == c)
+			return ((char*)p);
 
-	fromb = (u8*)src;
-	destb = (u8*)dst;
+	return (c ? 0 : (char*)p);
+}
 
-	if ((align = ((int)fromb & 3)) != ((int)destb & 3)) {
-		goto bytecopy;
-	}
-
-	if (align) {
-		if ((*destb = *fromb) == 0)
-			return (dst);
-		for (align = 3 - align; align; align--) {
-			if ((*(++destb) = *(++fromb)) == 0)
-				return (dst);
-		}
-		++destb;
-		++fromb;
-	}
-
-	w = *((int*)(fromb));
-
-	K2 = 0xFEFEFEFF;
-	t = w + K2;
-
-	K1 = 0x80808080;
-
-	t &= K1;
-	if (t)
-		goto bytecopy;
-	--((int*)(destb));
-
-	do {
-		*(++((int*)(destb))) = w;
-		w                    = *(++((int*)(fromb)));
-
-		t = w + K2;
-		t &= K1;
-		if (t)
-			goto adjust;
-	} while (1);
-
-adjust:
-	++((int*)(destb));
-bytecopy:
-	if ((*destb = *fromb) == 0)
-		return dst;
-	do {
-		if ((*(++destb) = *(++fromb)) == 0)
-			return dst;
-	} while (1);
-
-	return dst;
+int strcoll(const char *str1, const char * str2)
+{
+	return(strcmp(str1, str2));
 }
 
 
-size_t(strlen)(const char* str)
+char* strrchr(const char* str, int chr)
 {
-	size_t len = -1;
-	u8* p      = (u8*)str - 1;
+	const u8* p = (u8*)str - 1;
+	const u8* q = 0;
+	u32 c       = (chr & 0xFF);
+	u32 ch;
 
-	do
-		len++;
-	while (*++p);
-	return (len);
+	while (ch = *++p)
+		if (ch == c)
+			q = p;
+
+	if (q)
+		return ((char*)q);
+
+	return (c ? 0 : (char*)p);
+}
+
+char * strpbrk(const char * str, const char * set)
+{
+	const unsigned char *	p;
+	      int							c;
+				char_map				map = {0};
+	
+	
+	p = (unsigned char *) set - 1;
+
+	while (c = *++p)
+		set_char_map(map, c);
+	
+	p = (unsigned char *) str - 1;
+	
+	while (c = *++p)
+		if (tst_char_map(map, c))
+			return((char *) p);
+			
+	return(NULL);
+
+}
+
+size_t strcspn(const char * str, const char * set)
+{
+	const unsigned char *	p;
+	int							c;
+	char_map				map = {0};
+		
+	p = (unsigned char *) set - 1;
+
+	while (c = *++p)
+		set_char_map(map, c);
+	
+	p = (unsigned char *) str - 1;
+	
+	while (c = *++p)
+		if (tst_char_map(map, c))
+			break;
+			
+	return(p - (unsigned char *) str);
+
+}
+
+char * strstr(const char * str, const char * pat)
+{
+	unsigned char * s1 = (unsigned char *) str-1;
+	unsigned char * p1 = (unsigned char *) pat-1;
+	unsigned long firstc, c1, c2;
+	
+	if ((pat == NULL) || (!(firstc = *++p1)))    /*- vss 980807 -*/
+										/*- mm 980424  -*/
+										/*- beb 971017 -*/
+		return((char *) str);
+
+	while(c1 = *++s1)
+		if (c1 == firstc)
+		{
+			const unsigned char * s2 = s1-1;
+			const unsigned char * p2 = p1-1;
+			
+			while ((c1 = *++s2) == (c2 = *++p2) && c1);
+			
+			if (!c2)
+				return((char *) s1);
+		}
+	
+	return(NULL);
+
 }

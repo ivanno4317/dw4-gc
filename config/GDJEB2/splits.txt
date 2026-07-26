@@ -13,12 +13,22 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/scanf.c:
+	.text       start:0x8009C1EC end:0x8009D234
+	.rodata     start:0x80413AB8 end:0x80413AE0
+	.data       start:0x80477968 end:0x80477A38
+
+Runtime/MSL/Common/signal.c:
+	.text       start:0x8009D234 end:0x8009D2F4
+	.bss        start:0x804F2B28 end:0x804F2B40
+
 Runtime/MSL/Common/string.c:
-	.text       start:0x8009D500 end:0x8009D890
+	.text       start:0x8009D2F4 end:0x8009D890
+	.rodata     start:0x80413AE0 end:0x80413B20
 
 Runtime/MSL/Common/strtold.c:
 	.text       start:0x8009D890 end:0x8009E9E4
-	.rodata     start:0x80413B00 end:0x80413B58
+	.rodata     start:0x80413B20 end:0x80413B58
 	.sdata2     start:0x80566270 end:0x80566288
 
 Runtime/MSL/Common/strtoul.c:

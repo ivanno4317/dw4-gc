@@ -200,7 +200,6 @@ cflags_base = [
     "-fp hardware",
     "-Cpp_exceptions off",
     "-O4,p",
-    "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
@@ -292,6 +291,7 @@ elif args.warn == "error":
 
 cflags_dolsdk= [
     *cflags_base,
+    "-inline auto",
     "-i include/dolsdk2004/",
     "-i include/dolsdk2004/dolphin",
     "-i include/dolsdk2004/libc",
@@ -300,12 +300,13 @@ cflags_dolsdk= [
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
+    "-inline auto",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     "-gccinc",
     "-common off",
-    "-inline auto",
     "-i include/PowerPC_EABI_Support/MSL_C/",
+    "-i include/PowerPC_EABI_Support/MSL_C/MSL_Common",
     "-i src/dolsdk2004/",
 ]
 
@@ -665,7 +666,7 @@ config.libs = [
     ),
     Library(
         "MSL",
-        "GC/1.3.2",
+        "GC/2.6",
         cflags_runtime,
         [
             Object(Matching,"Runtime/MSL/Math/e_acos.c"),
@@ -701,11 +702,13 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Math/w_pow.c"),
             Object(Matching,"Runtime/MSL/Math/e_sqrt.c"),
             Object(Matching,"Runtime/MSL/math_ppc.c"),
-            Object(NonMatching,"Runtime/MSL/Common_Embedded/uart_console_io_gcn.c"),
+            Object(NonMatching,"Runtime/MSL/Common_Embedded/uart_console_io_gcn.c",cflags=[x for x in cflags_runtime if x != "-inline auto"] + ["-inline auto,deferred"],),
             Object(Matching,"Runtime/MSL/Common/wchar_io.c"),
-            Object(Matching,"Runtime/MSL/Common/strtoul.c"),
-            Object(NonMatching,"Runtime/MSL/Common/strtold.c"),
-            Object(Matching,"Runtime/MSL/Common/string.c"),
+            Object(Matching,"Runtime/MSL/Common/strtoul.c",cflags=[x for x in cflags_runtime if x != "-inline auto"] + ["-inline auto,deferred"],),
+            Object(Matching,"Runtime/MSL/Common/strtold.c",cflags=[x for x in cflags_runtime if x != "-inline auto"] + ["-inline auto,deferred"],),
+            Object(Matching,"Runtime/MSL/Common/string.c",cflags=[x for x in cflags_runtime if x != "-inline auto"] + ["-inline deferred"],),
+            Object(Matching,"Runtime/MSL/Common/signal.c"),
+            Object(Matching,"Runtime/MSL/Common/scanf.c",cflags=[x for x in cflags_runtime if x != "-inline auto"] + ["-inline deferred"],),
         ],
     ),
 ]
