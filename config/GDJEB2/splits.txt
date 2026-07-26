@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/string.c:
+	.text       start:0x8009D500 end:0x8009D890
+
 Runtime/MSL/Common/strtold.c:
 	.text       start:0x8009D890 end:0x8009E9E4
 	.rodata     start:0x80413B00 end:0x80413B58

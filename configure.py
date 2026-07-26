@@ -705,6 +705,7 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common/wchar_io.c"),
             Object(Matching,"Runtime/MSL/Common/strtoul.c"),
             Object(NonMatching,"Runtime/MSL/Common/strtold.c"),
+            Object(Matching,"Runtime/MSL/Common/string.c"),
         ],
     ),
 ]
