@@ -704,6 +704,7 @@ config.libs = [
             Object(NonMatching,"Runtime/MSL/Common_Embedded/uart_console_io_gcn.c"),
             Object(Matching,"Runtime/MSL/Common/wchar_io.c"),
             Object(Matching,"Runtime/MSL/Common/strtoul.c"),
+            Object(NonMatching,"Runtime/MSL/Common/strtold.c"),
         ],
     ),
 ]

@@ -10,6 +10,7 @@ extern int __extended_min[];
 extern int __extended_max[];
 extern int __float_max[];
 extern int __float_epsilon[];
+extern int __double_min[];
 
 #define FLT_MANT_DIG   24
 #define FLT_DIG        6
@@ -34,7 +35,7 @@ extern int __float_epsilon[];
 
 //#define DBL_MAX 0x1.fffffffffffffP1023
 #define DBL_EPSILON 0x1.0000000000000P-52
-#define DBL_MIN     0x1.0000000000000P-1022
+#define DBL_MIN                (* (double *) __double_min)
 
 #define DBL_MAX (*(double*)__double_max)
 
