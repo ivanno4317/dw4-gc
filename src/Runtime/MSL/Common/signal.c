@@ -1,7 +1,7 @@
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/signal.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/ansi_params.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/critical_regions.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/abort_exit.h"
+#include "signal.h"
+#include "ansi_params.h"
+#include "critical_regions.h"
+#include "abort_exit.h"
 
 __signal_func_ptr signal_funcs[6];
 

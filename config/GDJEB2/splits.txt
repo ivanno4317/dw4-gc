@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/FILE_POS.c:
+	.text       start:0x80099170 end:0x80099530
+
 Runtime/MSL/Common/mbstring.c:
 	.text       start:0x80099530 end:0x80099854
 	.sdata2     start:0x80566260 end:0x80566268

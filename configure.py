@@ -261,6 +261,7 @@ cflags_libpng = [
     "-i include",
     "-i src/zlib",
     "-i include/PowerPC_EABI_Support/MSL_C/",
+    "-i include/PowerPC_EABI_Support/PPC_EABI",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION_{config.version}",
@@ -306,7 +307,8 @@ cflags_runtime = [
     "-gccinc",
     "-common off",
     "-i include/PowerPC_EABI_Support/MSL_C/",
-    "-i include/PowerPC_EABI_Support/MSL_C/MSL_Common",
+    "-i include/PowerPC_EABI_Support/PPC_EABI",
+    "-i include/PowerPC_EABI_Support/Runtime",
     "-i src/dolsdk2004/",
 ]
 
@@ -716,6 +718,7 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common/mem_funcs.c"),
             Object(Matching,"Runtime/MSL/Common/mem.c"),
             Object(Matching,"Runtime/MSL/Common/mbstring.c"),
+            Object(NonMatching,"Runtime/MSL/Common/FILE_POS.c"),
         ],
     ),
 ]

@@ -2,8 +2,8 @@
 #define _MATH_H
 
 #include "types.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h"
-#include "PowerPC_EABI_Support/MSL_C/PPC_EABI/math_ppc.h"
+#include "math_api.h"
+#include "math_ppc.h"
 
 #ifdef __cplusplus
 extern "C" {

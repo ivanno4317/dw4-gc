@@ -1,13 +1,13 @@
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/mbstring.h"
+#include "mbstring.h"
 
 #pragma dont_inline on
 int is_utf8_complete(const char* s, size_t n)
 {
-	if (n == 0) { // must have more than zero characters
+	if (n == 0) {
 		return -1;
 	}
 
-	if (s[0] == 0x00) { // first char is 0
+	if (s[0] == 0x00) {
 		return 0;
 	}
 
@@ -103,7 +103,6 @@ int utf8_to_unicode(wchar_t *pwc, const char *s, size_t n)
 
 	return number_of_bytes;
 }
-
 
 int mbtowc(wchar_t *pwc, const char *s, size_t n) { return utf8_to_unicode(pwc, s, n); }
 

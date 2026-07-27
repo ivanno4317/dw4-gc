@@ -1,9 +1,9 @@
 #include "types.h"
 
-s32 InitializeUART(u32);                      /* extern */
-s32 OSGetConsoleType();                       /* extern */
-s32 WriteUARTN(s32, s32);                     /* extern */
-s32 __TRK_write_console(s32, s32, s32*, s32); /* extern */
+s32 InitializeUART(u32);                     
+s32 OSGetConsoleType();                      
+s32 WriteUARTN(s32, s32);                    
+s32 __TRK_write_console(s32, s32, s32*, s32);
 
 int __init_uart_console(void)
 {

@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "locale.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/ctype_api.h"
+#include "ctype_api.h"
 
 #ifdef __cplusplus
 extern "C" {

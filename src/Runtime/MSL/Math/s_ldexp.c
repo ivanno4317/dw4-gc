@@ -1,63 +1,46 @@
-#ifndef _No_Floating_Point
-/* @(#)s_ldexp.c 1.2 95/01/04 */
-/* $Id: s_ldexp.c,v 1.3.14.1 2002/01/31 15:24:14 ceciliar Exp $ */
-/*
- * ====================================================
- * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
- *
- * Developed at SunPro, a Sun Microsystems, Inc. business.
- * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice
- * is preserved.
- * ====================================================
- */
-
 #include "fdlibm.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/math_api.h" /* for isfinite macro */
+#include "math_api.h"
 static const double
 
     two54
-    = 1.80143985094819840000e+16,        /* 0x43500000, 0x00000000 */
-    twom54 = 5.55111512312578270212e-17, /* 0x3C900000, 0x00000000 */
+    = 1.80143985094819840000e+16,       
+    twom54 = 5.55111512312578270212e-17,
     big = 1.0e+300, tiny = 1.0e-300;
 
 double ldexp(double x, int n)
 {
-	s32 k, hx, lx; /*- cc 020130 -*/
+	s32 k, hx, lx;
 	if (!isfinite(x) || x == 0.0)
 		return x;
 
 	hx = __HI(x);
 	lx = __LO(x);
-	k  = (hx & 0x7ff00000) >> 20; /* extract exponent */
-	if (k == 0) {                 /* 0 or subnormal x */
+	k  = (hx & 0x7ff00000) >> 20;
+	if (k == 0) {                
 		if ((lx | (hx & 0x7fffffff)) == 0)
-			return x; /* +-0 */
+			return x;
 		x *= two54;
 		hx = __HI(x);
 		k  = ((hx & 0x7ff00000) >> 20) - 54;
 		if (n < -50000)
-			return tiny * x; /*underflow*/
+			return tiny * x;
 	}
 	if (k == 0x7ff)
-		return x + x; /* NaN or Inf */
+		return x + x;
 	k = k + n;
 	if (k > 0x7fe)
-		return big * copysign(big, x); /* overflow  */
-	if (k > 0)                         /* normal result */
+		return big * copysign(big, x);
+	if (k > 0)                        
 	{
 		__HI(x) = (hx & 0x800fffff) | (k << 20);
 		return x;
 	}
 	if (k <= -54)
-		if (n > 50000)                     /* in case integer overflow in n+k */
-			return big * copysign(big, x); /*overflow*/
+		if (n > 50000)                    
+			return big * copysign(big, x);
 		else
-			return tiny * copysign(tiny, x); /*underflow*/
-	k += 54;                                 /* subnormal result */
+			return tiny * copysign(tiny, x);
+	k += 54;                                
 	__HI(x) = (hx & 0x800fffff) | (k << 20);
 	return x * twom54;
 }
-
-/* changed __finite to __isfinite to match new naming convention 141097 bds */
-#endif /* _No_Floating_Point  */

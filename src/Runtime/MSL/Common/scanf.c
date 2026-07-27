@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "strtold.h"
 #include "strtoul.h"
-#include "PowerPC_EABI_Support/MSL_C/MSL_Common/stdio_api.h"
+#include "stdio_api.h"
 
 typedef long long intmax_t;
 

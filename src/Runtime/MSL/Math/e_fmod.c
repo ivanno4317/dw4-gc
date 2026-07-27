@@ -1,66 +1,35 @@
-
-/* @(#)e_fmod.c 1.3 95/01/18 */
-/*
- * ====================================================
- * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
- *
- * Developed at SunSoft, a Sun Microsystems, Inc. business.
- * Permission to use, copy, modify, and distribute this
- * software is freely granted, provided that this notice
- * is preserved.
- * ====================================================
- */
-
-/*
- * __ieee754_fmod(x,y)
- * Return x mod y in exact arithmetic
- * Method: shift and subtract
- */
-
 #include "fdlibm.h"
 
-#ifdef __STDC__
+
 static const double one = 1.0, Zero[] = {
 	0.0,
 	-0.0,
 };
-#else
-static double one = 1.0, Zero[] = {
-	0.0,
-	-0.0,
-};
-#endif
 
-#ifdef __STDC__
-double __ieee754_fmod(double x, double y)
-#else
-double __ieee754_fmod(x, y) double x, y;
-#endif
-{
+
+double __ieee754_fmod(double x, double y){
 	int n, hx, hy, hz, ix, iy, sx, i;
 	unsigned lx, ly, lz;
 
-	hx = __HI(x);         /* high word of x */
-	lx = __LO(x);         /* low  word of x */
-	hy = __HI(y);         /* high word of y */
-	ly = __LO(y);         /* low  word of y */
-	sx = hx & 0x80000000; /* sign of x */
-	hx ^= sx;             /* |x| */
-	hy &= 0x7fffffff;     /* |y| */
+	hx = __HI(x);        
+	lx = __LO(x);        
+	hy = __HI(y);        
+	ly = __LO(y);        
+	sx = hx & 0x80000000;
+	hx ^= sx;            
+	hy &= 0x7fffffff;    
 
-	/* purge off exception values */
-	if ((hy | ly) == 0 || (hx >= 0x7ff00000) ||   /* y=0,or x not finite */
-	    ((hy | ((ly | -ly) >> 31)) > 0x7ff00000)) /* or y is NaN */
+	if ((hy | ly) == 0 || (hx >= 0x7ff00000) ||  
+	    ((hy | ((ly | -ly) >> 31)) > 0x7ff00000))
 		return (x * y) / (x * y);
 	if (hx <= hy) {
 		if ((hx < hy) || (lx < ly))
-			return x; /* |x|<|y| return x */
+			return x;
 		if (lx == ly)
-			return Zero[(unsigned)sx >> 31]; /* |x|=|y| return x*0*/
+			return Zero[(unsigned)sx >> 31];
 	}
 
-	/* determine ix = ilogb(x) */
-	if (hx < 0x00100000) { /* subnormal x */
+	if (hx < 0x00100000) {
 		if (hx == 0) {
 			for (ix = -1043, i = lx; i > 0; i <<= 1)
 				ix -= 1;
@@ -71,8 +40,7 @@ double __ieee754_fmod(x, y) double x, y;
 	} else
 		ix = (hx >> 20) - 1023;
 
-	/* determine iy = ilogb(y) */
-	if (hy < 0x00100000) { /* subnormal y */
+	if (hy < 0x00100000) {
 		if (hy == 0) {
 			for (iy = -1043, i = ly; i > 0; i <<= 1)
 				iy -= 1;
@@ -83,10 +51,9 @@ double __ieee754_fmod(x, y) double x, y;
 	} else
 		iy = (hy >> 20) - 1023;
 
-	/* set up {hx,lx}, {hy,ly} and align y to x */
 	if (ix >= -1022)
 		hx = 0x00100000 | (0x000fffff & hx);
-	else { /* subnormal x, shift x to normal */
+	else {
 		n = -1022 - ix;
 		if (n <= 31) {
 			hx = (hx << n) | (lx >> (32 - n));
@@ -98,7 +65,7 @@ double __ieee754_fmod(x, y) double x, y;
 	}
 	if (iy >= -1022)
 		hy = 0x00100000 | (0x000fffff & hy);
-	else { /* subnormal y, shift y to normal */
+	else {
 		n = -1022 - iy;
 		if (n <= 31) {
 			hy = (hy << n) | (ly >> (32 - n));
@@ -109,7 +76,6 @@ double __ieee754_fmod(x, y) double x, y;
 		}
 	}
 
-	/* fix point fmod */
 	n = ix - iy;
 	while (n--) {
 		hz = hx - hy;
@@ -120,7 +86,7 @@ double __ieee754_fmod(x, y) double x, y;
 			hx = hx + hx + (lx >> 31);
 			lx = lx + lx;
 		} else {
-			if ((hz | lz) == 0) /* return sign(x)*0 */
+			if ((hz | lz) == 0)
 				return Zero[(unsigned)sx >> 31];
 			hx = hz + hz + (lz >> 31);
 			lx = lz + lz;
@@ -135,19 +101,18 @@ double __ieee754_fmod(x, y) double x, y;
 		lx = lz;
 	}
 
-	/* convert back to floating value and restore the sign */
-	if ((hx | lx) == 0) /* return sign(x)*0 */
+	if ((hx | lx) == 0)
 		return Zero[(unsigned)sx >> 31];
-	while (hx < 0x00100000) { /* normalize x */
+	while (hx < 0x00100000) {
 		hx = hx + hx + (lx >> 31);
 		lx = lx + lx;
 		iy -= 1;
 	}
-	if (iy >= -1022) { /* normalize output */
+	if (iy >= -1022) {
 		hx      = ((hx - 0x00100000) | ((iy + 1023) << 20));
 		__HI(x) = hx | sx;
 		__LO(x) = lx;
-	} else { /* subnormal output */
+	} else {
 		n = -1022 - iy;
 		if (n <= 20) {
 			lx = (lx >> n) | ((unsigned)hx << (32 - n));
@@ -161,7 +126,7 @@ double __ieee754_fmod(x, y) double x, y;
 		}
 		__HI(x) = hx | sx;
 		__LO(x) = lx;
-		x *= one; /* create necessary signal */
+		x *= one;
 	}
-	return x; /* exact output */
+	return x;
 }
