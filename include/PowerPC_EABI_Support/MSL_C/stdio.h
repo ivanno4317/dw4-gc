@@ -1,7 +1,7 @@
 #ifndef _MSL_CSTDIO
 #define _MSL_CSTDIO
 
-#include "ansi_files.h"
+#include "file_struc.h"
 #include "stdarg.h"
 #include "stddef.h"
 
@@ -9,10 +9,6 @@
 namespace std {
 extern "C" {
 #endif
-
-#define stdin &__files._stdin
-#define stdout &__files._stdout
-#define stderr &__files._stderr
 
 // FIXME: FILE
 void* fopen(const char* path, const char* mode);

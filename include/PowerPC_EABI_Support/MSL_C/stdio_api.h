@@ -2,7 +2,7 @@
 #define _STDIO_API_H
 
 #include "types.h"
-#include "ansi_files.h"
+#include "file_struc.h"
 
 enum __ReadProcActions { __GetAChar, __UngetAChar, __TestForError };
 

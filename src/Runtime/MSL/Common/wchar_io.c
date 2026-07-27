@@ -4,24 +4,24 @@
 #define _MSL_WIDE_CHAR
 #endif
 
-#include "ansi_files.h"
+#include "file_struc.h"
 
 int fwide(FILE* stream, int mode)
 {
     int res;
     int orientation;
 
-    if (stream == NULL || stream->file_mode.file_kind == __closed_file)
+    if (stream == NULL || stream->mode.file_kind == __closed_file)
         return 0;
 
-    orientation = stream->file_mode.file_orientation;
+    orientation = stream->mode.file_orientation;
     switch (orientation)
     {
     case __unoriented:
         if (mode > 0)
-            stream->file_mode.file_orientation = __wide_oriented;
+            stream->mode.file_orientation = __wide_oriented;
         else if (mode < 0)
-            stream->file_mode.file_orientation = __char_oriented;
+            stream->mode.file_orientation = __char_oriented;
 
         res = mode;
         break;
