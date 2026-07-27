@@ -16,19 +16,9 @@ int __fpclassifyd(double);
 #define MATH_INLINE inline
 #endif
 
-MATH_INLINE float powf(float __x, float __y)
-{
-    return pow((double)__x, (double)__y);
-}
-
 MATH_INLINE float sinf(float __x)
 {
     return sin((double)__x);
-}
-
-MATH_INLINE float cosf(float __x)
-{
-    return cos((double)__x);
 }
 
 MATH_INLINE float atanf(float __x)

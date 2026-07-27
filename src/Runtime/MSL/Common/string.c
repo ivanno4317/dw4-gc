@@ -3,8 +3,8 @@
 
 typedef unsigned char char_map[32];
 
-#define set_char_map(map, ch)  map[(unsigned char)ch>>3] |= (1 << (ch&7))	/*- mm 990913 -*/
-#define tst_char_map(map, ch) (map[(unsigned char)ch>>3] &  (1 << (ch&7)))	/*- mm 990913 -*/
+#define set_char_map(map, ch)  map[(unsigned char)ch>>3] |= (1 << (ch&7))
+#define tst_char_map(map, ch) (map[(unsigned char)ch>>3] &  (1 << (ch&7)))
 
 size_t(strlen)(const char* str)
 {
@@ -110,31 +110,31 @@ char* strcat(char* dst, const char* src)
 	return (dst);
 }
 
-char * strncat(char * dst , const char * src, size_t n)
+char * strncat(char * dst, const char * src, size_t n)
 {
 	const	unsigned char * p = (unsigned char *) src - 1;
-				unsigned char * q = (unsigned char *) dst - 1;
-	
+	unsigned char * q = (unsigned char *) dst - 1;
+
 	while (*++q);
-	
-	q--; n++;
-	
+
+	q--;
+	n++;
+
 	while (--n)
 		if (!(*++q = *++p))
 		{
 			q--;
 			break;
 		}
-	
+
 	*++q = 0;
-	
+
 	return(dst);
 }
 
 
 int strcmp(const char* str1, const char* str2)
 {
-	// bless metrowerks for this implementation
 
 	register u8* left  = (u8*)str1;
 	register u8* right = (u8*)str2;
@@ -268,21 +268,21 @@ char* strrchr(const char* str, int chr)
 char * strpbrk(const char * str, const char * set)
 {
 	const unsigned char *	p;
-	      int							c;
-				char_map				map = {0};
-	
-	
+	int							c;
+	char_map				map = {0};
+
+
 	p = (unsigned char *) set - 1;
 
 	while (c = *++p)
 		set_char_map(map, c);
-	
+
 	p = (unsigned char *) str - 1;
-	
+
 	while (c = *++p)
 		if (tst_char_map(map, c))
 			return((char *) p);
-			
+
 	return(NULL);
 
 }
@@ -292,18 +292,18 @@ size_t strcspn(const char * str, const char * set)
 	const unsigned char *	p;
 	int							c;
 	char_map				map = {0};
-		
+
 	p = (unsigned char *) set - 1;
 
 	while (c = *++p)
 		set_char_map(map, c);
-	
+
 	p = (unsigned char *) str - 1;
-	
+
 	while (c = *++p)
 		if (tst_char_map(map, c))
 			break;
-			
+
 	return(p - (unsigned char *) str);
 
 }
@@ -313,10 +313,8 @@ char * strstr(const char * str, const char * pat)
 	unsigned char * s1 = (unsigned char *) str-1;
 	unsigned char * p1 = (unsigned char *) pat-1;
 	unsigned long firstc, c1, c2;
-	
-	if ((pat == NULL) || (!(firstc = *++p1)))    /*- vss 980807 -*/
-										/*- mm 980424  -*/
-										/*- beb 971017 -*/
+
+	if ((pat == NULL) || (!(firstc = *++p1)))
 		return((char *) str);
 
 	while(c1 = *++s1)
@@ -324,13 +322,13 @@ char * strstr(const char * str, const char * pat)
 		{
 			const unsigned char * s2 = s1-1;
 			const unsigned char * p2 = p1-1;
-			
+
 			while ((c1 = *++s2) == (c2 = *++p2) && c1);
-			
+
 			if (!c2)
 				return((char *) s1);
 		}
-	
+
 	return(NULL);
 
 }

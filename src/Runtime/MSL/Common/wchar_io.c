@@ -11,17 +11,17 @@ int fwide(FILE* stream, int mode)
     int res;
     int orientation;
 
-    if (stream == NULL || stream->mMode.file_kind == __closed_file)
+    if (stream == NULL || stream->file_mode.file_kind == __closed_file)
         return 0;
 
-    orientation = stream->mMode.file_orientation;
+    orientation = stream->file_mode.file_orientation;
     switch (orientation)
     {
     case __unoriented:
         if (mode > 0)
-            stream->mMode.file_orientation = __wide_oriented;
+            stream->file_mode.file_orientation = __wide_oriented;
         else if (mode < 0)
-            stream->mMode.file_orientation = __char_oriented;
+            stream->file_mode.file_orientation = __char_oriented;
 
         res = mode;
         break;

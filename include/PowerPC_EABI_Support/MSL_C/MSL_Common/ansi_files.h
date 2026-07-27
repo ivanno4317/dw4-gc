@@ -1,90 +1,128 @@
 #ifndef _MSL_COMMON_ANSI_FILES_H
 #define _MSL_COMMON_ANSI_FILES_H
 
-#include "types.h"
+#include <cstddef>
+
+#ifdef __cplusplus
+namespace std {
+extern "C" {
+#endif
+
+#define SEEK_SET 0
+#define SEEK_CUR 1
+#define SEEK_END 2
 
 typedef unsigned long __file_handle;
 typedef unsigned long fpos_t;
-typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
 
-#define __ungetc_buffer_size 2
+#define set_error(file)                                                                            \
+    do {                                                                                           \
+        (file)->file_state.error = 1;                                                              \
+        (file)->buffer_length = 0;                                                                 \
+    } while (0)
 
-enum __file_kinds { __closed_file, __disk_file, __console_file, __unavailable_file };
+enum __file_kinds {
+    __closed_file,
+    __disk_file,
+    __console_file,
+    __unavailable_file,
+};
 
-enum __file_orientation { __unoriented, __char_oriented, __wide_oriented };
+enum __file_orientation {
+    __unoriented,
+    __char_oriented,
+    __wide_oriented
+};
 
-typedef struct __file_modes {
-	u32 open_mode : 2;
-	u32 io_mode : 3;
-	u32 buffer_mode : 2;
-	u32 file_kind : 3;
-
-#ifdef _MSL_WIDE_CHAR
-	u32 file_orientation : 2;
-#endif /* _MSL_WIDE_CHAR */
-
-	u32 binary_io : 1;
+typedef struct _file_modes {
+    unsigned int open_mode : 2;
+    unsigned int io_mode : 3;
+    unsigned int buffer_mode : 2;
+    unsigned int file_kind : 3;
+    unsigned int file_orientation : 2;
+    unsigned int binary_io : 1;
 } file_modes;
 
-enum __io_states { __neutral, __writing, __reading, __rereading };
+enum __io_modes {
+    __read = 1,
+    __write = 2,
+    __read_write = 3,
+    __append = 4,
+};
 
-typedef struct __file_states {
-	u32 io_state : 3;
-	u32 free_buffer : 1;
+enum __io_states {
+    __neutral,
+    __writing,
+    __reading,
+    __rereading,
+};
 
-	u8 eof;
-	u8 error;
+enum __io_results {
+    __no_io_error,
+    __io_error,
+    __io_EOF,
+};
+
+typedef struct _file_states {
+    unsigned int io_state : 3;
+    unsigned int free_buffer : 1;
+    unsigned char eof;
+    unsigned char error;
 } file_states;
 
-typedef void* __ref_con;
 typedef void (*__idle_proc)(void);
-typedef int (*__pos_proc)(__file_handle file, fpos_t* position, int mode, __ref_con ref_con);
-typedef int (*__io_proc)(__file_handle file, char* buff, size_t* count, __ref_con ref_con);
+typedef int (*__pos_proc)(__file_handle file, fpos_t* position, int mode, __idle_proc idle_proc);
+typedef int (*__io_proc)(__file_handle file, unsigned char* buff, size_t* count,
+                         __idle_proc idle_proc);
 typedef int (*__close_proc)(__file_handle file);
 
-struct _IO_FILE {
-	__file_handle mHandle;                           // _00
-	file_modes mMode;                                // _04
-	file_states mState;                              // _08
-	u8 mIsDynamicallyAllocated;                      // _0C
-	u8 mCharBuffer;                                  // _0D
-	u8 mCharBufferOverflow;                          // _0E
-	u8 mUngetcBuffer[__ungetc_buffer_size];          // _0F
-	wchar_t mUngetcWideBuffer[__ungetc_buffer_size]; // _12
-	u32 mPosition;                                   // _18
-	char* mBuffer;                                   // _1C
-	u32 mBufferSize;                                 // _20
-	char* mBufferPtr;                                // _24
-	u32 mBufferLength;                               // _28
-	u32 mBufferAlignment;                            // _2C
-	u32 mBufferLength2;                              // _30
-	u32 mBufferPosition;                             // _34
-	__pos_proc positionFunc;                         // _38
-	__io_proc readFunc;                              // _3C
-	__io_proc writeFunc;                             // _40
-	__close_proc closeFunc;                          // _44
-	__ref_con ref_con;                               // _48
-	_IO_FILE* mNextFile;                             // _4C
-};
+typedef struct _FILE {
+    /* 0x00 */ __file_handle handle;
+    /* 0x04 */ file_modes file_mode;
+    /* 0x08 */ file_states file_state;
+    /* 0x0C */ unsigned char is_dynamically_allocated;
+    /* 0x0D */ char char_buffer;
+    /* 0x0E */ char char_buffer_overflow;
+    /* 0x0F */ char ungetc_buffer[2];
+    /* 0x12 */ unsigned short ungetc_wide_buffer[2]; // FIXME: This should be wchar_t[2]
+    /* 0x18 */ unsigned long position;
+    /* 0x1C */ unsigned char* buffer;
+    /* 0x20 */ unsigned long buffer_size;
+    /* 0x24 */ unsigned char* buffer_ptr;
+    /* 0x28 */ unsigned long buffer_length;
+    /* 0x2C */ unsigned long buffer_alignment;
+    /* 0x30 */ unsigned long save_buffer_length;
+    /* 0x34 */ unsigned long buffer_position;
+    /* 0x38 */ __pos_proc position_fn;
+    /* 0x3C */ __io_proc read_fn;
+    /* 0x40 */ __io_proc write_fn;
+    /* 0x44 */ __close_proc close_fn;
+    /* 0x48 */ __idle_proc idle_fn;
+    /* 0x4C */ struct _FILE* next_file;
+} FILE;
 
-typedef struct _IO_FILE FILE;
+typedef struct _files {
+    FILE _stdin;
+    FILE _stdout;
+    FILE _stderr;
+    FILE empty;
+} files;
 
-extern FILE __files[4];
+#define _IONBF 0
+#define _IOLBF 1
+#define _IOFBF 2
+
+extern files __files;
+extern int __close_console(__file_handle file);
+extern int __write_console(__file_handle file, unsigned char* buf, size_t* count, __idle_proc idle_fn);
+extern int __read_console(__file_handle file, unsigned char* buf, size_t* count, __idle_proc idle_fn);
+
+unsigned int __flush_all(void);
+void __close_all(void);
 
 #ifdef __cplusplus
-extern "C" {
-#endif // ifdef __cplusplus
-
-void __convert_from_newlines(char *buffer, size_t *length);
-
-int fflush(FILE* __stream);
-void free(void*);
-int __flush_buffer(FILE* file, size_t* length);
-void __prep_buffer(FILE* file);
-u32 __flush_all();
-
-#ifdef __cplusplus
-};
-#endif // ifdef __cplusplus
-
+}
+}
 #endif
+
+#endif /* _MSL_COMMON_ANSI_FILES_H */

@@ -23,7 +23,9 @@ char* fgets(char* s, int size, void* stream);
 int fputs(const char* s, void* stream);
 int feof(void* stream);
 int fseek(void* stream, long offset, int whence);
-int fflush(void* stream);
+//int fflush(void* stream);
+//int			fflush(FILE *  );
+int fwide(FILE *stream, int mode);
 long ftell(void* stream);
 
 int fprintf(FILE* stream, const char* format, ...);

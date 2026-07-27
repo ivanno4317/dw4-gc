@@ -8,12 +8,12 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 enum critical_regions {
-	atexit_funcs_access,
+	atexit_funcs_access = 0,
 	malloc_pool_access,
+	files_access = 2,
 	stdin_access,
-	stdout_access,
 	stderr_access,
-	files_access,
+	stdout_access,
 	console_status_access,
 	signal_funcs_access,
 	thread_access,

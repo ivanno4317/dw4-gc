@@ -37,4 +37,6 @@ void __num2dec_internal(decimal*, double);
 void __num2dec(const decform*, double, decimal*);
 double __dec2num(const decimal*);
 
+#define FLOATDECIMAL	((char)(0))
+
 #endif

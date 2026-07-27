@@ -13,6 +13,20 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/printf.c:
+	.text       start:0x80099CA4 end:0x8009C058
+	.rodata     start:0x80413A90 end:0x80413AB8
+	.data       start:0x80477738 end:0x80477968
+	.sdata      start:0x8055DDE8 end:0x8055DDF0
+	.sdata2     start:0x80566268 end:0x80566270
+
+Runtime/MSL/Common/qsort.c:
+	.text       start:0x8009C058 end:0x8009C1C4
+
+Runtime/MSL/Common/rand.c:
+	.text       start:0x8009C1C4 end:0x8009C1EC
+	.sdata      start:0x8055DDF0 end:0x8055DDF8
+
 Runtime/MSL/Common/scanf.c:
 	.text       start:0x8009C1EC end:0x8009D234
 	.rodata     start:0x80413AB8 end:0x80413AE0
@@ -40,6 +54,7 @@ Runtime/MSL/Common/wchar_io.c:
 
 Runtime/MSL/Common_Embedded/uart_console_io_gcn.c:
 	.text       start:0x8009F35C end:0x8009F43C
+	.sbss       start:0x805623C0 end:0x805623C8
 
 Runtime/MSL/Math/e_acos.c:
 	.text       start:0x8009F43C end:0x8009F678

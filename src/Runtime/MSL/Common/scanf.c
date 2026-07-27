@@ -306,7 +306,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 			goto signed_int;
 		case 'i':
 			base = 0;
-		signed_int:
+signed_int:
 			if ((format.argument_options == long_long_argument))
 				u_long_long_num = __strtoull(base, format.field_width, ReadProc, ReadProcArg, &num_chars, &negative, &overflow);
 			else
@@ -323,7 +323,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 			else
 				long_num = (negative ? -u_long_num : u_long_num);
 
-		signed_int_assign:
+signed_int_assign:
 
 			if (arg_ptr) {
 				switch (format.argument_options) {
@@ -358,7 +358,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 		case 'x':
 		case 'X':
 			base = 16;
-		unsigned_int:
+unsigned_int:
 			if ((format.argument_options == long_long_argument))
 				u_long_long_num = __strtoull(base, format.field_width, ReadProc, ReadProcArg, &num_chars, &negative, &overflow);
 			else
@@ -377,7 +377,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 					u_long_num = -u_long_num;
 			}
 
-		unsigned_int_assign:
+unsigned_int_assign:
 
 			if (arg_ptr) {
 				switch (format.argument_options) {
@@ -409,7 +409,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 		case 'E':
 		case 'g':
 		case 'G':
-		flt:
+flt:
 			long_double_num = __strtold(format.field_width, ReadProc, ReadProcArg, &num_chars, &overflow);
 
 			if (!num_chars) {
@@ -418,7 +418,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 
 			chars_read += num_chars;
 
-		assign_float:
+assign_float:
 
 			if (arg_ptr) {
 				switch (format.argument_options) {
@@ -503,7 +503,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 				num_chars = 0;
 
 				while (format.field_width-- && ((c = ((*ReadProc)(ReadProcArg, 0, __GetAChar))) != -1)
-				       && tst_char_map(format.char_set, c)) {
+				        && tst_char_map(format.char_set, c)) {
 					if (format.argument_options == wchar_argument) {
 						mbtowc(((wchar_t*)arg_ptr), (char*)&c, 1);
 						arg_ptr = (char*)((wchar_t*)arg_ptr + 1);
@@ -530,7 +530,7 @@ static int __sformatter(int (*ReadProc)(void*, int, int), void* ReadProcArg, con
 				num_chars = 0;
 
 				while (format.field_width-- && ((c = ((*ReadProc)(ReadProcArg, 0, __GetAChar))) != -1)
-				       && tst_char_map(format.char_set, c)) {
+				        && tst_char_map(format.char_set, c)) {
 
 					num_chars++;
 				}
@@ -581,10 +581,6 @@ exit:
 	return items_assigned;
 }
 
-void __FileRead(void)
-{
-	// UNUSED FUNCTION
-}
 
 int __StringRead(void* pPtr, int ch, int act)
 {
@@ -619,25 +615,6 @@ int __StringRead(void* pPtr, int ch, int act)
 	return 0;
 }
 
-void fscanf(void)
-{
-	// UNUSED FUNCTION
-}
-
-void vscanf(void)
-{
-	// UNUSED FUNCTION
-}
-
-void scanf(void)
-{
-	// UNUSED FUNCTION
-}
-
-void vfscanf(void)
-{
-	// UNUSED FUNCTION
-}
 
 inline int isspace_string(const char* s)
 {

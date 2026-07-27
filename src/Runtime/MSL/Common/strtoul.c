@@ -271,7 +271,7 @@ unsigned long long __strtoull(int base, int max_width, int (*ReadProc)(void*, in
 
 	if (!success(scan_state)) {
 		count = value = *chars_scanned = 0;
-		
+
 	} else {
 		count--;
 		*chars_scanned = count + spaces;
