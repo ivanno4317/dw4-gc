@@ -13,6 +13,19 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Runtime/MSL/Common/mbstring.c:
+	.text       start:0x80099530 end:0x80099854
+	.sdata2     start:0x80566260 end:0x80566268
+
+Runtime/MSL/Common/mem.c:
+	.text       start:0x80099854 end:0x800999C4
+
+Runtime/MSL/Common/mem_funcs.c:
+	.text       start:0x800999C4 end:0x80099C94
+
+Runtime/MSL/Common/misc_io.c:
+	.text       start:0x80099C94 end:0x80099CA4
+
 Runtime/MSL/Common/printf.c:
 	.text       start:0x80099CA4 end:0x8009C058
 	.rodata     start:0x80413A90 end:0x80413AB8

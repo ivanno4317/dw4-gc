@@ -712,6 +712,10 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common/rand.c"),
             Object(Matching,"Runtime/MSL/Common/qsort.c"),
             Object(Matching,"Runtime/MSL/Common/printf.c"),
+            Object(Matching,"Runtime/MSL/Common/misc_io.c"),
+            Object(Matching,"Runtime/MSL/Common/mem_funcs.c"),
+            Object(Matching,"Runtime/MSL/Common/mem.c"),
+            Object(Matching,"Runtime/MSL/Common/mbstring.c"),
         ],
     ),
 ]
