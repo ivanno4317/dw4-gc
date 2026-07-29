@@ -8,6 +8,8 @@ extern "C" {
 #include "null.h"
 #include "size_t.h"
 
+typedef __typeof__((char*)0-(char*)0) ptrdiff_t;
+
 #define offsetof(type, member) ((size_t)&((type*)NULL)->member)
 
 #ifdef __cplusplus

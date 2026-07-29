@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "file_struc.h"
+#include <size_t.h>
 
 enum __ReadProcActions { __GetAChar, __UngetAChar, __TestForError };
 
@@ -30,7 +31,7 @@ typedef struct {
 	int wNullCharDetected;
 } __wInStrCtrl;
 
-// __fread
+size_t 		__fread(void *, size_t, size_t, FILE *);	
 size_t __fwrite(const void* pPtr, size_t memb_size, size_t num_memb, FILE* pFile);
 int __StringRead(void*, int, int);
 // wint_t __wStringRead(void*, wint_t, int);

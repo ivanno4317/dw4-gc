@@ -4,30 +4,41 @@
 #include "file_struc.h"
 #include "stdarg.h"
 #include "stddef.h"
+#include "eof.h"
 
 #ifdef __cplusplus
 namespace std {
 extern "C" {
 #endif
 
-// FIXME: FILE
-void* fopen(const char* path, const char* mode);
-int fclose(void* stream);
-size_t fread(void* ptr, size_t size, size_t n, void* stream);
-size_t fwrite(const void* ptr, size_t size, size_t n, void* stream);
-char* fgets(char* s, int size, void* stream);
-int fputs(const char* s, void* stream);
+FILE * fopen(const char* path, const char* mode);
+FILE * freopen(const char * , const char * , FILE *  );
+
+int fclose(FILE* stream);
+size_t fread(void* ptr, size_t size, size_t n, FILE * file);
+size_t fwrite(const void* ptr, size_t size, size_t n, FILE * stream);
+char* fgets(char* s, int size, FILE* stream);
+
+
+int fputs(const char* s, FILE* stream);
+
 int feof(void* stream);
-int fseek(void* stream, long offset, int whence);
+//int fseek(void* stream, long offset, int whence);
 //int fflush(void* stream);
 //int			fflush(FILE *  );
 int fwide(FILE *stream, int mode);
-long ftell(void* stream);
+//long ftell(void* stream);
 
 int fprintf(FILE* stream, const char* format, ...);
 int sprintf(char* str, const char* fmt, ...);
 int vsprintf(char* str, const char* format, va_list ap);
 int sscanf(const char* str, const char* format, ...);
+
+int		putc(int c, FILE *  );
+
+#define putc(c, file)	((fwide(file, -1) >= 0) ? EOF :\
+    (file)->buffer_len-- ? (int) (*(file)->buffer_ptr++ = (unsigned char)(c)) : __std(__put_char)(c, file)) /*- mm 990202 -*/ /*- mm 990728 -*/
+
 
 #ifdef __cplusplus
 }

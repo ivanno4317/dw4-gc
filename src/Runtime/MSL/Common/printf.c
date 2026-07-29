@@ -747,7 +747,7 @@ static char * float2str(long double num, char * buff, print_format format)
 
 	case 'N':
 
-		if (dec.sign)
+		if (dec.sgn)
 		{
 			p = buff - 5;
 			if (_isupper(format.conversion_char))
@@ -841,7 +841,7 @@ e_format:
 
 		*--p = *dec.sig.text;
 
-		if (dec.sign)
+		if (dec.sgn)
 			*--p = '-';
 		else if (format.sign_options == sign_always)
 			*--p = '+';
@@ -896,7 +896,7 @@ f_format:
 		else {
 			*--p = '0';
 		}
-		if (dec.sign)
+		if (dec.sgn)
 			*--p = '-';
 		else if (format.sign_options == sign_always)
 			*--p = '+';

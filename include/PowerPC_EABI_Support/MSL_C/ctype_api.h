@@ -28,6 +28,7 @@ extern unsigned char __upper_map[256];
 #define __printable (__graphic | __space_char)
 #define __whitespace (__motion_char | __space_char)
 #define __control (__motion_char | __control_char)
+#define __zero_fill(c)		((int) (unsigned char) (c))
 
 #ifdef __cplusplus
 };

@@ -309,7 +309,6 @@ cflags_runtime = [
     "-i include/PowerPC_EABI_Support/MSL_C/",
     "-i include/PowerPC_EABI_Support/PPC_EABI",
     "-i include/PowerPC_EABI_Support/Runtime",
-    "-i src/dolsdk2004/",
 ]
 
 # REL flags
@@ -703,7 +702,7 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Math/w_log10.c"),
             Object(Matching,"Runtime/MSL/Math/w_pow.c"),
             Object(Matching,"Runtime/MSL/Math/e_sqrt.c"),
-            Object(Matching,"Runtime/MSL/math_ppc.c"),
+            Object(Matching,"Runtime/MSL/PPC_EABI/math_ppc.c"),
             Object(NonMatching,"Runtime/MSL/Common_Embedded/uart_console_io_gcn.c"),
             Object(Matching,"Runtime/MSL/Common/wchar_io.c"),
             Object(Matching,"Runtime/MSL/Common/strtoul.c"),
@@ -718,7 +717,17 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common/mem_funcs.c"),
             Object(Matching,"Runtime/MSL/Common/mem.c"),
             Object(Matching,"Runtime/MSL/Common/mbstring.c"),
-            Object(NonMatching,"Runtime/MSL/Common/FILE_POS.c"),
+            Object(Matching,"Runtime/MSL/Common/file_pos.c"),
+            Object(Matching,"Runtime/MSL/Common/file_io.c"),
+            Object(Matching,"Runtime/MSL/Common/direct_io.c"),
+            Object(Matching,"Runtime/MSL/Common/ctype.c"),
+            Object(Matching,"Runtime/MSL/PPC_EABI/critical_regions.gamecube.c"),
+            Object(Matching,"Runtime/MSL/Common/char_io.c"),
+            Object(Matching,"Runtime/MSL/Common/buffer_io.c"),
+            Object(Matching,"Runtime/MSL/Common/arith.c"),
+            Object(Matching,"Runtime/MSL/Common_Embedded/ansi_fp.c"),
+            Object(NonMatching,"Runtime/MSL/Common/ansi_files.c"),
+            Object(Matching,"Runtime/MSL/Common/abort_exit.c"),
         ],
     ),
 ]

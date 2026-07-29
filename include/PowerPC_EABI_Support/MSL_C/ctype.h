@@ -4,6 +4,7 @@
 #include "types.h"
 #include "locale.h"
 #include "ctype_api.h"
+#include <eof.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,13 +40,13 @@ inline int _isxdigit(int c)
 {
     return (int)(__ctype_map[(u8)c] & __hex_digit);
 }
-inline int _tolower(int c)
-{
-    return (c == -1 ? -1 : (int)__lower_map[(u8)c]);
-}
 inline int _toupper(int c)
 {
     return (c == -1 ? -1 : (int)__upper_map[(u8)c]);
+}
+inline int _tolower(int c)
+{
+    return (c == -1 ? -1 : (int)__lower_map[(u8)c]);
 }
 
 #ifdef __cplusplus

@@ -18,6 +18,13 @@ enum __file_kinds
 	__unavailable_file
 };
 
+enum __open_modes 
+{
+	__must_exist,
+	__create_if_necessary,
+	__create_or_truncate
+};
+
 enum __file_orientation
 {
     __unoriented,
@@ -34,6 +41,29 @@ typedef struct
     unsigned int	file_orientation: 2;
 	unsigned int	binary_io		: 1;
 } __file_modes;
+
+enum __io_states 
+{
+	__neutral,
+	__writing,
+	__reading,
+	__rereading
+};
+
+enum __io_modes 
+{
+	__read				= 1,
+	__write				= 2,
+	__read_write		= 3,
+	__append			= 4
+};
+
+enum __io_results 
+{
+     __no_io_error,
+     __io_error,
+     __io_EOF         								
+};
 
 typedef struct 
 {
@@ -84,10 +114,23 @@ typedef struct _files {
     FILE empty;
 } files;
 
-#define stdin &__files._stdin
-#define stdout &__files._stdout
-#define stderr &__files._stderr
+#define stdin  	(&__std(__files[0]))   /*- mm 961031 -*/    /*- mm 961203 -*/ /*- mm 000201 -*/
+#define stdout	(&__std(__files[1]))   /*- mm 961031 -*/    /*- mm 961203 -*/ /*- mm 000201 -*/
+#define stderr	(&__std(__files[2]))   /*- mm 961031 -*/    /*- mm 961203 -*/ /*- mm 000201 -*/
 
-extern files __files;
+extern FILE __files[];
 
-#endif /* _FILE_STRUCT_H */
+#define _MSL_BUFSIZ 4096
+#define BUFSIZ	_MSL_BUFSIZ	
+
+#define _IONBF	0
+#define _IOLBF	1
+#define _IOFBF	2
+
+
+#define FOPEN_MAX			35
+#define _STATIC_FILES        4			/*- mm 981007 -*/
+
+
+
+#endif

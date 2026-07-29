@@ -13,7 +13,45 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
-Runtime/MSL/Common/FILE_POS.c:
+Runtime/MSL/Common/abort_exit.c:
+	.text       start:0x80094948 end:0x80094AD4
+	.bss        start:0x804F2728 end:0x804F2828
+	.sbss       start:0x805623A8 end:0x805623B8
+
+Runtime/MSL/Common/ansi_files.c:
+	.text       start:0x80094AD4 end:0x80094C78
+	.data       start:0x80477158 end:0x80477298
+	.bss        start:0x804F2828 end:0x804F2B28
+
+Runtime/MSL/Common_Embedded/ansi_fp.c:
+	.text       start:0x80094C78 end:0x80098254
+	.rodata     start:0x804139A8 end:0x80413A88
+	.data       start:0x80477298 end:0x80477400
+	.sdata2     start:0x80566230 end:0x80566260
+
+Runtime/MSL/Common/arith.c:
+	.text       start:0x80098254 end:0x80098264
+
+Runtime/MSL/Common/buffer_io.c:
+	.text       start:0x80098264 end:0x8009846C
+
+Runtime/MSL/Common/char_io.c:
+	.text       start:0x8009846C end:0x800986F8
+
+Runtime/MSL/PPC_EABI/critical_regions.gamecube.c:
+	.text       start:0x800986F8 end:0x80098704
+
+Runtime/MSL/Common/ctype.c:
+	.text       start:0x80098704 end:0x80098728
+	.data       start:0x80477400 end:0x80477700
+
+Runtime/MSL/Common/direct_io.c:
+	.text       start:0x80098728 end:0x80098E7C
+
+Runtime/MSL/Common/file_io.c:
+	.text       start:0x80098E7C end:0x80099170
+
+Runtime/MSL/Common/file_pos.c:
 	.text       start:0x80099170 end:0x80099530
 
 Runtime/MSL/Common/mbstring.c:
@@ -198,7 +236,7 @@ Runtime/MSL/Math/e_sqrt.c:
 	.text       start:0x800A2D34 end:0x800A2F58
 	.sdata2     start:0x80566808 end:0x80566810
 
-Runtime/MSL/math_ppc.c:
+Runtime/MSL/PPC_EABI/math_ppc.c:
 	.text       start:0x800A2F58 end:0x800A2FC0
 
 libpng/png.c:
