@@ -9,7 +9,7 @@ extern "C" {
 
 enum critical_regions {
 	atexit_funcs_access = 0,
-	malloc_pool_access,
+	malloc_pool_access = 1,
 	files_access = 2,
 	stdin_access,
 	stderr_access,

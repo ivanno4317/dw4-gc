@@ -89,6 +89,4 @@ typedef wchar_t wint_t;
 #define NULL 0
 #endif
 
-#define UINT32_MAX 0xffffffff
-
 #endif // !TYPES_H
