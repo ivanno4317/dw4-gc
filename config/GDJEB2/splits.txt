@@ -13,6 +13,12 @@ Sections:
 	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
+Alchemy/src/igGap.cpp:
+	.text       start:0x8003CFC0 end:0x8003D160
+
+Alchemy/src/igCore/igArkCore.cpp:
+	.text       start:0x8003D1C8 end:0x8003D234
+
 Runtime/MSL/Common/abort_exit.c:
 	.text       start:0x80094948 end:0x80094AD4
 	.bss        start:0x804F2728 end:0x804F2828
@@ -238,6 +244,12 @@ Runtime/MSL/Math/e_sqrt.c:
 
 Runtime/MSL/PPC_EABI/math_ppc.c:
 	.text       start:0x800A2F58 end:0x800A2FC0
+
+Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
+	.text       start:0x800A41FC end:0x800A4278
+	.ctors      start:0x80412E60 end:0x80412E64
+	.dtors      start:0x80412EA0 end:0x80412EA8
+	.sdata      start:0x8055DE48 end:0x8055DE50
 
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC

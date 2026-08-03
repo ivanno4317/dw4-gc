@@ -311,6 +311,14 @@ cflags_runtime = [
     "-i include/PowerPC_EABI_Support/Runtime",
 ]
 
+cflags_engine = [
+    *cflags_base,
+    "-inline auto",
+    "-lang=c++",
+    "-i src/Alchemy/include",
+    "-i src/Alchemy/include/igCore",
+]
+
 # REL flags
 cflags_rel = [
     *cflags_base,
@@ -374,7 +382,7 @@ config.libs = [
         "progress_category": "sdk",  # str | List[str]
         "objects": [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+            Object(NonMatching, "Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],        
     },
     DolphinLib(
@@ -730,6 +738,16 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common/abort_exit.c"),
         ],
     ),
+    {
+        "lib": "Alchemy engine",
+        "mw_version": "GC/2.6",
+        "cflags": cflags_engine,
+        "progress_category": "engine",
+        "objects": [
+            Object(NonMatching, "Alchemy/src/igGap.cpp"),
+            Object(NonMatching, "Alchemy/src/igCore/igArkCore.cpp"),
+        ],        
+    },
 ]
 
     
@@ -755,6 +773,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Adjust as desired for your project
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
+    ProgressCategory("engine", "Game Engine"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("MSL", "MSL"),
     ProgressCategory("zlib", "zlib"),
