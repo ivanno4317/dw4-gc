@@ -1,4 +1,4 @@
-#include <igCore/igCoreAll.h>\
+#include <igCore/igCoreAll.h>
 #include <igGap.h>   
 
 namespace Gap{

@@ -2,11 +2,12 @@
 #define __IG_ARKCORE_H__
 
 #include <igGap.h>
+#include <igCore/igStringRef.h>
 #include <types.h>
 
 namespace Gap{
     namespace Core{
-        
+
         class igArkCore{
 
             public:
@@ -22,17 +23,28 @@ namespace Gap{
 
             public:
                 igBool			_isBootstrapped;
+                igInt			_numBSMetaObjects;
+                igInt			_numBSMetaFields;
+                igInt			_numTrackedObjects;
+                igInt			_numTrackedFields;
                 void checkAlchemyVersion(igInt alchemyVersion);
 
             public:
                 void *operator new(size_t size);
+                void operator delete(void *ptr);
 
             public:
                 inline igBool isPreExitStarted()
 			    { return _preExitStarted; }
 
             protected:
-                igBool					_preExitStarted;
+                igBool			_preExitStarted;
+
+            private:
+                igStringRef _alchemyPath;
+			    igStringRef _applicationPath;
+
+                
 
         };
 

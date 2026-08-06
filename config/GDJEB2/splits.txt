@@ -15,6 +15,7 @@ Sections:
 
 Alchemy/src/igGap.cpp:
 	.text       start:0x8003CFC0 end:0x8003D160
+	.sbss       start:0x80562108 end:0x805622D8
 
 Alchemy/src/igCore/igArkCore.cpp:
 	.text       start:0x8003D1C8 end:0x8003D234
