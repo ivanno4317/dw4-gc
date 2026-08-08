@@ -3,7 +3,8 @@
 
 #include <igGap.h>
 #include <igCore/igStringRef.h>
-#include <types.h>
+
+typedef unsigned long size_t;
 
 namespace Gap{
     namespace Core{
