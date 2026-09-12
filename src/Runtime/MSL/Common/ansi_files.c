@@ -4,8 +4,11 @@
 
 #include "critical_regions.h"
 #include "file_io.h"
-#include <stdlib.h>  
-#include <string.h> 
+#include <stdlib.h>
+#include <string.h>
+
+extern int __TRK_read_console(__std(__file_handle) handle, unsigned char * buffer, __std(size_t) * count, __std(__idle_proc) idle_proc);
+#define __read_console __TRK_read_console
 
 static console_buff	stdin_buff;
 static console_buff	stdout_buff;

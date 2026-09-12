@@ -6,7 +6,8 @@
 namespace Gap {
     namespace Core {
         class igRegistry : public igObject {
-
+        public:
+            static void arkRegister();
         };
     }
 }

@@ -6,23 +6,22 @@
 #include "__axfx.h"
 
 // prototypes
-static void DLsetdelay(AXFX_REVSTD_DELAYLINE* dl, s32 lag);
-static int DLcreate(AXFX_REVSTD_DELAYLINE* dl, s32 max_length);
-static void DLdelete(AXFX_REVSTD_DELAYLINE* dl);
-static int ReverbSTDCreate(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay);
-static int ReverbSTDModify(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay);
-static void HandleReverb(s32* sptr, AXFX_REVSTD_WORK* rv);
-static void ReverbSTDCallback(s32* left, s32* right, s32* surround, AXFX_REVSTD_WORK* rv);
-static void ReverbSTDFree(AXFX_REVSTD_WORK* rv);
+static inline void DLsetdelay(AXFX_REVSTD_DELAYLINE* dl, s32 lag);
+static inline int DLcreate(AXFX_REVSTD_DELAYLINE* dl, s32 max_length);
+static inline void DLdelete(AXFX_REVSTD_DELAYLINE* dl);
+int ReverbSTDCreate(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay);
+void HandleReverb(s32* sptr, AXFX_REVSTD_WORK* rv);
+static inline void ReverbSTDCallback(s32* left, s32* right, s32* surround, AXFX_REVSTD_WORK* rv);
+void ReverbSTDFree(AXFX_REVSTD_WORK* rv);
 
-static void DLsetdelay(AXFX_REVSTD_DELAYLINE* dl, s32 lag) {
+static inline void DLsetdelay(AXFX_REVSTD_DELAYLINE* dl, s32 lag) {
     dl->outPoint = dl->inPoint - (lag * 4);
     while (dl->outPoint < 0) {
         dl->outPoint += dl->length;
     }
 }
 
-static int DLcreate(AXFX_REVSTD_DELAYLINE* dl, s32 max_length) {
+static inline int DLcreate(AXFX_REVSTD_DELAYLINE* dl, s32 max_length) {
     dl->length = (max_length * 4);
     dl->inputs = __AXFXAlloc(max_length * 4);
 	ASSERTMSGLINE(49, dl->inputs, "Can't allocate the memory.");
@@ -38,14 +37,14 @@ static int DLcreate(AXFX_REVSTD_DELAYLINE* dl, s32 max_length) {
 	return 1;
 }
 
-static void DLdelete(AXFX_REVSTD_DELAYLINE* dl) {
+static inline void DLdelete(AXFX_REVSTD_DELAYLINE* dl) {
     __AXFXFree(dl->inputs);
 }
 
 // NONMATCHING RELEASE - regalloc
-static int ReverbSTDCreate(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay) {
-    u8 i;
+int ReverbSTDCreate(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay) {
     u8 k;
+    u8 i;
     static s32 lens[4] = {
         0x000006FD,
         0x000007CF,
@@ -122,55 +121,11 @@ static int ReverbSTDCreate(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 m
     return 1;
 }
 
-static int ReverbSTDModify(AXFX_REVSTD_WORK* rv, f32 coloration, f32 time, f32 mix, f32 damping, f32 predelay) {
-    u8 i;
-
-	ASSERTMSGLINE(196, coloration >= 0.0f && coloration <= 1.0f &&
-				  time >= 0.01f && time <= 10.0f &&
-				  mix >= 0.0f && mix <= 1.0f &&
-				  damping >= 0.0f && damping <= 1.0f &&
-				  predelay >= 0.0f && predelay <= 0.1f,
-				  "The value of specified parameter is out of range.");
-
-
-    if ((coloration < 0.0f ) || (coloration > 1.0f ) 
-     || (time       < 0.01f) || (time       > 10.0f) 
-     || (mix        < 0.0f ) || (mix        > 1.0f ) 
-     || (damping    < 0.0f ) || (damping    > 1.0f ) 
-     || (predelay   < 0.0f ) || (predelay   > 0.1f )) {
-        return 0;
-    }
-
-    rv->allPassCoeff = coloration;
-    rv->level = mix;
-    rv->damping = damping;
-    if (rv->damping < 0.05f) {
-        rv->damping = 0.05f;
-    }
-    rv->damping = (1.0f - (0.05f + (0.8f * rv->damping)));
-
-    for (i = 0; i < 6; i++) {
-        DLdelete(&rv->AP[i]);
-    }
-
-    for (i = 0; i < 6; i++) {
-        DLdelete(&rv->C[i]);
-    }
-
-    if (rv->preDelayTime) {
-        for (i = 0; i < 3; i++) {
-            __AXFXFree(rv->preDelayLine[i]);
-        }
-    }
-
-    return ReverbSTDCreate(rv, coloration, time, mix, damping, predelay);
-}
-
 const static f32 value0_3 = 0.3f;
 const static f32 value0_6 = 0.6f;
 const static double i2fMagic = 4503601774854144.0;
 
-asm static void HandleReverb(register s32* sptr, register AXFX_REVSTD_WORK* rv) {
+asm void HandleReverb(register s32* sptr, register AXFX_REVSTD_WORK* rv) {
     nofralloc
 	stwu r1, -144(r1)
 	stmw r17, 8(r1)
@@ -435,7 +390,7 @@ static void ReverbSTDCallback(s32* left, s32* right, s32* surround, AXFX_REVSTD_
     HandleReverb(left, rv);
 }
 
-static void ReverbSTDFree(AXFX_REVSTD_WORK* rv) {
+void ReverbSTDFree(AXFX_REVSTD_WORK* rv) {
     u8 i;
 
     for (i = 0; i < 6; i++) {
@@ -480,18 +435,6 @@ int AXFXReverbStdShutdown(AXFX_REVERBSTD* rev) {
     ReverbSTDFree(&rev->rv);
     OSRestoreInterrupts(old);
     return 1;
-}
-
-int AXFXReverbStdSettings(AXFX_REVERBSTD* rev) {
-	int ret;
-    BOOL old;
-
-    old = OSDisableInterrupts();
-    rev->tempDisableFX = 1;
-    ret = ReverbSTDModify(&rev->rv, rev->coloration, rev->time, rev->mix, rev->damping, rev->preDelay);
-    rev->tempDisableFX = 0;
-    OSRestoreInterrupts(old);
-    return ret;
 }
 
 void AXFXReverbStdCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_REVERBSTD* reverb) {

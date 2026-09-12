@@ -5,21 +5,16 @@
 #include "__axfx.h"
 
 // functions
-static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag);
-static int DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length);
-static void DLdelete(struct AXFX_REVHI_DELAYLINE* dl);
-static int ReverbHICreate(struct AXFX_REVHI_WORK* rv, f32 coloration,
-                          f32 time, f32 mix, f32 damping, f32 preDelay,
-                          f32 crosstalk);
-static int ReverbHIModify(struct AXFX_REVHI_WORK* rv, f32 coloration,
+static inline void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag);
+static inline int DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length);
+static inline void DLdelete(struct AXFX_REVHI_DELAYLINE* dl);
+int ReverbHICreate(struct AXFX_REVHI_WORK* rv, f32 coloration,
                           f32 time, f32 mix, f32 damping, f32 preDelay,
                           f32 crosstalk);
 static void HandleReverb(s32* sptr, struct AXFX_REVHI_WORK* rv, s32 k);
-static void ReverbHICallback(s32* left, s32* right, s32* surround,
-                             struct AXFX_REVHI_WORK* rv);
-static void ReverbHIFree(struct AXFX_REVHI_WORK* rv);
+void ReverbHIFree(struct AXFX_REVHI_WORK* rv);
 
-static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
+static inline void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
 {
     dl->outPoint = dl->inPoint - (lag * 4);
     while (dl->outPoint < 0) {
@@ -27,7 +22,7 @@ static void DLsetdelay(struct AXFX_REVHI_DELAYLINE* dl, s32 lag)
     }
 }
 
-static int DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
+static inline int DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
 {
     dl->length = (max_length * 4);
     dl->inputs = __AXFXAlloc(max_length << 2);
@@ -44,13 +39,13 @@ static int DLcreate(struct AXFX_REVHI_DELAYLINE* dl, s32 max_length)
     return 1;
 }
 
-static void DLdelete(struct AXFX_REVHI_DELAYLINE* dl)
+static inline void DLdelete(struct AXFX_REVHI_DELAYLINE* dl)
 {
     __AXFXFree(dl->inputs);
 }
 
 
-static int ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping, float preDelay,float crosstalk)
+int ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float time, float mix, float damping, float preDelay,float crosstalk)
 {
     u8 i;
     u8 k;
@@ -123,56 +118,20 @@ static int ReverbHICreate(struct AXFX_REVHI_WORK* rv, float coloration, float ti
     return 1;
 }
 
-static int ReverbHIModify(struct AXFX_REVHI_WORK* rv, f32 coloration,
-                          f32 time, f32 mix, f32 damping, f32 preDelay,
-                          f32 crosstalk)
-{
-    u8 i;
+const double lbl_80566F90 = 4503601774854144.0;
+const static f32 value0_6 = 1.0f;
+const f32 lbl_80566F9C = 0.3f;
+const f32 lbl_80566FA0 = 0.6f;
 
-    if ((coloration < 0.0f) || (coloration > 1.0f) || (time < 0.01f) ||
-        (time > 10.0f) || (mix < 0.0f) || (mix > 1.0f) || (crosstalk < 0.0f) ||
-        (crosstalk > 1.0f) || (damping < 0.0f) || (damping > 1.0f) ||
-        (preDelay < 0.0f) || (preDelay > 100.0f))
-    {
-        return 0;
-    }
-
-    rv->allPassCoeff = coloration;
-    rv->level = mix;
-    rv->crosstalk = crosstalk;
-    rv->damping = damping;
-    if (rv->damping < 0.05f) {
-        rv->damping = 0.05f;
-    }
-    rv->damping = (1.0f - (0.05f + (0.8f * rv->damping)));
-    for (i = 0; i < 9; i++) {
-        DLdelete(&rv->AP[i]);
-    }
-    for (i = 0; i < 9; i++) {
-        DLdelete(&rv->C[i]);
-    }
-    if (rv->preDelayTime) {
-        for (i = 0; i < 3; i++) {
-            OSFreeToHeap(__OSCurrHeap, rv->preDelayLine[i]);
-        }
-    }
-    return ReverbHICreate(rv, coloration, time, mix, damping, preDelay,
-                          crosstalk);
-}
-
-const static f32 value0_3 = 0.3f;
-const static f32 value0_6 = 0.6f;
-const static double i2fMagic = 4503601774854144.0;
-
-asm static void DoCrossTalk(register s32* l, register s32* r,
+asm void DoCrossTalk(register s32* l, register s32* r,
                             register f32 cross, register f32 invcross)
 {
     // clang-format off
     nofralloc
 	stwu r1, -48(r1)
 	stfd f14, 40(r1)
-	lis r5, i2fMagic@ha
-	lfd f0, i2fMagic@l(r5)
+	lis r5, lbl_80566F90@ha
+	lfd f0, lbl_80566F90@l(r5)
 	lis r5, 0x4330 // 176.0f (0x43300000)
 	stw r5, 8(r1)
 	stw r5, 16(r1)
@@ -296,12 +255,12 @@ asm static void HandleReverb(register s32* sptr,
 	stfd f25, 0xb8(r1)
 	stw k, 0x50(r1)
 	stw rv, 0x54(r1)
-	lis r31, value0_3@ha
-	lfs f6, value0_3@l(r31)
-	lis r31, value0_6@ha
-	lfs f9, value0_6@l(r31)
-	lis r31, i2fMagic@ha
-	lfd f5, i2fMagic@l(r31)
+	lis r31, lbl_80566F9C@ha
+	lfs f6, lbl_80566F9C@l(r31)
+	lis r31, lbl_80566FA0@ha
+	lfs f9, lbl_80566FA0@l(r31)
+	lis r31, lbl_80566F90@ha
+	lfd f5, lbl_80566F90@l(r31)
 	lfs f2, AXFX_REVHI_WORK.allPassCoeff(rv)
 	lfs f15, AXFX_REVHI_WORK.damping(rv)
 	lfs f8, AXFX_REVHI_WORK.level(rv)
@@ -636,7 +595,7 @@ L_00000C7C:
     // clang-format on
 }
 
-static void ReverbHICallback(s32* left, s32* right, s32* surround,
+static inline void ReverbHICallback(s32* left, s32* right, s32* surround,
                              struct AXFX_REVHI_WORK* rv)
 {
     u8 k;
@@ -660,7 +619,7 @@ static void ReverbHICallback(s32* left, s32* right, s32* surround,
     }
 }
 
-static void ReverbHIFree(AXFX_REVHI_WORK* rv) {
+void ReverbHIFree(AXFX_REVHI_WORK* rv) {
     u8 i;
 
     for (i = 0; i < 9; i++) {
@@ -706,19 +665,6 @@ int AXFXReverbHiShutdown(struct AXFX_REVERBHI* rev)
 
     old = OSDisableInterrupts();
     ReverbHIFree(&rev->rv);
-    OSRestoreInterrupts(old);
-    return 1;
-}
-
-int AXFXReverbHiSettings(struct AXFX_REVERBHI* rev)
-{
-    int old;
-
-    old = OSDisableInterrupts();
-    rev->tempDisableFX = 1;
-    ReverbHIModify(&rev->rv, rev->coloration, rev->time, rev->mix,
-                   rev->damping, rev->preDelay, rev->crosstalk);
-    rev->tempDisableFX = 0;
     OSRestoreInterrupts(old);
     return 1;
 }

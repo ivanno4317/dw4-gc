@@ -4,11 +4,13 @@
 namespace Gap{
     namespace Core {
         class igStringObj : public igObject {
-
+        public:
+            static void arkRegister();
         };
 
         class igStringObjList : public igObject {
-
+        public:
+            static void arkRegister();
         };
     }
 }

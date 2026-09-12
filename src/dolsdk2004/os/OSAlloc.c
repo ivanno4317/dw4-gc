@@ -44,14 +44,14 @@ static void* ArenaStart;
 static void* ArenaEnd;
 
 // prototypes
-static Cell* DLAddFront(Cell* list, Cell* cell);
-static Cell* DLLookup(Cell* list, Cell* cell);
-static Cell* DLExtract(Cell* list, Cell* cell);
-static Cell* DLInsert(Cell* list, Cell* cell);
+static inline Cell* DLAddFront(Cell* list, Cell* cell);
+static inline Cell* DLLookup(Cell* list, Cell* cell);
+static inline Cell* DLExtract(Cell* list, Cell* cell);
+Cell* DLInsert(Cell* list, Cell* cell);
 static int DLOverlap(Cell* list, void* start, void* end);
 static s32 DLSize(Cell* list);
 
-static Cell* DLAddFront(Cell* list, Cell* cell) {
+static inline Cell* DLAddFront(Cell* list, Cell* cell) {
     cell->next = list;
     cell->prev = 0;
     if (list) {
@@ -60,7 +60,7 @@ static Cell* DLAddFront(Cell* list, Cell* cell) {
     return cell;
 }
 
-static Cell* DLLookup(Cell* list, Cell* cell) {
+static inline Cell* DLLookup(Cell* list, Cell* cell) {
     for(; list; list = list->next) {
         if (list == cell) {
             return list;
@@ -69,7 +69,7 @@ static Cell* DLLookup(Cell* list, Cell* cell) {
     return NULL;
 }
 
-static Cell* DLExtract(Cell* list, Cell* cell) {
+static inline Cell* DLExtract(Cell* list, Cell* cell) {
     if (cell->next) {
         cell->next->prev = cell->prev;
     }
@@ -80,7 +80,7 @@ static Cell* DLExtract(Cell* list, Cell* cell) {
     return list;
 }
 
-static Cell* DLInsert(Cell* list, Cell* cell) {
+Cell* DLInsert(Cell* list, Cell* cell) {
     Cell* prev;
     Cell* next;
 
@@ -121,9 +121,9 @@ static int DLOverlap(Cell* list, void* start, void* end) {
     Cell* cell = list;
 
     while(cell) {
-        if (((start <= cell) 
-            && (cell < end)) 
-            || ((start < (void* ) ((u8*)cell + cell->size)) 
+        if (((start <= cell)
+            && (cell < end))
+            || ((start < (void* ) ((u8*)cell + cell->size))
             && ((void* ) ((u8*)cell + cell->size) <= end))) {
             return 1;
         }
@@ -192,10 +192,10 @@ void* OSAllocFromHeap(int heap, u32 size) {
         newCell->prev = cell->prev;
         newCell->next = cell->next;
         if (newCell->next != NULL) {
-            newCell->next->prev = newCell; 
+            newCell->next->prev = newCell;
         }
         if (newCell->prev != NULL) {
-            newCell->prev->next = newCell; 
+            newCell->prev->next = newCell;
         } else {
             ASSERTMSGLINE(394, hd->free == cell, "OSAllocFromHeap(): heap is broken.");
             hd->free = newCell;
@@ -248,7 +248,7 @@ void* OSAllocFixed(void* rstart, void* rend) {
                 cellEnd = ((u8*)cell + cell->size);
                 if(cellEnd > start) {
                     if (end <= cell) {
-                        break; 
+                        break;
                     }
                     if ((char*)start-0x20 <= (char*)cell && cell < end && (start <= cellEnd) && (cellEnd < ((char*)end + 0x40))) {
                         if (cell < start) {
@@ -271,7 +271,7 @@ void* OSAllocFixed(void* rstart, void* rend) {
                             newCell->hd = 0;
 #endif
                             newCell->next = cell->next;
-                            if (newCell->next) { 
+                            if (newCell->next) {
                                 newCell->next->prev = newCell;
                             }
                             newCell->prev = cell->prev;
@@ -448,7 +448,7 @@ void OSDestroyHeap(int heap) {
         OSReport("OSDestroyHeap(%d): Warning - free list size %d, heap size %d\n", heap, size, hd->size);
     }
 #endif
-    
+
     hd->size = -1;
     hd->free = hd->allocated = 0;
 #ifdef ENABLE_HEAPDESC
@@ -493,7 +493,7 @@ void OSAddToHeap(int heap, void* start, void* end) {
 #endif
     hd->size += cell->size;
     hd->free = DLInsert(hd->free, cell);
-} 
+}
 
 // custom macro for OSCheckHeap
 #define ASSERTREPORT(line, cond) \
@@ -509,7 +509,7 @@ s32 OSCheckHeap(int heap) {
     ASSERTREPORT(894, 0 <= heap && heap < NumHeaps);
     hd = &HeapArray[heap];
     ASSERTREPORT(897, 0 <= hd->size);
-    
+
     ASSERTREPORT(899, hd->allocated == NULL || hd->allocated->prev == NULL);
 
     for(cell = hd->allocated; cell; cell = cell->next) {
@@ -526,9 +526,9 @@ s32 OSCheckHeap(int heap) {
 #endif
     }
 
-    
-    ASSERTREPORT(917, hd->free == NULL || hd->free->prev == NULL); 
-    
+
+    ASSERTREPORT(917, hd->free == NULL || hd->free->prev == NULL);
+
     for(cell = hd->free; cell; cell = cell->next) {
         ASSERTREPORT(920, InRange(cell, ArenaStart, ArenaEnd));
         ASSERTREPORT(921, OFFSET(cell, ALIGNMENT) == 0);
@@ -577,7 +577,7 @@ void OSDumpHeap(int heap) {
     }
     ASSERTMSGLINE(1005, OSCheckHeap(heap) >= 0, "OSDumpHeap(): heap is broken.");
 #ifdef ENABLE_HEAPDESC
-    OSReport("padding %d/(%f%%) header %d/(%f%%) payload %d/(%f%%)\n", 
+    OSReport("padding %d/(%f%%) header %d/(%f%%) payload %d/(%f%%)\n",
         hd->paddingBytes, (100.0 * hd->paddingBytes / hd->size), hd->headerBytes, (100.0 * hd->headerBytes / hd->size), hd->payloadBytes,
         (100.0 * hd->payloadBytes / hd->size));
 #endif

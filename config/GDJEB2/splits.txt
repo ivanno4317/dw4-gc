@@ -20,6 +20,9 @@ Alchemy/src/igGap.cpp:
 Alchemy/src/igCore/igArkCore.cpp:
 	.text       start:0x8003D1C8 end:0x8003D234
 
+Alchemy/src/igCore/igArkCoreNew.cpp:
+	.text       start:0x8003E974 end:0x8003E9B4
+
 Runtime/MSL/Common/abort_exit.c:
 	.text       start:0x80094948 end:0x80094AD4
 	.bss        start:0x804F2728 end:0x804F2828
@@ -246,11 +249,206 @@ Runtime/MSL/Math/e_sqrt.c:
 Runtime/MSL/PPC_EABI/math_ppc.c:
 	.text       start:0x800A2F58 end:0x800A2FC0
 
+Runtime/__va_arg.s:
+	.text       start:0x800A2FC0 end:0x800A3088
+
+Runtime/Runtime.PPCEABI.H/global_destructor_chain.c:
+	.text       start:0x800A3088 end:0x800A30E8
+	.dtors      start:0x80412EA8 end:0x80412EAC
+
+Runtime/Runtime.PPCEABI.H/cpp_eh_runtime.s:
+	extab       start:0x800057C0 end:0x800058B4
+	extabindex  start:0x80012C9C end:0x80012D2C
+	.text       start:0x800A30E8 end:0x800A3880
+
+Runtime/runtime.c:
+	.text       start:0x800A3880 end:0x800A38DC
+
+MetroTRK/savegpr.s:
+	.text       start:0x800A38DC end:0x800A3A0C
+
+Runtime/runtime2.c:
+	.text       start:0x800A3A0C end:0x800A41FC
+
 Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.text       start:0x800A41FC end:0x800A4278
 	.ctors      start:0x80412E60 end:0x80412E64
 	.dtors      start:0x80412EA0 end:0x80412EA8
 	.sdata      start:0x8055DE48 end:0x8055DE50
+
+MetroTRK/nubevent.c:
+	.text       start:0x800A59BC end:0x800A5BE4
+	.bss        start:0x804F2B50 end:0x804F2B78
+
+MetroTRK/nubinit.c:
+	.text       start:0x800A5BE4 end:0x800A5D7C
+	.rodata     start:0x80413FB0 end:0x80413FDC
+	.bss        start:0x804F2B78 end:0x804F2B7C
+
+MetroTRK/msgbuf_senddata.c:
+	.text       start:0x800A5D7C end:0x800A5DC0
+
+MetroTRK/msgbuf_read.s:
+	.text       start:0x800A5DC0 end:0x800A612C
+
+MetroTRK/msgbuf_write.s:
+	.text       start:0x800A612C end:0x800A6194
+
+MetroTRK/msgbuf_writevalue.c:
+	.text       start:0x800A6194 end:0x800A6290
+
+MetroTRK/msgbuf_readwrite.c:
+	.text       start:0x800A6290 end:0x800A63C0
+
+MetroTRK/msgbuf_setpos.c:
+	.text       start:0x800A63C0 end:0x800A63F0
+
+MetroTRK/msgbuf_reset.c:
+	.text       start:0x800A63F0 end:0x800A6430
+
+MetroTRK/msgbuf.c:
+	.text       start:0x800A6430 end:0x800A65FC
+	.bss        start:0x804F2B80 end:0x804F4530
+
+MetroTRK/serpoll.c:
+	.text       start:0x800A65FC end:0x800A6604
+
+MetroTRK/serpoll_init.s:
+	.text       start:0x800A6604 end:0x800A66C8
+
+MetroTRK/serpoll2.c:
+	.text       start:0x800A66C8 end:0x800A6778
+
+MetroTRK/serpoll3.s:
+	.text       start:0x800A6778 end:0x800A68B4
+
+MetroTRK/usr_put.c:
+	.text       start:0x800A68B4 end:0x800A68B8
+
+MetroTRK/usr_puts_serial.s:
+	.text       start:0x800A68B8 end:0x800A6940
+
+MetroTRK/dispatch2.c:
+	.text       start:0x800A6940 end:0x800A6AB0
+	.data       start:0x80477BC8 end:0x80477C34
+
+MetroTRK/dispatch.c:
+	.text       start:0x800A6AB0 end:0x800A6AB8
+
+MetroTRK/dispatch_serialio.s:
+	.text       start:0x800A6AB8 end:0x800A6B60
+
+MetroTRK/dispatch_targetstop.c:
+	.text       start:0x800A6B60 end:0x800A6C08
+
+MetroTRK/dispatch_setwatchpoint.s:
+	.text       start:0x800A6C08 end:0x800A6E28
+
+MetroTRK/dispatch_targetcontinue.c:
+	.text       start:0x800A6E28 end:0x800A6ED8
+
+MetroTRK/dispatch_readregs.c:
+	.text       start:0x800A6ED8 end:0x800A7168
+
+MetroTRK/dispatch_readregs2.c:
+	.text       start:0x800A7168 end:0x800A7448
+
+MetroTRK/dispatch_writeregs.s:
+	.text       start:0x800A7448 end:0x800A7684
+	.data       start:0x80477C34 end:0x80477C54
+
+MetroTRK/dispatch_writeregs2.s:
+	.text       start:0x800A7684 end:0x800A78C8
+	.data       start:0x80477C54 end:0x80477C70
+
+MetroTRK/dispatch_stubs.c:
+	.text       start:0x800A78C8 end:0x800A78D8
+
+MetroTRK/dispatch_events.c:
+	.text       start:0x800A78D8 end:0x800A7A64
+
+MetroTRK/dispatch_events2.s:
+	.text       start:0x800A7A64 end:0x800A823C
+
+MetroTRK/mutex_TRK.c:
+	.text       start:0x800A823C end:0x800A8254
+
+MetroTRK/int_handlers.s:
+	.text       start:0x800A8254 end:0x800A887C
+
+MetroTRK/targimpl.c:
+	.text       start:0x800A887C end:0x800A88C4
+
+MetroTRK/main_TRK.c:
+	.text       start:0x800AA93C end:0x800AA994
+	.rodata     start:0x80414520 end:0x8041452B
+	.bss        start:0x804F4AD8 end:0x804F4ADC
+
+MetroTRK/trkloadcontext.s:
+	.text       start:0x800AA994 end:0x800AAA1C
+
+MetroTRK/dolphin_trk_glue.c:
+	.text       start:0x800AAA1C end:0x800AAB08
+	.rodata     start:0x80414530 end:0x80414534
+
+MetroTRK/dbcomm.c:
+	.text       start:0x800AAB08 end:0x800AABB0
+
+MetroTRK/dolphin_trk_comm.s:
+	.text       start:0x800AABB0 end:0x800AAEEC
+	.rodata     start:0x80414534 end:0x80414638
+
+MetroTRK/targcont.c:
+	.text       start:0x800AAEEC end:0x800AAF20
+
+MetroTRK/console.s:
+	.text       start:0x800AAF20 end:0x800AB0B4
+	.bss        start:0x804F4AE8 end:0x804F4AF0
+
+MetroTRK/udp_cc.c:
+	.text       start:0x800AB0B4 end:0x800AB0FC
+
+MetroTRK/ddh_cc.c:
+	.text       start:0x800AB0FC end:0x800AB120
+
+MetroTRK/ddh_cc_peek.s:
+	.text       start:0x800AB120 end:0x800AB190
+
+MetroTRK/ddh_cc2.c:
+	.text       start:0x800AB190 end:0x800AB1D8
+
+MetroTRK/ddh_cc_write.s:
+	.text       start:0x800AB1D8 end:0x800AB298
+
+MetroTRK/ddh_cc_read.s:
+	.text       start:0x800AB298 end:0x800AB384
+
+MetroTRK/ddh_cc3.c:
+	.text       start:0x800AB384 end:0x800AB440
+
+MetroTRK/hwcc_ringbuf.c:
+	.text       start:0x800AB440 end:0x800AB6A8
+
+MetroTRK/gdev_cc.c:
+	.text       start:0x800AB6A8 end:0x800AB6CC
+
+MetroTRK/gdev_cc_peek.s:
+	.text       start:0x800AB6CC end:0x800AB73C
+
+MetroTRK/gdev_cc2.c:
+	.text       start:0x800AB73C end:0x800AB784
+
+MetroTRK/gdev_cc_write.s:
+	.text       start:0x800AB784 end:0x800AB844
+
+MetroTRK/gdev_cc_read.s:
+	.text       start:0x800AB844 end:0x800AB938
+
+MetroTRK/gdev_cc3.c:
+	.text       start:0x800AB938 end:0x800AB9F4
+
+MetroTRK/trk_trace.c:
+	.text       start:0x800AB9F4 end:0x800ABA9C
 
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC
@@ -683,6 +881,9 @@ dolsdk2004/mtx/mtx.c:
 	.sdata      start:0x80560E28 end:0x80560E30
 	.sdata2     start:0x80567170 end:0x80567178
 
+dolsdk2004/odemu/odestub.c:
+	.text       start:0x8025B738 end:0x8025B740
+
 dolsdk2004/os/OS.c:
 	.text       start:0x8025B740 end:0x8025C20C
 	.data       start:0x804C7DE0 end:0x804C7FD8
@@ -761,6 +962,13 @@ dolsdk2004/os/OSReset.c:
 dolsdk2004/os/OSResetSW.c:
 	.text       start:0x802600C4 end:0x80260450
 	.sbss       start:0x80565EF0 end:0x80565F10
+
+dolsdk2004/os/OSSram.c:
+	.text       start:0x80260450 end:0x80260DA8
+	.bss        start:0x80514D54 end:0x80514DB8
+
+dolsdk2004/os/OSSync.s:
+	.text       start:0x80260DA8 end:0x80260FB0
 
 dolsdk2004/os/OSThread.c:
 	.text       start:0x80260FB0 end:0x80262284

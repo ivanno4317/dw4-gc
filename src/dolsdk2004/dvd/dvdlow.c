@@ -42,6 +42,7 @@ static OSAlarm AlarmForTimeout;
 static OSAlarm AlarmForBreak;
 static DVDBuffer Prev;
 static DVDBuffer Curr;
+static u32 UnkPad[4];
 
 // prototypes
 static void Read(void* address, u32 length, u32 offset, DVDLowCallback callback);
