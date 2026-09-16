@@ -83,6 +83,6 @@ Progress
 
 Thanks for checking out the project!
 
-Please keep in mind that progress might be a bit periodic right now as I’m currently balancing development with my university studies and mental health. I’m working on it I get a chance.
+Please keep in mind that progress might be a bit periodic right now as I’m currently balancing development with my university studies and mental health. I’m working on it whenever I get a chance.
 
 Contributions, feedback, and pull requests are always welcome!
