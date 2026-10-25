@@ -1,3 +1,16 @@
+Regarding AI use
+--------
+The goal of decompilation is to obtain the game’s source code in a human-readable format.
+If you wish to fork the repository to continue the work using AI and agents, please feel free to contact me directly on Discord so that I can assist you personally and provide further information on how best to achieve this goal.
+
+https://discord.com/users/286968262858637312
+
+I repeat, the goal is to obtain high-quality, human-readable code.
+
+I do not support Slopcomps in any way.
+
+Do not fork the repository if you are delegating work to agents without knowing how decompilation works, how to use tools such as Ghidra and IDA, or how dtk-template works.
+
 dw4-gc  
 =============
 
