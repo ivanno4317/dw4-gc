@@ -5,7 +5,7 @@ s32 OSGetConsoleType();
 s32 WriteUARTN(s32, s32);                    
 s32 __TRK_write_console(s32, s32, s32*, s32);
 
-int __init_uart_console(void)
+static inline int __init_uart_console(void)
 {
 	static BOOL initialized;
 	int ret = 0;
@@ -37,6 +37,11 @@ BOOL __write_console(s32 arg0, s32 arg1, s32* arg2, s32 arg3)
 }
 
 int __close_console()
+{
+	return 0;
+}
+
+int fn_8009F35C(void)
 {
 	return 0;
 }
