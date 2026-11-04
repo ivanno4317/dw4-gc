@@ -737,6 +737,7 @@ config.libs = [
             Object(Matching,"Runtime/MSL/Common_Embedded/ansi_fp.c"),
             Object(NonMatching,"Runtime/MSL/Common/ansi_files.c"),
             Object(Matching,"Runtime/MSL/Common/abort_exit.c"),
+            Object(Matching,"Runtime/MSL/PPC_EABI/sysenv.GCN.c"),
         ],
     ),
     {

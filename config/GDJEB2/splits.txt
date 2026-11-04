@@ -113,8 +113,9 @@ Runtime/MSL/Common/strtoul.c:
 Runtime/MSL/Common/wchar_io.c:
 	.text       start:0x8009F2D4 end:0x8009F35C
 
+Runtime/MSL/PPC_EABI/sysenv.GCN.c:
 Runtime/MSL/Common_Embedded/uart_console_io_gcn.c:
-	.text       start:0x8009F35C end:0x8009F43C
+	.text       start:0x8009F364 end:0x8009F43C
 	.sbss       start:0x805623C0 end:0x805623C8
 
 Runtime/MSL/Math/e_acos.c:
