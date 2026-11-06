@@ -114,6 +114,8 @@ Runtime/MSL/Common/wchar_io.c:
 	.text       start:0x8009F2D4 end:0x8009F35C
 
 Runtime/MSL/PPC_EABI/sysenv.GCN.c:
+	.text       start:0x8009F35C end:0x8009F364
+
 Runtime/MSL/Common_Embedded/uart_console_io_gcn.c:
 	.text       start:0x8009F364 end:0x8009F43C
 	.sbss       start:0x805623C0 end:0x805623C8
@@ -246,6 +248,10 @@ Runtime/MSL/Math/e_sqrt.c:
 
 Runtime/MSL/PPC_EABI/math_ppc.c:
 	.text       start:0x800A2F58 end:0x800A2FC0
+
+Runtime/Runtime.PPCEABI.H/runtime.c:
+	.text       start:0x800A3880 end:0x800A4130
+	.rodata     start:0x80413F00 end:0x80413F18
 
 Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.text       start:0x800A41FC end:0x800A4278

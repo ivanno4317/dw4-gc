@@ -1,5 +1,5 @@
-#ifndef BFBB_TYPES_H
-#define BFBB_TYPES_H
+#ifndef _TYPES_H
+#define _TYPES_H
 
 #include "macros.h"
 

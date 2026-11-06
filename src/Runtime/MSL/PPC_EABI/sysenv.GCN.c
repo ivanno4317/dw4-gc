@@ -1,4 +1,4 @@
-#include <cstdlib>				/* for getenv */
+#include <cstdlib>
 
 char * getenv(const char * inVarName)
 {
