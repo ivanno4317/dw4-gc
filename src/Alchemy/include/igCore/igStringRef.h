@@ -4,32 +4,28 @@
 #include <igCore/igStringPoolItem.h>
 
 namespace Gap {
-    namespace Core {
-        //class igStringPool;
+namespace Core {
 
-        class igStringRef{
-            private:
-                const igChar* _string;
+    class igStringRef{
 
-                inline igBool isPooled() const{ return _string != NULL;}
-                inline void release() const { if (isPooled()) getId()->release(); }
-        
-            public:
-            
-                inline igStringPoolItemId getId() const
-                {
-                    return (igStringPoolItemId)(_string-sizeof(igStringPoolItem));
-                }
+        private:
+            const igChar* _string;
 
-                inline ~igStringRef()
-                {
-                    release();
-                }
-        
-        
-        
-        };
-    }
+            inline igBool isPooled() const{ return _string != NULL;}
+            inline void release() const { if (isPooled()) getId()->release(); }
+
+        public:
+            inline igStringPoolItemId getId() const
+            {
+                return (igStringPoolItemId)(_string-sizeof(igStringPoolItem));
+            }
+
+            inline ~igStringRef()
+            {
+                release();
+            }
+    };
+}
 }
 
 #endif 

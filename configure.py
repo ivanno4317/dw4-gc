@@ -749,6 +749,8 @@ config.libs = [
         "objects": [
             Object(NonMatching, "Alchemy/src/igGap.cpp"),
             Object(NonMatching, "Alchemy/src/igCore/igArkCore.cpp"),
+            Object(NonMatching, "Alchemy/src/igCore/igRawRefMetaField.cpp"),
+            Object(NonMatching, "Alchemy/src/igCore/igArenaMemoryPool.cpp"),
         ],        
     },
 ]

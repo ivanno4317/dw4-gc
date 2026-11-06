@@ -6,8 +6,6 @@
 namespace Gap {
 
     typedef igInt igResult;
-
 }
-
 
 #endif

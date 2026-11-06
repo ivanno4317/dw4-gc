@@ -3,63 +3,51 @@
 
 #include <igGap.h>
 #include <igCore/igStringRef.h>
-
-typedef unsigned long size_t;
+#include <types.h>
 
 namespace Gap{
-    namespace Core{
+namespace Core{
 
-        class igArkCore{
+    class igArkCore{
 
-            public:
-			    igArkCore();
+        public:
+            igArkCore();
 
-            public:
-                void			    preExit();
-                void				exit();
+        public:
+            void			    preExit();
+            void				exit();
 
-                void				initBootstrap();
-                void				exitBootstrap();
-                void				initCore();
+            void				initBootstrap();
+            void				exitBootstrap();
+            void				initCore();
 
-            public:
-                igBool			_isBootstrapped;
-                igInt			_numBSMetaObjects;
-                igInt			_numBSMetaFields;
-                igInt			_numTrackedObjects;
-                igInt			_numTrackedFields;
-                void checkAlchemyVersion(igInt alchemyVersion);
+        public:
+            igBool			_isBootstrapped; //should be offset 0x79
+            void checkAlchemyVersion(igInt alchemyVersion);
 
-            public:
-                void *operator new(size_t size);
-                void operator delete(void *ptr);
+        public:
+            void *operator new(size_t size);
+            void operator delete(void *ptr);
 
-            public:
-                inline igBool isPreExitStarted()
-			    { return _preExitStarted; }
+        public:
+            inline igBool isPreExitStarted()
+            { return _preExitStarted; }
 
-            protected:
-                igBool			_preExitStarted;
+        protected:
+            igBool					_initStarted;
+            igBool					_preExitStarted;
 
-            private:
-                igStringRef _alchemyPath;
-			    igStringRef _applicationPath;
+        private:
+            igStringRef _alchemyPath;
+            igStringRef _applicationPath;
+    };
 
-                
+    extern igArkCore *ArkCore_function();
+    #define ArkCore ArkCore_function()
 
-        };
-
-        extern igUnsignedLong _initialized;
-
-        extern igArkCore *ArkCore_function();
-        #define ArkCore ArkCore_function()
-
-        inline igBool	isBootstrapped()	{ return ArkCore->_isBootstrapped; }
-
-
-        void igRefAlchemy(igInt version = IG_ALCHEMY_VERSION);
-        void igReleaseAlchemy() ;
-    }
+    void igRefAlchemy(igInt version = IG_ALCHEMY_VERSION);
+    void igReleaseAlchemy() ;
+}
 }
 
 #endif

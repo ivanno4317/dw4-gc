@@ -4,11 +4,14 @@
 #include <igCore/igObject.h>
 
 namespace Gap{
-    namespace Core {
-        class igNamedObject : public igObject{
+namespace Core {
 
-        };
-    }
+class igNamedObject : public igObject{
+    IG_OBJECT_DEFINE(igNamedObject);
+};
+
+
+}
 }
 
 #endif

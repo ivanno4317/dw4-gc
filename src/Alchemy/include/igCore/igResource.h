@@ -6,7 +6,7 @@
 namespace Gap {
     namespace Core {
         class igResource : public igObject{
-
+            IG_OBJECT_DEFINE(igResource);
         };
     }
 }

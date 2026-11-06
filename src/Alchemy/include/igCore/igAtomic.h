@@ -21,9 +21,6 @@ namespace Gap {
                 }
         };
 
-
-
-
         typedef igAtomic<igInt> igAtomicInt;
         typedef igAtomic<igUnsignedInt> igAtomicUnsignedInt;
     }

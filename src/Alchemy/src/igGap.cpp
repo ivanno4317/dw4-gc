@@ -1,6 +1,5 @@
 #include <igCore/igCoreAll.h>
 #include <igGap.h>
-#include <igGapCore.h>
 
 namespace Gap{
     namespace Core{
@@ -14,7 +13,6 @@ namespace Gap{
         }
 
     }
-
 
     static igResult kSuccess;
     static igResult kFailure;

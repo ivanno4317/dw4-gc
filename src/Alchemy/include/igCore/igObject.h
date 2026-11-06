@@ -1,14 +1,28 @@
 #ifndef __IG_OBJECT_H__
 #define __IG_OBJECT_H__
 
+#include <igCore/igObjectMacros.h>
 
-class igObject{
+namespace Gap{
+namespace Core {
 
-    protected:
-        igObject();
+    class igObject{
 
-    public:
-        static void	arkRegister();
-};
+        friend class igArkCore;
+
+        public:
+            static void	arkRegister();
+
+        public:
+            enum CopyMethod { kShallowCopy, kDeepCopy, kConstructCopy };
+            virtual igObject*	createCopy(CopyMethod copyMethod=kDeepCopy) const;
+
+
+    };
+
+
+}
+}
+
 
 #endif

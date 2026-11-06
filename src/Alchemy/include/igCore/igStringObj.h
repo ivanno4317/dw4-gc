@@ -4,11 +4,11 @@
 namespace Gap{
     namespace Core {
         class igStringObj : public igObject {
-
+            IG_OBJECT_DEFINE(igStringObj);
         };
 
-        class igStringObjList : public igObject {
-
+        class igStringObjList {
+            IG_OBJECT_DEFINE(igStringObj);
         };
     }
 }
