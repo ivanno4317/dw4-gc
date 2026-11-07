@@ -385,6 +385,7 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(Matching, "Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
             Object(Matching, "Runtime/Runtime.PPCEABI.H/runtime.c"),
+            Object(NonMatching, "Runtime/Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp"),
         ],        
     },
     DolphinLib(

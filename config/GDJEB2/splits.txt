@@ -266,6 +266,11 @@ Runtime/Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.dtors      start:0x80412EA0 end:0x80412EA8
 	.sdata      start:0x8055DE48 end:0x8055DE50
 
+Runtime/Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp:
+	extab       start:0x800058B4 end:0x80005928
+	extabindex  start:0x80012D2C end:0x80012D80
+	.text       start:0x800A448C end:0x800A5850
+
 libpng/png.c:
 	.text       start:0x8021F0B0 end:0x8021F8FC
 	.data       start:0x804BD380 end:0x804BD420
