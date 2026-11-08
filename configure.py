@@ -317,7 +317,7 @@ cflags_engine = [
     "-lang=c++",
     "-i src/Alchemy/include",
     "-i src/Alchemy/include/igCore",
-    
+    "-i include/PowerPC_EABI_Support/MSL_C/",
 ]
 
 # REL flags
@@ -752,6 +752,8 @@ config.libs = [
             Object(NonMatching, "Alchemy/src/igCore/igArkCore.cpp"),
             Object(NonMatching, "Alchemy/src/igCore/igRawRefMetaField.cpp"),
             Object(NonMatching, "Alchemy/src/igCore/igArenaMemoryPool.cpp"),
+            Object(NonMatching, "Alchemy/src/igCore/igObject.cpp"),
+            Object(NonMatching, "Alchemy/src/igCore/igSystemMemory.cpp"),
         ],        
     },
 ]

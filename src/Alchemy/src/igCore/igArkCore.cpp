@@ -3,6 +3,8 @@
 
 #include <igCore/igPrivateReportHandlerMacros.h>
 
+#include <stdlib.h>
+
 using namespace Gap::Core;
 
 void igArkCore::checkAlchemyVersion(igInt alchemyVersion){
@@ -55,5 +57,9 @@ void igArkCore::initBootstrap(){
     rawMetaField = Gap::Core::igRawRefMetaField::getMetaField();
     Gap::Core::igRefMetaField::setMetaField(rawMetaField);
 
+}
 
+void igArkCore::setupPaths(){
+
+    getenv("IG_ROOT");
 }

@@ -1,15 +1,20 @@
-Regarding AI use
+Development & Community Resources
 --------
 The goal of decompilation is to obtain the game’s source code in a human-readable format.
-If you wish to fork the repository to continue the work using AI and agents, please feel free to contact me directly on Discord so that I can assist you personally and provide further information on how best to achieve this goal.
+If you wish to fork the repository to continue the work using artificial intelligence and agents, or to contribute to this repository, please feel free to contact me directly on Discord so that I can assist you personally and provide further information on how best to achieve this goal.
 
 https://discord.com/users/286968262858637312
 
-I repeat, the goal is to obtain high-quality, human-readable code.
+I recommend joining the Digimon Modding Community in the ‘world-4’ channel to discuss about decompilation and modding of the game.
 
-I do not support Slopcomps in any way.
+https://discord.gg/cb5AuxU6su
 
-Do not fork the repository if you are delegating work to agents without knowing how decompilation works, how to use tools such as Ghidra and IDA, or how dtk-template works.
+I also recommend taking a look at these repositories and the other work by these users
+
+Randomizer and crown mod: https://github.com/crashbashash/DW4_Crown_Mod
+PS2 (USA) version AI Decomp: https://github.com/Namek025/dw4-ps2-ai
+Warp tools: https://github.com/wolfDM-woke/digimon_world_4_tools
+
 
 dw4-gc  
 =============
@@ -89,13 +94,3 @@ Once the initial build succeeds, an `objdiff.json` should exist in the project r
 Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff). Under project settings, set `Project directory`. The configuration should be loaded automatically.
 
 Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
-
-
-Progress
-=======
-
-Thanks for checking out the project!
-
-Please keep in mind that progress might be a bit periodic right now as I’m currently balancing development with my university studies and mental health. I’m working on it whenever I get a chance.
-
-Contributions, feedback, and pull requests are always welcome!

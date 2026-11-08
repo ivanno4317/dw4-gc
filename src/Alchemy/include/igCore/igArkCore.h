@@ -40,6 +40,8 @@ namespace Core{
         private:
             igStringRef _alchemyPath;
             igStringRef _applicationPath;
+
+            void setupPaths();
     };
 
     extern igArkCore *ArkCore_function();

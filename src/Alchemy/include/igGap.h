@@ -5,6 +5,14 @@
 #define NULL 0
 
 namespace Gap {
+    namespace Core{
+        class igMemory;
+		typedef igMemory* igMemoryRef;
+        typedef const igMemory* igConstMemoryRef;
+    }
+}
+
+namespace Gap {
 
     typedef bool			igBool;
     typedef char			igChar;

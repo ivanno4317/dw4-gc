@@ -24,8 +24,14 @@ Alchemy/src/igCore/igArkCore.cpp:
 	.text       start:0x8003D1C8 end:0x8003E450
 	.data       start:0x80468CF8 end:0x80468E54
 
+Alchemy/src/igCore/igObject.cpp:
+	.text       start:0x800682A4 end:0x80068454
+
 Alchemy/src/igCore/igArenaMemoryPool.cpp:
 	.text       start:0x80078BD0 end:0x80078FDC
+
+Alchemy/src/igCore/igSystemMemory.cpp:
+	.text       start:0x80092280 end:0x800922D8
 
 Runtime/MSL/Common/abort_exit.c:
 	.text       start:0x80094948 end:0x80094AD4

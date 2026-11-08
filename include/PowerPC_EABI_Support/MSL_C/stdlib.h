@@ -3,4 +3,10 @@
 
 #include "cstdlib"
 
+#if defined(__cplusplus) 
+namespace std{
+	//using std::getenv;
+}
+#endif
+
 #endif

@@ -6,6 +6,13 @@
 namespace Gap {
 
     typedef igInt igResult;
+
+    namespace Core{
+
+        typedef igMemory*		igMemoryRef; 
+
+
+    }
 }
 
 #endif

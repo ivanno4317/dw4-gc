@@ -11,6 +11,9 @@ namespace Core {
 class igMemoryPool : public igObject
 {
     IG_BOOTSTRAP_ABSTRACT_OBJECT_DEFINE(igMemoryPool);
+
+    public:
+    	static igMemoryPool *getMemoryPoolByIndex(igInt index);
 };
 
 }

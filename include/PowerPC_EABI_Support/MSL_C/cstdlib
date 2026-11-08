@@ -21,6 +21,8 @@ void* realloc(void*, size_t);
 
 void abort(void); // FIXME: noreturn?
 
+char *					getenv(const char *);
+
 typedef  int (*_compare_function)(const void*, const void*);
 
 #ifdef __cplusplus

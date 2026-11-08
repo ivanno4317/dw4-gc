@@ -9,6 +9,7 @@ extern "C" {
 #define IG_REPORT_RETURN_NOT_AGAIN 2
 
 int igReportError(const char *format, ...);
+//int igReportNotice(const char *format, ...);
 
 #ifdef __cplusplus
 }
