@@ -33,6 +33,11 @@ namespace Core{
             inline igBool isPreExitStarted()
             { return _preExitStarted; }
 
+            igString getAlchemyPath();
+			igString getApplicationPath();
+			void setAlchemyPath(igString path);
+			void setApplicationPath(igString path);
+
         protected:
             igBool					_initStarted;
             igBool					_preExitStarted;

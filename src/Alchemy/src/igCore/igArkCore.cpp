@@ -29,6 +29,7 @@ void igArkCore::initBootstrap(){
     igSystemMemoryStartup();
 
 
+
     igMetaObject::arkRegister();
 
     igMetaEnum::arkRegister();
@@ -61,5 +62,9 @@ void igArkCore::initBootstrap(){
 
 void igArkCore::setupPaths(){
 
-    getenv("IG_ROOT");
+    igStringRef root;
+    root = getenv("IG_ROOT");
+    _alchemyPath = root;
+    _applicationPath = ".";
+    
 }

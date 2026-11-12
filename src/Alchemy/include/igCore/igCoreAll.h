@@ -31,6 +31,7 @@
 #include <igCore/igStringObj.h>
 #include <igCore/igStringRef.h>
 #include <igCore/igSymbolTable.h>
+#include <igCore/igInternalStringPool.h>
 #include <igCore/igStringPoolContainer.h>
 #include <igCore/igStringPoolItem.h>
 #include <igCore/igStringTable.h>

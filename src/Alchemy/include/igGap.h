@@ -9,10 +9,12 @@ namespace Gap {
         class igMemory;
 		typedef igMemory* igMemoryRef;
         typedef const igMemory* igConstMemoryRef;
+        typedef const char* igString;
     }
 }
 
 namespace Gap {
+    typedef unsigned long size_t; //i hate myself
 
     typedef bool			igBool;
     typedef char			igChar;

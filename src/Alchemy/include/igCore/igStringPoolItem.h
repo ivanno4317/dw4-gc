@@ -5,30 +5,36 @@
 #include <igCore/igStringPoolContainer.h>
 
 namespace Gap {
-    namespace Core {
+namespace Core {
+
+typedef const igStringPoolItem* igStringPoolItemId;
 
 
-        class igStringPoolItem {
+class igStringPoolItem {
 
-            private:
-                igStringPoolContainer* _pool;
-                mutable igAtomicUnsignedInt _refCount;
+    private:
+        igStringPoolContainer* _pool;
+        mutable igAtomicUnsignedInt _refCount;
+        
+        igStringPoolItem();
+        igStringPoolItem( const igStringPoolItem& that );
+        igStringPoolItem& operator=( const igStringPoolItem& that );
+
+
+    public:
+    	inline void ref() const {
+            ++_refCount;
+	    }
+
+        inline void release() const { 
+            if ( --_refCount == 0) 
+                _pool->internalRelease(this);
+        }
+};
+
                 
-                igStringPoolItem();
-                igStringPoolItem( const igStringPoolItem& that );
-                igStringPoolItem& operator=( const igStringPoolItem& that );
 
-
-            public:
-                inline void release() const { 
-                    if ( --_refCount == 0) 
-                        _pool->internalRelease(this);
-                }
-        };
-
-                
-        typedef const igStringPoolItem* igStringPoolItemId;
-    }
+}
 }
 
 #endif

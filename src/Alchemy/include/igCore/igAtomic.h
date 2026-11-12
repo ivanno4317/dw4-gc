@@ -15,6 +15,11 @@ namespace Gap {
             public:
                 igAtomic();
 
+                T operator++()
+                {
+                    return ++_data;
+                }
+
                 T operator--()
                 {
                     return --_data;
