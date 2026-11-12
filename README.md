@@ -12,7 +12,9 @@ https://discord.gg/cb5AuxU6su
 I also recommend taking a look at these repositories and the other work by these users
 
 Randomizer and crown mod: https://github.com/crashbashash/DW4_Crown_Mod
+
 PS2 (USA) version AI Decomp: https://github.com/Namek025/dw4-ps2-ai
+
 Warp tools: https://github.com/wolfDM-woke/digimon_world_4_tools
 
 
